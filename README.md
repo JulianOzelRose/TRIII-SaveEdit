@@ -18,7 +18,7 @@ instead of storing weapons on individual offsets, all weapons information are st
 The only exception is the harpoon gun, which is stored on its own offset. The weapons configuration variable has a base number of 1, which indicates
 no weapons present in inventory. Each weapon adds a unique number to the variable.
 
-#####       Weapons Config Table             #####
+#####       ```weaponsConfigNum```             #####
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
 | Pistol                  | 2                 |
@@ -63,8 +63,8 @@ else
     grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
 }
 ```
-
-####       Jungle level offsets             ####
+## Save Game Hex Tables
+#### Jungle level ####
 | **Variable**            | **File offset**   |
 | :---                    | :---              |
 | Level Name              | 0x0000            |
@@ -73,18 +73,493 @@ else
 | Large Medipack          | 0x00E7            |
 | Flares                  | 0x00E9            |
 | Weapons Config Number   | 0x00ED            |
-| Harpoon gun             | 0x00EE            |
-| Shotgun ammo 1          | 0x00DC            |
-| Shotgun ammo 2          | 0x164B            |
-| Deagle ammo	1           | 0x00D8            |
-| Deagle ammo 2	          | 0x1643            |
-| Grenade launcher ammo 1 | 0x00E4            |
-| Grenade launcher ammo 2 | 0x1657            |
-| Rocket launcher ammo 1  | 0x1657            |
-| Rocket launcher ammo 2  | 0x1653            |
-| Harpoon ammo 1          | 0x00E2            |
-| Harpoon ammo 2          | 0x164F            |
-| MP5 ammo 1              | 0x00DE            |
-| MP5 ammo 2              | 0x165B            |
-| Uzi ammo 1              | 0x00DA            |
-| Uzi ammo 2              | 0x1647            |
+| Harpoon Gun             | 0x00EE            |
+| Shotgun Ammo 1          | 0x00DC            |
+| Shotgun Ammo 2          | 0x164B            |
+| Deagle Ammo 1           | 0x00D8            |
+| Deagle Ammo 2	          | 0x1643            |
+| Grenade Launcher Ammo 1 | 0x00E4            |
+| Grenade Launcher Ammo 2 | 0x1657            |
+| Rocket Launcher Ammo 1  | 0x1657            |
+| Rocket Launcher Ammo 2  | 0x1653            |
+| Harpoon Ammo 1          | 0x00E2            |
+| Harpoon Ammo 2          | 0x164F            |
+| MP5 Ammo 1              | 0x00DE            |
+| MP5 Ammo 2              | 0x165B            |
+| Uzi Ammo 1              | 0x00DA            |
+| Uzi Ammo 2              | 0x1647            |
+
+#### Temple Ruins ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x0119            |
+| Large Medipack          | 0x011A            |
+| Flares                  | 0x011C            |
+| Weapons Config Number   | 0x0120            |
+| Harpoon Gun             | 0x0121            |
+| Shotgun Ammo 1          | 0x010F            |
+| Shotgun Ammo 2          | 0x23CD            |
+| Deagle Ammo 1           | 0x010B            |
+| Deagle Ammo 2	          | 0x23C5            |
+| Grenade Launcher Ammo 1 | 0x0117            |
+| Grenade Launcher Ammo 2 | 0x23D9            |
+| Rocket Launcher Ammo 1  | 0x0113            |
+| Rocket Launcher Ammo 2  | 0x23D5            |
+| Harpoon Ammo 1          | 0x0115            |
+| Harpoon Ammo 2          | 0x23D1            |
+| MP5 Ammo 1              | 0x0111            |
+| MP5 Ammo 2              | 0x23DD            |
+| Uzi Ammo 1              | 0x010D            |
+| Uzi Ammo 2              | 0x23C9            |
+
+#### The River Ganges ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x014C            |
+| Large Medipack          | 0x014D            |
+| Flares                  | 0x014F            |
+| Weapons Config Number   | 0x0153            |
+| Harpoon Gun             | 0x0154            |
+| Shotgun Ammo 1          | 0x0142            |
+| Shotgun Ammo 2          | 0x1804            |
+| Deagle Ammo 1           | 0x013E            |
+| Deagle Ammo 2	          | 0x17FC            |
+| Grenade Launcher Ammo 1 | 0x014A            |
+| Grenade Launcher Ammo 2 | 0x1810            |
+| Rocket Launcher Ammo 1  | 0x0146            |
+| Rocket Launcher Ammo 2  | 0x180C            |
+| Harpoon Ammo 1          | 0x0148            |
+| Harpoon Ammo 2          | 0x1814            |
+| MP5 Ammo 1              | 0x0144            |
+| MP5 Ammo 2              | 0x1808            |
+| Uzi Ammo 1              | 0x0140            |
+| Uzi Ammo 2              | 0x1800            |
+
+#### Caves of Kaliya ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x017F            |
+| Large Medipack          | 0x0180            |
+| Flares                  | 0x0182            |
+| Weapons Config Number   | 0x0186            |
+| Harpoon Gun             | 0x0187            |
+| Shotgun Ammo 1          | 0x0175            |
+| Shotgun Ammo 2          | 0x0D1F            |
+| Deagle Ammo 1           | 0x0171            |
+| Deagle Ammo 2	          | 0x0D17            |
+| Grenade Launcher Ammo 1 | 0x017D            |
+| Grenade Launcher Ammo 2 | 0x0D2B            |
+| Rocket Launcher Ammo 1  | 0x0179            |
+| Rocket Launcher Ammo 2  | 0x0D27            |
+| Harpoon Ammo 1          | 0x017B            |
+| Harpoon Ammo 2          | 0x0D2F            |
+| MP5 Ammo 1              | 0x0177            |
+| MP5 Ammo 2              | 0x0D2F            |
+| Uzi Ammo 1              | 0x0173            |
+| Uzi Ammo 2              | 0x0D1B            |
+
+#### Nevada Desert ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x034A            |
+| Large Medipack          | 0x034B            |
+| Flares                  | 0x034A            |
+| Weapons Config Number   | 0x0351            |
+| Harpoon Gun             | 0x0352            |
+| Shotgun Ammo 1          | 0x0340            |
+| Shotgun Ammo 2          | 0x17DA            |
+| Deagle Ammo 1           | 0x033C            |
+| Deagle Ammo 2	          | 0x17D2            |
+| Grenade Launcher Ammo 1 | 0x0344            |
+| Grenade Launcher Ammo 2 | 0x17E6            |
+| Rocket Launcher Ammo 1  | 0x0344            |
+| Rocket Launcher Ammo 2  | 0x17E2            |
+| Harpoon Ammo 1          | 0x0346            |
+| Harpoon Ammo 2          | 0x17E2            |
+| MP5 Ammo 1              | 0x0346            |
+| MP5 Ammo 2              | 0x17EA            |
+| Uzi Ammo 1              | 0x033E            |
+| Uzi Ammo 2              | 0x17D6            |
+
+#### High Security Compound ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x037D            |
+| Large Medipack          | 0x037E            |
+| Flares                  | 0x0380            |
+| Weapons Config Number   | 0x0384            |
+| Harpoon Gun             | 0x0385            |
+| Shotgun Ammo 1          | 0x0373            |
+| Shotgun Ammo 2          | 0x1E4B            |
+| Deagle Ammo 1           | 0x036F            |
+| Deagle Ammo 2	          | 0x1E43            |
+| Grenade Launcher Ammo 1 | 0x037B            |
+| Grenade Launcher Ammo 2 | 0x1E57            |
+| Rocket Launcher Ammo 1  | 0x0377            |
+| Rocket Launcher Ammo 2  | 0x1E53            |
+| Harpoon Ammo 1          | 0x0379            |
+| Harpoon Ammo 2          | 0x1E5B            |
+| MP5 Ammo 1              | 0x0375            |
+| MP5 Ammo 2              | 0x1E5B            |
+| Uzi Ammo 1              | 0x0371            |
+| Uzi Ammo 2              | 0x1E47            |
+
+#### Area 51 ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x03B0            |
+| Large Medipack          | 0x03B1            |
+| Flares                  | 0x03B3            |
+| Weapons Config Number   | 0x03B7            |
+| Harpoon Gun             | 0x03B8            |
+| Shotgun Ammo 1          | 0x03A6            |
+| Shotgun Ammo 2          | 0x211F            |
+| Deagle Ammo 1           | 0x03A2            |
+| Deagle Ammo 2	          | 0x2117            |
+| Grenade Launcher Ammo 1 | 0x03AE            |
+| Grenade Launcher Ammo 2 | 0x212B            |
+| Rocket Launcher Ammo 1  | 0x03AA            |
+| Rocket Launcher Ammo 2  | 0x2127            |
+| Harpoon Ammo 1          | 0x03AC            |
+| Harpoon Ammo 2          | 0x2123            |
+| MP5 Ammo 1              | 0x03A8            |
+| MP5 Ammo 2              | 0x212F            |
+| Uzi Ammo 1              | 0x03A4            |
+| Uzi Ammo 2              | 0x211B            |
+
+#### Coastal Village ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x01B2            |
+| Large Medipack          | 0x01B3            |
+| Flares                  | 0x01B5            |
+| Weapons Config Number   | 0x01B9            |
+| Harpoon Gun             | 0x01BA            |
+| Shotgun Ammo 1          | 0x01A8            |
+| Shotgun Ammo 2          | 0x17B1            |
+| Deagle Ammo 1           | 0x01A4            |
+| Deagle Ammo 2	          | 0x17A9            |
+| Grenade Launcher Ammo 1 | 0x01B0            |
+| Grenade Launcher Ammo 2 | 0x17BD            |
+| Rocket Launcher Ammo 1  | 0x01B0            |
+| Rocket Launcher Ammo 2  | 0x17B9            |
+| Harpoon Ammo 1          | 0x01AE            |
+| Harpoon Ammo 2          | 0x17B5            |
+| MP5 Ammo 1              | 0x01AA            |
+| MP5 Ammo 2              | 0x17C1            |
+| Uzi Ammo 1              | 0x01A6            |
+| Uzi Ammo 2              | 0x17AD            |
+
+#### Crash Site ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x01E5            |
+| Large Medipack          | 0x01E6            |
+| Flares                  | 0x01E8            |
+| Weapons Config Number   | 0x01EC            |
+| Harpoon Gun             | 0x01ED            |
+| Shotgun Ammo 1          | 0x01DB            |
+| Shotgun Ammo 2          | 0x18D3            |
+| Deagle Ammo 1           | 0x01D7            |
+| Deagle Ammo 2	          | 0x18CB            |
+| Grenade Launcher Ammo 1 | 0x01E3            |
+| Grenade Launcher Ammo 2 | 0x18DF            |
+| Rocket Launcher Ammo 1  | 0x01E3            |
+| Rocket Launcher Ammo 2  | 0x18DB            |
+| Harpoon Ammo 1          | 0x01E1            |
+| Harpoon Ammo 2          | 0x18D7            |
+| MP5 Ammo 1              | 0x01DD            |
+| MP5 Ammo 2              | 0x18E3            |
+| Uzi Ammo 1              | 0x01D9            |
+| Uzi Ammo 2              | 0x18CF            |
+
+#### Madubu Gorge ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x0218            |
+| Large Medipack          | 0x0219            |
+| Flares                  | 0x021B            |
+| Weapons Config Number   | 0x021F            |
+| Harpoon Gun             | 0x0220            |
+| Shotgun Ammo 1          | 0x020E            |
+| Shotgun Ammo 2          | 0x141D            |
+| Deagle Ammo 1           | 0x020A            |
+| Deagle Ammo 2	          | 0x1415            |
+| Grenade Launcher Ammo 1 | 0x0216            |
+| Grenade Launcher Ammo 2 | 0x1429            |
+| Rocket Launcher Ammo 1  | 0x0212            |
+| Rocket Launcher Ammo 2  | 0x1425            |
+| Harpoon Ammo 1          | 0x0214            |
+| Harpoon Ammo 2          | 0x1421            |
+| MP5 Ammo 1              | 0x0210            |
+| MP5 Ammo 2              | 0x142D            |
+| Uzi Ammo 1              | 0x020C            |
+| Uzi Ammo 2              | 0x1419            |
+
+#### Temple of Puna ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x024B            |
+| Large Medipack          | 0x024C            |
+| Flares                  | 0x024E            |
+| Weapons Config Number   | 0x0252            |
+| Harpoon Gun             | 0x0253            |
+| Shotgun Ammo 1          | 0x0241            |
+| Shotgun Ammo 2          | 0x10F5            |
+| Deagle Ammo 1           | 0x023D            |
+| Deagle Ammo 2	          | 0x10ED            |
+| Grenade Launcher Ammo 1 | 0x0249            |
+| Grenade Launcher Ammo 2 | 0x1101            |
+| Rocket Launcher Ammo 1  | 0x0245            |
+| Rocket Launcher Ammo 2  | 0x10FD            |
+| Harpoon Ammo 1          | 0x0247            |
+| Harpoon Ammo 2          | 0x10F9            |
+| MP5 Ammo 1              | 0x0243            |
+| MP5 Ammo 2              | 0x1105            |
+| Uzi Ammo 1              | 0x023F            |
+| Uzi Ammo 2              | 0x10F1            |
+
+#### Thames Wharf ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x027E            |
+| Large Medipack          | 0x027F            |
+| Flares                  | 0x0281            |
+| Weapons Config Number   | 0x0285            |
+| Harpoon Gun             | 0x0286            |
+| Shotgun Ammo 1          | 0x0274            |
+| Shotgun Ammo 2          | 0x1897            |
+| Deagle Ammo 1           | 0x0270            |
+| Deagle Ammo 2	          | 0x188F            |
+| Grenade Launcher Ammo 1 | 0x027C            |
+| Grenade Launcher Ammo 2 | 0x18A3            |
+| Rocket Launcher Ammo 1  | 0x0278            |
+| Rocket Launcher Ammo 2  | 0x189F            |
+| Harpoon Ammo 1          | 0x027A            |
+| Harpoon Ammo 2          | 0x189B            |
+| MP5 Ammo 1              | 0x0276            |
+| MP5 Ammo 2              | 0x18A7            |
+| Uzi Ammo 1              | 0x0272            |
+| Uzi Ammo 2              | 0x1893            |
+
+#### Aldwych ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x02B1            |
+| Large Medipack          | 0x02B2            |
+| Flares                  | 0x02B4            |
+| Weapons Config Number   | 0x02B8            |
+| Harpoon Gun             | 0x02B9            |
+| Shotgun Ammo 1          | 0x02A7            |
+| Shotgun Ammo 2          | 0x22FF            |
+| Deagle Ammo 1           | 0x02A3            |
+| Deagle Ammo 2	          | 0x22F7            |
+| Grenade Launcher Ammo 1 | 0x02AF            |
+| Grenade Launcher Ammo 2 | 0x230B            |
+| Rocket Launcher Ammo 1  | 0x02AB            |
+| Rocket Launcher Ammo 2  | 0x2307            |
+| Harpoon Ammo 1          | 0x02AD            |
+| Harpoon Ammo 2          | 0x2303            |
+| MP5 Ammo 1              | 0x02A9            |
+| MP5 Ammo 2              | 0x230F            |
+| Uzi Ammo 1              | 0x02A5            |
+| Uzi Ammo 2              | 0x22FB            |
+
+#### Lud's Gate ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x02E4            |
+| Large Medipack          | 0x02E5            |
+| Flares                  | 0x02E7            |
+| Weapons Config Number   | 0x02EB            |
+| Harpoon Gun             | 0x02EC            |
+| Shotgun Ammo 1          | 0x02DA            |
+| Shotgun Ammo 2          | 0x1D89            |
+| Deagle Ammo 1           | 0x02D6            |
+| Deagle Ammo 2	          | 0x1D81            |
+| Grenade Launcher Ammo 1 | 0x02E2            |
+| Grenade Launcher Ammo 2 | 0x1D95            |
+| Rocket Launcher Ammo 1  | 0x02D2            |
+| Rocket Launcher Ammo 2  | 0x1D91            |
+| Harpoon Ammo 1          | 0x02E0            |
+| Harpoon Ammo 2          | 0x1D8D            |
+| MP5 Ammo 1              | 0x02DC            |
+| MP5 Ammo 2              | 0x1D99            |
+| Uzi Ammo 1              | 0x02D8            |
+| Uzi Ammo 2              | 0x1D85            |
+
+#### City ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x0317            |
+| Large Medipack          | 0x0318            |
+| Flares                  | 0x031A            |
+| Weapons Config Number   | 0x031E            |
+| Harpoon Gun             | 0x031F            |
+| Shotgun Ammo 1          | 0x030D            |
+| Shotgun Ammo 2          | 0x0AF3            |
+| Deagle Ammo 1           | 0x0309            |
+| Deagle Ammo 2	          | 0x0AEB            |
+| Grenade Launcher Ammo 1 | 0x0315            |
+| Grenade Launcher Ammo 2 | 0x0AFF            |
+| Rocket Launcher Ammo 1  | 0x0311            |
+| Rocket Launcher Ammo 2  | 0x0AFB            |
+| Harpoon Ammo 1          | 0x0313            |
+| Harpoon Ammo 2          | 0x0AF7            |
+| MP5 Ammo 1              | 0x030F            |
+| MP5 Ammo 2              | 0x1B03            |
+| Uzi Ammo 1              | 0x030B            |
+| Uzi Ammo 2              | 0x0AEF            |
+
+#### Antarctica ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x03E3            |
+| Large Medipack          | 0x03E4            |
+| Flares                  | 0x03E6            |
+| Weapons Config Number   | 0x03EA            |
+| Harpoon Gun             | 0x03EB            |
+| Shotgun Ammo 1          | 0x030D            |
+| Shotgun Ammo 2          | 0x199D            |
+| Deagle Ammo 1           | 0x03D5            |
+| Deagle Ammo 2	          | 0x198D            |
+| Grenade Launcher Ammo 1 | 0x0315            |
+| Grenade Launcher Ammo 2 | 0x19A1            |
+| Rocket Launcher Ammo 1  | 0x0311            |
+| Rocket Launcher Ammo 2  | 0x199D            |
+| Harpoon Ammo 1          | 0x0313            |
+| Harpoon Ammo 2          | 0x1999            |
+| MP5 Ammo 1              | 0x03DB            |
+| MP5 Ammo 2              | 0x19A5            |
+| Uzi Ammo 1              | 0x03D7            |
+| Uzi Ammo 2              | 0x1991            |
+
+#### RX-Tech Mines ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x0416            |
+| Large Medipack          | 0x0417            |
+| Flares                  | 0x0419            |
+| Weapons Config Number   | 0x041D            |
+| Harpoon Gun             | 0x041E            |
+| Shotgun Ammo 1          | 0x040C            |
+| Shotgun Ammo 2          | 0x1957            |
+| Deagle Ammo 1           | 0x0408            |
+| Deagle Ammo 2	          | 0x194F            |
+| Grenade Launcher Ammo 1 | 0x0414            |
+| Grenade Launcher Ammo 2 | 0x1963            |
+| Rocket Launcher Ammo 1  | 0x0410            |
+| Rocket Launcher Ammo 2  | 0x1963            |
+| Harpoon Ammo 1          | 0x0412            |
+| Harpoon Ammo 2          | 0x195B            |
+| MP5 Ammo 1              | 0x040E            |
+| MP5 Ammo 2              | 0x1967            |
+| Uzi Ammo 1              | 0x040A            |
+| Uzi Ammo 2              | 0x1953            |
+
+#### Lost City of Tinnos ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x0449            |
+| Large Medipack          | 0x044A            |
+| Flares                  | 0x044C            |
+| Weapons Config Number   | 0x0450            |
+| Harpoon Gun             | 0x0451            |
+| Shotgun Ammo 1          | 0x043F            |
+| Shotgun Ammo 2          | 0x1D97            |
+| Deagle Ammo 1           | 0x043B            |
+| Deagle Ammo 2	          | 0x1D8F            |
+| Grenade Launcher Ammo 1 | 0x0447            |
+| Grenade Launcher Ammo 2 | 0x1DA3            |
+| Rocket Launcher Ammo 1  | 0x0443            |
+| Rocket Launcher Ammo 2  | 0x1D9F            |
+| Harpoon Ammo 1          | 0x0445            |
+| Harpoon Ammo 2          | 0x1D9B            |
+| MP5 Ammo 1              | 0x0441            |
+| MP5 Ammo 2              | 0x1DA7            |
+| Uzi Ammo 1              | 0x043D            |
+| Uzi Ammo 2              | 0x1D93            |
+
+#### Meteorite Cavern ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x047C            |
+| Large Medipack          | 0x047D            |
+| Flares                  | 0x047F            |
+| Weapons Config Number   | 0x0483            |
+| Harpoon Gun             | 0x0484            |
+| Shotgun Ammo 1          | 0x0472            |
+| Shotgun Ammo 2          | 0x0AFB            |
+| Deagle Ammo 1           | 0x046E            |
+| Deagle Ammo 2	          | 0x0AF3            |
+| Grenade Launcher Ammo 1 | 0x047A            |
+| Grenade Launcher Ammo 2 | 0x0B07            |
+| Rocket Launcher Ammo 1  | 0x0476            |
+| Rocket Launcher Ammo 2  | 0x0B03            |
+| Harpoon Ammo 1          | 0x0478            |
+| Harpoon Ammo 2          | 0x0AFF            |
+| MP5 Ammo 1              | 0x0474            |
+| MP5 Ammo 2              | 0x0B0B            |
+| Uzi Ammo 1              | 0x0470            |
+| Uzi Ammo 2              | 0x0AF7            |
+
+#### All Hallows ####
+| **Variable**            | **File offset**   |
+| :---                    | :---              |
+| Level Name              | 0x0000            |
+| Save Number             | 0x004B            |
+| Small Medipack          | 0x04AF            |
+| Large Medipack          | 0x04B0            |
+| Flares                  | 0x04B2            |
+| Weapons Config Number   | 0x04B6            |
+| Harpoon Gun             | 0x04B7            |
+| Shotgun Ammo 1          | 0x0472            |
+| Shotgun Ammo 2          | 0x102D            |
+| Deagle Ammo 1           | 0x046E            |
+| Deagle Ammo 2	          | 0x1025            |
+| Grenade Launcher Ammo 1 | 0x047A            |
+| Grenade Launcher Ammo 2 | 0x1039            |
+| Rocket Launcher Ammo 1  | 0x0476            |
+| Rocket Launcher Ammo 2  | 0x1035            |
+| Harpoon Ammo 1          | 0x0478            |
+| Harpoon Ammo 2          | 0x1031            |
+| MP5 Ammo 1              | 0x04A7            |
+| MP5 Ammo 2              | 0x103D            |
+| Uzi Ammo 1              | 0x04A3            |
+| Uzi Ammo 2              | 0x1029            |
