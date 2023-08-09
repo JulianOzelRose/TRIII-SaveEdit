@@ -18,7 +18,7 @@ instead of storing weapons on individual offsets, all weapons information are st
 The only exception is the harpoon gun, which is stored on its own offset. The weapons configuration variable has a base number of 1, which indicates
 no weapons present in inventory. Each weapon adds a unique number to the variable.
 
-#####       ```weaponsConfigNum```             #####
+###       ```weaponsConfigNum```             ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
 | Pistol                  | 2                 |
@@ -64,6 +64,10 @@ else
 }
 ```
 ## Save Game Hex Tables
+Below are the save game offset tables. Note that the offsets differ on every level, except for the level name and save number variables.
+Ammunition for each weapon is stored in two separate offsets. It appears that one is for ammunition when the weapon is not equipped,
+and the other is for when the weapon is equipped, showing up as ammunition.
+
 #### Jungle level ####
 | **Variable**            | **File offset**   |
 | :---                    | :---              |
