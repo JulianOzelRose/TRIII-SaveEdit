@@ -14,7 +14,7 @@ Just click **Save** when you are done, and enjoy.
 
 ## Reversing the save files
 Unlike Tomb Raider: Chronicles, the offsets in Tomb Raider III are different in each level. Another interesting difference is that
-instead of storing weapons on individual offsets, all weapons information are stored on a single offset, which I call ```weaponsConfigNum```.
+instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
 The only exception is the harpoon gun, which is stored on its own offset. The weapons configuration variable has a base number of 1, which indicates
 no weapons present in inventory. Each weapon adds a unique number to the variable.
 
@@ -31,7 +31,7 @@ no weapons present in inventory. Each weapon adds a unique number to the variabl
 When the game loads a save file, it checks this number to determine which weapons are present in inventory. When reverse
 engineering this part of the game, we need to choose our methods wisely. Since there are 128 possible combinations, using conditional
 operations would be extremely inefficient. Bitwise operations are perfect for this scenario. We account for the base case of no weapons,
-and then we use our else block to check if the unique bit of a wepaon is present in the config variable, and set our variables to display accordingly.
+and then we use our else block to check if the unique bit of a wepaon is present in the config variable, and then set our variables to display accordingly.
 
 ```
 const int Pistol = 2;
@@ -65,10 +65,10 @@ else
 ```
 ## Save Game Hex Tables
 Below are the save game offset tables. Note that the offsets differ on every level, except for the level name and save number variables.
-Ammunition for each weapon is stored in two separate offsets. It appears that one is for ammunition when the weapon is not equipped,
-and the other is for when the weapon is equipped, showing up as ammunition.
+Ammunition for each weapon is stored in two separate offsets. It appears that one is for ammunition when the weapon is equipped,
+and the other is for when the weapon is not equipped, showing in inventory as clips/shells/harpoons/grenades/rockets.
 
-#### Jungle level ####
+#### Jungle ####
 | **Variable**            | **File offset**   |
 | :---                    | :---              |
 | Level Name              | 0x0000            |
