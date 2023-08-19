@@ -24,6 +24,7 @@ no weapons present in inventory. Each weapon adds a unique number to the variabl
 | Pistol                  | 2                 |
 | Deagle                  | 4                 |
 | Uzi                     | 8                 |
+| Shotgun                 | 16                |
 | MP5                     | 32                |
 | Rocket Launcher         | 64                |
 | Grenade Launcher        | 128               |
