@@ -285,7 +285,7 @@ and the other is for when the weapon is not equipped, showing in inventory as cl
 | Deagle Ammo 2	          | 0x18CB            |
 | Grenade Launcher Ammo 1 | 0x01E3            |
 | Grenade Launcher Ammo 2 | 0x18DF            |
-| Rocket Launcher Ammo 1  | 0x01E3            |
+| Rocket Launcher Ammo 1  | 0x01DF            |
 | Rocket Launcher Ammo 2  | 0x18DB            |
 | Harpoon Ammo 1          | 0x01E1            |
 | Harpoon Ammo 2          | 0x18D7            |
