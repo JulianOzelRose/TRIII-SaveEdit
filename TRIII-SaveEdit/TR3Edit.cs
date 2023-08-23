@@ -18,7 +18,6 @@ namespace TRIII_SaveEdit
             InitializeComponent();
 
             SaveButton.Enabled = false;
-
             pistolsCheckBox.Enabled = false;
             deagleCheckBox.Enabled = false;
             deagleAmmoNumBox.Enabled = false;
@@ -39,17 +38,17 @@ namespace TRIII_SaveEdit
             flaresNumBox.Enabled = false;
             saveNumBox.Enabled = false;
 
+            smallMedipacksNumBox.Maximum = 255;
+            lrgMedipacksNumBox.Maximum = 255;
+            flaresNumBox.Maximum = 255;
             saveNumBox.Maximum = 65535;
+            shotgunAmmoNumBox.Maximum = 10922;
             rocketLauncherAmmoNumBox.Maximum = 65535;
             harpoonGunAmmoNumBox.Maximum = 65535;
             grenadeLauncherAmmoNumBox.Maximum = 65535;
             uziAmmoNumBox.Maximum = 65535;
-            flaresNumBox.Maximum = 255;
             mp5AmmoNumBox.Maximum = 65535;
             deagleAmmoNumBox.Maximum = 65535;
-            shotgunAmmoNumBox.Maximum = 10922;
-            lrgMedipacksNumBox.Maximum = 255;
-            smallMedipacksNumBox.Maximum = 255;
         }
 
         void SetSaveFilePath(string filePath)
@@ -140,6 +139,23 @@ namespace TRIII_SaveEdit
             int result = firstHalf + (secondHalf << 8);
 
             return result;
+        }
+
+        void WriteAmmoValue(long offset, int value)
+        {
+            if (value > 255)
+            {
+                byte firstHalf = (byte)(value / 256);
+                byte secondHalf = (byte)(value % 256);
+
+                WriteToSaveFile(offset + 1, firstHalf);
+                WriteToSaveFile(offset, secondHalf);
+            }
+            else
+            {
+                WriteToSaveFile(offset + 1, 0);
+                WriteToSaveFile(offset, (byte)value);
+            }
         }
 
         int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
@@ -242,19 +258,7 @@ namespace TRIII_SaveEdit
 
         void GetSaveNum()
         {
-            int saveNum = 0;
-            
-            if (GetSaveFileData(saveNumOffset + 1) == 0)
-            {
-                saveNum = GetSaveFileData(saveNumOffset);
-            }
-            else
-            {
-                byte firstHalf = GetSaveFileData(saveNumOffset + 1);
-                byte secondHalf = GetSaveFileData(saveNumOffset);
-                saveNum = firstHalf * 256 + secondHalf;
-            }
-
+            int saveNum = GetAmmoValue(saveNumOffset);
             saveNumBox.Value = saveNum;
         }
 
@@ -1111,9 +1115,9 @@ namespace TRIII_SaveEdit
 
             // Define weapons config constants
             const int Pistol = 2;
-            const int Shotgun = 16;
             const int Deagle = 4;
             const int Uzi = 8;
+            const int Shotgun = 16;
             const int MP5 = 32;
             const int RocketLauncher = 64;
             const int GrenadeLauncher = 128;
@@ -1238,168 +1242,49 @@ namespace TRIII_SaveEdit
             WriteToSaveFile(smallMedipackOffset, Decimal.ToInt32(smallMedipacksNumBox.Value));
             WriteToSaveFile(largeMedipackOffset, Decimal.ToInt32(lrgMedipacksNumBox.Value));
             WriteToSaveFile(numFlaresOffset, Decimal.ToInt32(flaresNumBox.Value));
+            WriteAmmoValue(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
 
-            if ((int)saveNumBox.Value > 255)
+            for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)((int)saveNumBox.Value / 256);
-                byte secondHalf = (byte)((int)saveNumBox.Value % 256);
-
-                WriteToSaveFile(saveNumOffset + 1, firstHalf);
-                WriteToSaveFile(saveNumOffset, secondHalf);
-            }
-            else
-            {
-                WriteToSaveFile(saveNumOffset, (byte)Decimal.ToInt32(saveNumBox.Value));
-                WriteToSaveFile(saveNumOffset + 1, 0);
+                WriteAmmoValue(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value)*6);
             }
 
-            int shotgunAmmo = (int)(shotgunAmmoNumBox.Value) * 6;
-            if (shotgunAmmo > 255)
+            for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)(shotgunAmmo / 256);
-                byte secondHalf = (byte)(shotgunAmmo % 256);
-
-                for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validShotgunAmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validShotgunAmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validShotgunAmmoOffsets[i], (byte)Decimal.ToInt32(shotgunAmmoNumBox.Value));
-                    WriteToSaveFile(validShotgunAmmoOffsets[i] + 1, 0);
-                }
+                WriteAmmoValue(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
             }
 
-            if ((int)deagleAmmoNumBox.Value > 255)
+            for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)((int)deagleAmmoNumBox.Value / 256);
-                byte secondHalf = (byte)((int)deagleAmmoNumBox.Value % 256);
-
-                for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validDeagleAmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validDeagleAmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validDeagleAmmoOffsets[i], (byte)Decimal.ToInt32(deagleAmmoNumBox.Value));
-                    WriteToSaveFile(validDeagleAmmoOffsets[i] + 1, 0);
-                }
+                WriteAmmoValue(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
             }
 
-            if ((int)grenadeLauncherAmmoNumBox.Value > 255)
+            for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)((int)grenadeLauncherAmmoNumBox.Value / 256);
-                byte secondHalf = (byte)((int)grenadeLauncherAmmoNumBox.Value % 256);
-
-                for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validGrenadeLauncherAmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validGrenadeLauncherAmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validGrenadeLauncherAmmoOffsets[i], (byte)Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
-                    WriteToSaveFile(validGrenadeLauncherAmmoOffsets[i] + 1, 0);
-                }
+                WriteAmmoValue(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
             }
 
-            if ((int)rocketLauncherAmmoNumBox.Value > 255)
+            for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)((int)rocketLauncherAmmoNumBox.Value / 256);
-                byte secondHalf = (byte)((int)rocketLauncherAmmoNumBox.Value % 256);
-
-                for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validRocketLauncherAmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validRocketLauncherAmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validRocketLauncherAmmoOffsets[i], (byte)Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
-                    WriteToSaveFile(validRocketLauncherAmmoOffsets[i] + 1, 0);
-                }
+                WriteAmmoValue(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
             }
 
-            if ((int)harpoonGunAmmoNumBox.Value > 255)
+            for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)((int)harpoonGunAmmoNumBox.Value / 256);
-                byte secondHalf = (byte)((int)harpoonGunAmmoNumBox.Value % 256);
-
-                for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validHarpoonAmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validHarpoonAmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validHarpoonAmmoOffsets[i], (byte)Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
-                    WriteToSaveFile(validHarpoonAmmoOffsets[i] + 1, 0);
-                }
+                WriteAmmoValue(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
             }
 
-            if ((int)mp5AmmoNumBox.Value > 255)
+            for (int i = 0; i < validUziAmmoOffsets.Length; i++)
             {
-                byte firstHalf = (byte)((int)mp5AmmoNumBox.Value / 256);
-                byte secondHalf = (byte)((int)mp5AmmoNumBox.Value % 256);
-
-                for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validMp5AmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validMp5AmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validMp5AmmoOffsets[i], (byte)Decimal.ToInt32(mp5AmmoNumBox.Value));
-                    WriteToSaveFile(validMp5AmmoOffsets[i] + 1, 0);
-                }
-            }
-
-            if ((int)uziAmmoNumBox.Value > 255)
-            {
-                byte firstHalf = (byte)((int)uziAmmoNumBox.Value / 256);
-                byte secondHalf = (byte)((int)uziAmmoNumBox.Value % 256);
-
-                for (int i = 0; i < validUziAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validUziAmmoOffsets[i] + 1, firstHalf);
-                    WriteToSaveFile(validUziAmmoOffsets[i], secondHalf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < validUziAmmoOffsets.Length; i++)
-                {
-                    WriteToSaveFile(validUziAmmoOffsets[i], (byte)Decimal.ToInt32(uziAmmoNumBox.Value));
-                    WriteToSaveFile(validUziAmmoOffsets[i] + 1, 0);
-                }
+                WriteAmmoValue(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
             }
 
             // Calculate new weapons config number
             int newWeaponsConfigNum = 1;
             if (pistolsCheckBox.Checked) newWeaponsConfigNum += 2;
-            if (shotgunCheckBox.Checked) newWeaponsConfigNum += 16;
             if (deagleCheckBox.Checked) newWeaponsConfigNum += 4;
             if (uziCheckBox.Checked) newWeaponsConfigNum += 8;
+            if (shotgunCheckBox.Checked) newWeaponsConfigNum += 16;
             if (mp5CheckBox.Checked) newWeaponsConfigNum += 32;
             if (rocketLauncherCheckBox.Checked) newWeaponsConfigNum += 64;
             if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
