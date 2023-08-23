@@ -158,33 +158,33 @@ namespace TRIII_SaveEdit
             }
         }
 
-        int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
+        int[] GetValidAmmoOffsets(int primaryOffset, params int[] secondaryOffsets)
         {
             List<int> validOffsets = new List<int>();
-            int baseAmmoValue = GetAmmoValue(baseOffset);
+            int primaryAmmoValue = GetAmmoValue(primaryOffset);
 
-            for (int i = 0; i < offsets.Length; i++)
+            for (int i = 0; i < secondaryOffsets.Length; i++)
             {
-                int ammoValue = GetAmmoValue(offsets[i]);
+                int ammoValue = GetAmmoValue(secondaryOffsets[i]);
 
-                if (baseAmmoValue == ammoValue && offsets[i] != 0)
+                if (primaryAmmoValue == ammoValue && secondaryOffsets[i] != 0)
                 {
-                    validOffsets.Add(offsets[i]);
+                    validOffsets.Add(secondaryOffsets[i]);
                 }
             }
 
             if (validOffsets.Count == 0)
             {
-                for (int i = 0; i < offsets.Length; i++)
+                for (int i = 0; i < secondaryOffsets.Length; i++)
                 {
-                    if (offsets[i] != 0 && GetSaveFileData(offsets[i] - 1) == 0 && GetSaveFileData(offsets[i] + 1) == 0)
+                    if (secondaryOffsets[i] != 0 && GetSaveFileData(secondaryOffsets[i] - 1) == 0 && GetSaveFileData(secondaryOffsets[i] + 1) == 0)
                     {
-                        validOffsets.Add(offsets[i]);
+                        validOffsets.Add(secondaryOffsets[i]);
                     }
                 }
             }
 
-            validOffsets.Add(baseOffset);
+            validOffsets.Add(primaryOffset);
             return validOffsets.ToArray();
         }
 
