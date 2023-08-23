@@ -73,7 +73,7 @@ stored on an additional offset, which I call the secondary ammo offset. The seco
 secondary offset, while others have up to 7 secondary ammo offsets. The "correct" secondary ammo offset changes as you progress through a level.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. I was not able to discern any useful large-scale
 patterns from the ammo offsets, so this editor takes a somewhat brute-force approach to handling ammunition. To determine which secondary offset is the correct
-one to write to, we loop through them and check for equivalency with the base offset:
+one to write to, we loop through them and check for equivalency with the base offset.
 
 ```
 int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
@@ -111,7 +111,7 @@ If no secondary offset matches the base offset, we take a heuristic approach. We
 and we check the surrounding data. If the next offset over is non-zero, we know we cannot write to it. If the preceding
 offset is written to, the game will crash. I have not figured out a method that determines the secondary offset
 with 100% accuracy when a non-zero equivalent cannot be found, but this comes quite close. There are only 3 levels that
-require this heuristic. Here is the heuristic code block, which is nested in the previous function:
+require this heuristic. Here is the heuristic code block, which is nested in the previous function.
 
 ```
 if (validOffsets.Count == 0)
@@ -129,8 +129,8 @@ if (validOffsets.Count == 0)
 ## Offset tables
 Aside from the level name and save number, the save file offsets differ on every level. The offsets for small medipack
 and large medipack are 1 byte away. Flares is 2 bytes away from large medipack, and the weapons config number is 4 bytes away
-from flares. Next to the weapons config number is the harpoon gun offset. The first ammo offset listed on each offset
-table is the base ammo offset, and the subsequent ones are secondary ammo offsets.
+from flares. Next to the weapons config number is the harpoon gun offset. The first ammo offset listed on each
+table is the base ammo offset, and the subsequent ones are the secondary ammo offsets.
 
 #### Jungle ####
 | **Variable**            | **File offset**   |
@@ -271,40 +271,40 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Weapons Config Number   | 0x0351            |
 | Harpoon Gun             | 0x0352            |
 | Shotgun Ammo 1          | 0x0340            |
-| Shotgun Ammo 2          | 0x17DA            |
-| Shotgun Ammo 3          | 0x17A4            |
-| Shotgun Ammo 4          | 0x17B6            |
-| Shotgun Ammo 5          | 0x17C8            |
+| Shotgun Ammo 2          | 0x17A4            |
+| Shotgun Ammo 3          | 0x17B6            |
+| Shotgun Ammo 4          | 0x17C8            |
+| Shotgun Ammo 5          | 0x17DA            |
 | Deagle Ammo 1           | 0x033C            |
-| Deagle Ammo 2	          | 0x17D2            |
-| Deagle Ammo 3           | 0x179C            |
-| Deagle Ammo 4	          | 0x17AE            |
-| Deagle Ammo 5	          | 0x17C0            |
+| Deagle Ammo 2	          | 0x179C            |
+| Deagle Ammo 3           | 0x17AC            |
+| Deagle Ammo 4	          | 0x17C0            |
+| Deagle Ammo 5	          | 0x17D2            |
 | Grenade Launcher Ammo 1 | 0x0348            |
-| Grenade Launcher Ammo 2 | 0x17E6            |
-| Grenade Launcher Ammo 3 | 0x17B0            |
-| Grenade Launcher Ammo 4 | 0x17C2            |
-| Grenade Launcher Ammo 5 | 0x17D4            |
+| Grenade Launcher Ammo 2 | 0x17B0            |
+| Grenade Launcher Ammo 3 | 0x17C2            |
+| Grenade Launcher Ammo 4 | 0x17D4            |
+| Grenade Launcher Ammo 5 | 0x17E6            |
 | Rocket Launcher Ammo 1  | 0x0344            |
-| Rocket Launcher Ammo 2  | 0x17E2            |
-| Rocket Launcher Ammo 3  | 0x17AC            |
-| Rocket Launcher Ammo 4  | 0x17BE            |
-| Rocket Launcher Ammo 5  | 0x17D0            |
+| Rocket Launcher Ammo 2  | 0x17AC            |
+| Rocket Launcher Ammo 3  | 0x17BE            |
+| Rocket Launcher Ammo 4  | 0x17D0            |
+| Rocket Launcher Ammo 5  | 0x17E2            |
 | Harpoon Ammo 1          | 0x0346            |
-| Harpoon Ammo 2          | 0x17DE            |
-| Harpoon Ammo 3          | 0x17A8            |
-| Harpoon Ammo 4          | 0x17BA            |
-| Harpoon Ammo 5          | 0x17CC            |
+| Harpoon Ammo 2          | 0x17A8            |
+| Harpoon Ammo 3          | 0x17BA            |
+| Harpoon Ammo 4          | 0x17CC            |
+| Harpoon Ammo 5          | 0x17DE            |
 | MP5 Ammo 1              | 0x0342            |
-| MP5 Ammo 2              | 0x17EA            |
-| MP5 Ammo 3              | 0x17B4            |
-| MP5 Ammo 4              | 0x17C6            |
-| MP5 Ammo 5              | 0x17D8            |
+| MP5 Ammo 2              | 0x17B4            |
+| MP5 Ammo 3              | 0x17C6            |
+| MP5 Ammo 4              | 0x17D8            |
+| MP5 Ammo 5              | 0x17EA            |
 | Uzi Ammo 1              | 0x033E            |
-| Uzi Ammo 2              | 0x17D6            |
-| Uzi Ammo 3              | 0x17A0            |
-| Uzi Ammo 4              | 0x17B2            |
-| Uzi Ammo 5              | 0x17C4            |
+| Uzi Ammo 2              | 0x17A0            |
+| Uzi Ammo 3              | 0x17B2            |
+| Uzi Ammo 4              | 0x17C4            |
+| Uzi Ammo 5              | 0x17D6            |
 
 #### High Security Compound ####
 | **Variable**            | **File offset**   |
@@ -317,8 +317,8 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Weapons Config Number   | 0x0384            |
 | Harpoon Gun             | 0x0385            |
 | Shotgun Ammo 1          | 0x0373            |
-| Shotgun Ammo 2          | 0x1E4B            |
-| Shotgun Ammo 3          | 0x1EA5            |
+| Shotgun Ammo 2          | 0x1EA5            |
+| Shotgun Ammo 3          | 0x1E4B            |
 | Shotgun Ammo 4          | 0x1EB7            |
 | Deagle Ammo 1           | 0x036F            |
 | Deagle Ammo 2	          | 0x1E43            |
@@ -326,8 +326,8 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Deagle Ammo 4	          | 0x1EAF            |
 | Grenade Launcher Ammo 1 | 0x037B            |
 | Grenade Launcher Ammo 2 | 0x1E57            |
-| Grenade Launcher Ammo 3 | 0x1E9D            |
-| Grenade Launcher Ammo 4 | 0x1EAF            |
+| Grenade Launcher Ammo 3 | 0x1EB1            |
+| Grenade Launcher Ammo 4 | 0x1EC3            |
 | Rocket Launcher Ammo 1  | 0x0377            |
 | Rocket Launcher Ammo 2  | 0x1E53            |
 | Rocket Launcher Ammo 3  | 0x1EAD            |
@@ -356,56 +356,56 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Weapons Config Number   | 0x03B7            |
 | Harpoon Gun             | 0x03B8            |
 | Shotgun Ammo 1          | 0x03A6            |
-| Shotgun Ammo 2          | 0x211F            |
-| Shotgun Ammo 3          | 0x210D            |
+| Shotgun Ammo 2          | 0x210D            |
+| Shotgun Ammo 3          | 0x211F            |
 | Shotgun Ammo 4          | 0x2143            |
 | Shotgun Ammo 5          | 0x2155            |
 | Shotgun Ammo 6          | 0x2167            |
 | Shotgun Ammo 7          | 0x218B            |
 | Shotgun Ammo 8          | 0x21AF            |
 | Deagle Ammo 1           | 0x03A2            |
-| Deagle Ammo 2	          | 0x2117            |
-| Deagle Ammo 3	          | 0x2105            |
+| Deagle Ammo 2	          | 0x2105            |
+| Deagle Ammo 3	          | 0x2117            |
 | Deagle Ammo 4	          | 0x213B            |
 | Deagle Ammo 5	          | 0x214D            |
 | Deagle Ammo 6	          | 0x215F            |
 | Deagle Ammo 7	          | 0x2183            |
 | Deagle Ammo 8	          | 0x21A7            |
 | Grenade Launcher Ammo 1 | 0x03AE            |
-| Grenade Launcher Ammo 2 | 0x212B            |
-| Grenade Launcher Ammo 3 | 0x2119            |
+| Grenade Launcher Ammo 2 | 0x2119            |
+| Grenade Launcher Ammo 3 | 0x212B            |
 | Grenade Launcher Ammo 4 | 0x214F            |
 | Grenade Launcher Ammo 5 | 0x2161            |
 | Grenade Launcher Ammo 6 | 0x2173            |
 | Grenade Launcher Ammo 7 | 0x2197            |
 | Grenade Launcher Ammo 8 | 0x21BB            |
 | Rocket Launcher Ammo 1  | 0x03AA            |
-| Rocket Launcher Ammo 2  | 0x2127            |
-| Rocket Launcher Ammo 3  | 0x2115            |
+| Rocket Launcher Ammo 2  | 0x2115            |
+| Rocket Launcher Ammo 3  | 0x2127            |
 | Rocket Launcher Ammo 4  | 0x214B            |
 | Rocket Launcher Ammo 5  | 0x215D            |
 | Rocket Launcher Ammo 6  | 0x216F            |
 | Rocket Launcher Ammo 7  | 0x2193            |
 | Rocket Launcher Ammo 8  | 0x21B7            |
 | Harpoon Ammo 1          | 0x03AC            |
-| Harpoon Ammo 2          | 0x2123            |
-| Harpoon Ammo 3          | 0x2111            |
+| Harpoon Ammo 2          | 0x2111            |
+| Harpoon Ammo 3          | 0x2123            |
 | Harpoon Ammo 4          | 0x2147            |
 | Harpoon Ammo 5          | 0x2159            |
 | Harpoon Ammo 6          | 0x216B            |
 | Harpoon Ammo 7          | 0x218F            |
 | Harpoon Ammo 8          | 0x21B3            |
 | MP5 Ammo 1              | 0x03A8            |
-| MP5 Ammo 2              | 0x212F            |
-| MP5 Ammo 3              | 0x211D            |
+| MP5 Ammo 2              | 0x211D            |
+| MP5 Ammo 3              | 0x212F            |
 | MP5 Ammo 4              | 0x2153            |
 | MP5 Ammo 5              | 0x2165            |
 | MP5 Ammo 6              | 0x2177            |
 | MP5 Ammo 7              | 0x219B            |
 | MP5 Ammo 8              | 0x21BF            |
 | Uzi Ammo 1              | 0x03A4            |
-| Uzi Ammo 2              | 0x211B            |
-| Uzi Ammo 3              | 0x2109            |
+| Uzi Ammo 2              | 0x2109            |
+| Uzi Ammo 3              | 0x211B            |
 | Uzi Ammo 4              | 0x213F            |
 | Uzi Ammo 5              | 0x2151            |
 | Uzi Ammo 6              | 0x2163            |
@@ -471,12 +471,12 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Deagle Ammo 4	          | 0x1901            |
 | Grenade Launcher Ammo 1 | 0x01E3            |
 | Grenade Launcher Ammo 2 | 0x18DF            |
-| Grenade Launcher Ammo 3 | 0x1915            |
-| Grenade Launcher Ammo 4 | 0x1903            |
+| Grenade Launcher Ammo 3 | 0x1903            |
+| Grenade Launcher Ammo 4 | 0x1915            |
 | Rocket Launcher Ammo 1  | 0x01DF            |
 | Rocket Launcher Ammo 2  | 0x18DB            |
-| Rocket Launcher Ammo 3  | 0x1911            |
-| Rocket Launcher Ammo 4  | 0x18FF            |
+| Rocket Launcher Ammo 3  | 0x18FF            |
+| Rocket Launcher Ammo 4  | 0x1911            |
 | Harpoon Ammo 1          | 0x01E1            |
 | Harpoon Ammo 2          | 0x18D7            |
 | Harpoon Ammo 3          | 0x18FB            |
@@ -579,33 +579,33 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Weapons Config Number   | 0x0285            |
 | Harpoon Gun             | 0x0286            |
 | Shotgun Ammo 1          | 0x0274            |
-| Shotgun Ammo 2          | 0x1897            |
-| Shotgun Ammo 3          | 0x1873            |
-| Shotgun Ammo 4          | 0x1885            |
+| Shotgun Ammo 2          | 0x1873            |
+| Shotgun Ammo 3          | 0x1885            |
+| Shotgun Ammo 4          | 0x1897            |
 | Deagle Ammo 1           | 0x0270            |
-| Deagle Ammo 2	          | 0x188F            |
-| Deagle Ammo 3	          | 0x186B            |
-| Deagle Ammo 4	          | 0x187D            |
+| Deagle Ammo 2	          | 0x186B            |
+| Deagle Ammo 3	          | 0x187D            |
+| Deagle Ammo 4	          | 0x188F            |
 | Grenade Launcher Ammo 1 | 0x027C            |
-| Grenade Launcher Ammo 2 | 0x18A3            |
-| Grenade Launcher Ammo 3 | 0x187F            |
-| Grenade Launcher Ammo 4 | 0x1891            |
+| Grenade Launcher Ammo 2 | 0x187F            |
+| Grenade Launcher Ammo 3 | 0x1891            |
+| Grenade Launcher Ammo 4 | 0x18A3            |
 | Rocket Launcher Ammo 1  | 0x0278            |
-| Rocket Launcher Ammo 2  | 0x189F            |
-| Rocket Launcher Ammo 3  | 0x187B            |
-| Rocket Launcher Ammo 4  | 0x188D            |
+| Rocket Launcher Ammo 2  | 0x187B            |
+| Rocket Launcher Ammo 3  | 0x188D            |
+| Rocket Launcher Ammo 4  | 0x189F            |
 | Harpoon Ammo 1          | 0x027A            |
-| Harpoon Ammo 2          | 0x189B            |
-| Harpoon Ammo 3          | 0x1877            |
-| Harpoon Ammo 4          | 0x1889            |
+| Harpoon Ammo 2          | 0x1877            |
+| Harpoon Ammo 3          | 0x1889            |
+| Harpoon Ammo 4          | 0x189B            |
 | MP5 Ammo 1              | 0x0276            |
-| MP5 Ammo 2              | 0x18A7            |
-| MP5 Ammo 3              | 0x1883            |
-| MP5 Ammo 4              | 0x1895            |
+| MP5 Ammo 2              | 0x1883            |
+| MP5 Ammo 3              | 0x1895            |
+| MP5 Ammo 4              | 0x18A7            |
 | Uzi Ammo 1              | 0x0272            |
-| Uzi Ammo 2              | 0x1893            |
-| Uzi Ammo 3              | 0x186F            |
-| Uzi Ammo 4              | 0x1881            |
+| Uzi Ammo 2              | 0x186F            |
+| Uzi Ammo 3              | 0x1881            |
+| Uzi Ammo 4              | 0x1893            |
 
 #### Aldwych ####
 | **Variable**            | **File offset**   |
@@ -809,26 +809,26 @@ table is the base ammo offset, and the subsequent ones are secondary ammo offset
 | Weapons Config Number   | 0x0483            |
 | Harpoon Gun             | 0x0484            |
 | Shotgun Ammo 1          | 0x0472            |
-| Shotgun Ammo 2          | 0x0AFB            |
-| Shotgun Ammo 3          | 0x0AE9            |
+| Shotgun Ammo 2          | 0x0AE9            |
+| Shotgun Ammo 3          | 0x0AFB            |
 | Deagle Ammo 1           | 0x046E            |
-| Deagle Ammo 2	          | 0x0AF3            |
-| Deagle Ammo 3	          | 0x0AE1            |
+| Deagle Ammo 2	          | 0x0AE1            |
+| Deagle Ammo 3	          | 0x0AF3            |
 | Grenade Launcher Ammo 1 | 0x047A            |
-| Grenade Launcher Ammo 2 | 0x0B07            |
-| Grenade Launcher Ammo 3 | 0x0AF5            |
+| Grenade Launcher Ammo 2 | 0x0AF5            |
+| Grenade Launcher Ammo 3 | 0x0B07            |
 | Rocket Launcher Ammo 1  | 0x0476            |
-| Rocket Launcher Ammo 2  | 0x0B03            |
-| Rocket Launcher Ammo 3  | 0x0AF1            |
+| Rocket Launcher Ammo 2  | 0x0AF1            |
+| Rocket Launcher Ammo 3  | 0x0B03            |
 | Harpoon Ammo 1          | 0x0478            |
-| Harpoon Ammo 2          | 0x0AFF            |
-| Harpoon Ammo 3          | 0x0AED            |
+| Harpoon Ammo 2          | 0x0AED            |
+| Harpoon Ammo 3          | 0x0AFF            |
 | MP5 Ammo 1              | 0x0474            |
-| MP5 Ammo 2              | 0x0B0B            |
-| MP5 Ammo 3              | 0x0AF9            |
+| MP5 Ammo 2              | 0x0AF9            |
+| MP5 Ammo 3              | 0x0B0B            |
 | Uzi Ammo 1              | 0x0470            |
-| Uzi Ammo 2              | 0x0AF7            |
-| Uzi Ammo 3              | 0x0AE5            |
+| Uzi Ammo 2              | 0x0AE5            |
+| Uzi Ammo 3              | 0x0AF7            |
 
 #### All Hallows ####
 | **Variable**            | **File offset**   |
