@@ -67,6 +67,23 @@ else
 }
 ```
 
+## Writing new weapons configuration
+When storing our new weapons configuration, we just perform the same operations in reverse.
+Increment based on the desired weapons, then write the calculated number to the save file.
+
+```
+int newWeaponsConfigNum = 1;
+if (pistolsCheckBox.Checked) newWeaponsConfigNum += 2;
+if (deagleCheckBox.Checked) newWeaponsConfigNum += 4;
+if (uziCheckBox.Checked) newWeaponsConfigNum += 8;
+if (shotgunCheckBox.Checked) newWeaponsConfigNum += 16;
+if (mp5CheckBox.Checked) newWeaponsConfigNum += 32;
+if (rocketLauncherCheckBox.Checked) newWeaponsConfigNum += 64;
+if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
+
+WriteToSaveFile(weaponsConfigNumOffset, newWeaponsConfigNum);
+```
+
 ## How ammunition info is stored
 Ammunition is stored on two different offsets. It is always stored on a lower offset, which I call the base ammo offset, and then it is
 stored on an additional offset, which I call the secondary ammo offset. The secondary offsets vary throughout the levels. Some levels have as little as 1
