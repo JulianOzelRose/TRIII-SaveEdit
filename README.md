@@ -12,7 +12,7 @@ Just click **Save** when you are done, and enjoy.
 #### Screenshot of TRIII-SaveEdit
 ![TRIII-SaveEdit](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/9cc84f2c-299e-4265-8aa0-f30bd6beaf54)
 
-## Reversing the save files
+## How weapons information is stored
 Unlike Tomb Raider: Chronicles, the offsets in Tomb Raider III are different in each level. Another interesting difference is that
 instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
 The only exception is the harpoon gun, which is stored on its own offset. The weapons configuration variable has a base number of 1, which indicates
@@ -64,10 +64,66 @@ else
     grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
 }
 ```
-## Save Game Hex Tables
-Below are the save game offset tables. Note that the offsets differ on every level, except for the level name and save number variables.
-Ammunition for each weapon is stored in two separate offsets. It appears that one is for ammunition when the weapon is equipped,
-and the other is for when the weapon is not equipped, showing in inventory as clips/shells/harpoons/grenades/rockets.
+
+## How ammunition info is stored
+Ammunition is stored on at least two different offsets. It is always stored on a single offset, which I call the base ammo offset, and then it is
+stored on an additional offset, which I call secondary ammo offsets. The secondary offsets vary throughout the levels. Some levels have as little as 1
+secondary offset, while others have up to 7 secondary offsets. Writing to incorrect or multiple secondary offsets usually results in the game crashing.
+I was not able to discern any large-scale patterns to the offsets, so this editor takes a somewhat brute-force approach to handling ammunition offsets.
+To determine which secondary offset is the correct one to write to, we loop through them and check for equivalency with the base offset:
+
+```
+int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
+{
+    List<int> validOffsets = new List<int>();
+    int baseAmmoValue = GetAmmoValue(baseOffset);
+
+    for (int i = 0; i < offsets.Length; i++)
+    {
+        int ammoValue = GetAmmoValue(offsets[i]);
+
+        if (baseAmmoValue == ammoValue && offsets[i] != 0)
+        {
+            validOffsets.Add(offsets[i]);
+        }
+    }
+
+    if (validOffsets.Count == 0)
+    {
+        for (int i = 0; i < offsets.Length; i++)
+        {
+            if (offsets[i] != 0 && GetSaveFileData(offsets[i] - 1) == 0 && GetSaveFileData(offsets[i] + 1) == 0)
+            {
+                validOffsets.Add(offsets[i]);
+            }
+        }
+    }
+
+    validOffsets.Add(baseOffset);
+    return validOffsets.ToArray();
+}
+```
+
+If no secondary offset matches the base offset, we take a heuristic approach. We loop through the secondary offsets,
+and we check its surroundings. If the next offset over is occupied, we know we cannot write to it. If the previous
+offset is written to, the game will crash. I have not figured out a method that determines the secondary offset
+with 100% accuracy when a non-zero equivalent cannot be found, but this comes quite close. There are only 3 levels that
+necessitate this heuristic. Here is the heuristic code block, which is nested in the previous function:
+
+```
+if (validOffsets.Count == 0)
+{
+    for (int i = 0; i < offsets.Length; i++)
+    {
+        if (offsets[i] != 0 && GetSaveFileData(offsets[i] - 1) == 0 && GetSaveFileData(offsets[i] + 1) == 0)
+        {
+            validOffsets.Add(offsets[i]);
+        }
+    }
+}
+```
+
+## Offset tables
 
 #### Jungle ####
 | **Variable**            | **File offset**   |
