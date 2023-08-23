@@ -46,6 +46,7 @@ namespace TRIII_SaveEdit
             this.smallMedipacksNumBox = new System.Windows.Forms.NumericUpDown();
             this.helperTxtBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.mp5AmmoNumBox = new System.Windows.Forms.NumericUpDown();
             this.mp5CheckBox = new System.Windows.Forms.CheckBox();
             this.rocketLauncherAmmoNumBox = new System.Windows.Forms.NumericUpDown();
@@ -64,7 +65,6 @@ namespace TRIII_SaveEdit
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.flaresNumBox = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -247,9 +247,18 @@ namespace TRIII_SaveEdit
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Weapons";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(245, 36);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "(Unlimited)";
+            // 
             // mp5AmmoNumBox
             // 
-            this.mp5AmmoNumBox.Location = new System.Drawing.Point(247, 171);
+            this.mp5AmmoNumBox.Location = new System.Drawing.Point(246, 171);
             this.mp5AmmoNumBox.Name = "mp5AmmoNumBox";
             this.mp5AmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.mp5AmmoNumBox.TabIndex = 21;
@@ -285,7 +294,7 @@ namespace TRIII_SaveEdit
             // 
             // uziAmmoNumBox
             // 
-            this.uziAmmoNumBox.Location = new System.Drawing.Point(247, 195);
+            this.uziAmmoNumBox.Location = new System.Drawing.Point(246, 195);
             this.uziAmmoNumBox.Name = "uziAmmoNumBox";
             this.uziAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.uziAmmoNumBox.TabIndex = 15;
@@ -303,7 +312,7 @@ namespace TRIII_SaveEdit
             // 
             // harpoonGunAmmoNumBox
             // 
-            this.harpoonGunAmmoNumBox.Location = new System.Drawing.Point(247, 147);
+            this.harpoonGunAmmoNumBox.Location = new System.Drawing.Point(246, 147);
             this.harpoonGunAmmoNumBox.Name = "harpoonGunAmmoNumBox";
             this.harpoonGunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.harpoonGunAmmoNumBox.TabIndex = 13;
@@ -410,15 +419,6 @@ namespace TRIII_SaveEdit
             this.flaresNumBox.Size = new System.Drawing.Size(55, 20);
             this.flaresNumBox.TabIndex = 18;
             this.flaresNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 36);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "(Unlimited)";
             // 
             // TR3Edit
             // 
