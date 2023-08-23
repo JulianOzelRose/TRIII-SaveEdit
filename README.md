@@ -72,8 +72,8 @@ Ammunition is stored on two different offsets. It is always stored on a lower of
 stored on an additional offset, which I call the secondary ammo offset. The secondary offsets vary throughout the levels. Some levels have as little as 1
 secondary offset, while others have up to 7 secondary ammo offsets. The "correct" secondary ammo offset changes as you progress through a level.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. I was not able to discern any useful large-scale
-patterns from the ammo offsets, so this editor takes a somewhat brute-force approach to handling ammunition. To determine which secondary offset is the correct
-one to write to, we loop through them and check for equivalency with the base offset.
+patterns from the ammo offsets at first, so this editor takes a somewhat brute-force approach to handling ammunition.
+To determine which secondary offset is the correct one to write to, we loop through them and check for equivalency with the base offset.
 
 ```
 int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
@@ -125,6 +125,40 @@ if (validOffsets.Count == 0)
     }
 }
 ```
+
+## Calculating the secondary ammo offsets algorithmically
+It is worth noting that it would probably be more efficient to simply find a base secondary ammo offset (not to
+be confused with the base ammo offset) and calculate the remaining secondary offsets using a for loop. This is
+very doable, since the secondary ammo offsets seem to have a consistent difference of 0x12. So you use 0x12 as an iterator.
+
+```
+int baseSecondaryAmmoOffset = 0x210D;
+int maxIterations = 10;
+
+List<int> secondaryOffsets = new List<int>();
+
+for (int i = 0; i < maxIterations; i++)
+{
+    secondaryOffsets.Add(baseSecondaryAmmoOffset + i * 0x12);
+}
+```
+
+We plug in shotgun base secondary ammo 0x210D for from the Area 51 level, and we get the same offsets as we did from our brute force method, plus more.
+In conclusion, go with the more efficient method to save yourself some headache.
+
+```
+0x210D
+0x211F
+0x2131
+0x2143
+0x2155
+0x2167
+0x2179
+0x218B
+0x219D
+0x21AF
+```
+
 
 ## Offset tables
 Aside from the level name and save number, the save file offsets differ on every level. The offsets for small medipack
