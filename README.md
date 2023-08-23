@@ -1,22 +1,24 @@
 # TRIII-SaveEdit
 This is a save game editor for Tomb Raider III. It has been tested to work with the Steam version of the game, but it should work on
-the original and multi-patched version as well. To use this program, download **TRIII-SaveEdit.exe** from the **TRIII-SaveEdit**
-folder on this repo. No installation is necessary. Once the editor is open, click **Browse**, then navigate to your game directory.
-If you are using the Steam version of the game, your folder should be:<br>
+the original and multi-patched version as well. Be sure to back up your save game files anyway as a precaution.
+This editor can enable any weapon on any level, including the bonus level. No setup is necessary, just download and run.
 
+## Installation and usage
+1. Download **TRIII-SaveEdit.exe** from the **TRIII-SaveEdit** folder in this repository.
+2. Launch the editor and select "Browse" to locate your game directory.
+3. If you're using the Steam version of the game, your directory should be:<br>
 ```\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\```<br>
-
-Once your save game is selected, you can modify it to your desire. This editor can enable any gun on any level, including the bonus level.
-Just click **Save** when you are done, and enjoy.
+4. Once your save game is selected, make the desired modifications.
+5. Click "Save" to apply your changes, and enjoy.
 
 #### Screenshot of TRIII-SaveEdit
 ![TRIII-SaveEdit](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/9cc84f2c-299e-4265-8aa0-f30bd6beaf54)
 
 ## How weapons information is stored
-Unlike Tomb Raider: Chronicles, the offsets in Tomb Raider III are different in each level. Another interesting difference is that
+Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently in each level. Another interesting difference is that
 instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
-The only exception is the harpoon gun, which is stored on its own offset. The weapons configuration variable has a base number of 1, which indicates
-no weapons present in inventory. Each weapon adds a unique number to the variable.
+The only exception is the harpoon gun, which is stored on its own offset; 1 for enabled, 0 for disabled. The weapons configuration variable has a
+base number of 1, which indicates no weapons present in inventory. Each weapon adds a unique number to the variable.
 
 ###       ```weaponsConfigNum```             ###
 | **Weapon**              | **Unique number** |
@@ -32,13 +34,13 @@ no weapons present in inventory. Each weapon adds a unique number to the variabl
 When the game loads a save file, it checks this number to determine which weapons are present in inventory. When reverse
 engineering this part of the game, we need to choose our methods wisely. Since there are 128 possible combinations, using conditional
 operations would be extremely inefficient. Bitwise operations are perfect for this scenario. We account for the base case of no weapons,
-and then we use our else block to check if the unique bit of a wepaon is present in the config variable, and then set our variables to display accordingly.
+and then we use our else block to check if the unique bit of a weapon is present in the config variable, and then set our values to display accordingly.
 
 ```
 const int Pistol = 2;
-const int Shotgun = 16;
 const int Deagle = 4;
 const int Uzi = 8;
+const int Shotgun = 16;
 const int MP5 = 32;
 const int RocketLauncher = 64;
 const int GrenadeLauncher = 128;
@@ -66,11 +68,12 @@ else
 ```
 
 ## How ammunition info is stored
-Ammunition is stored on at least two different offsets. It is always stored on a single offset, which I call the base ammo offset, and then it is
-stored on an additional offset, which I call secondary ammo offsets. The secondary offsets vary throughout the levels. Some levels have as little as 1
-secondary offset, while others have up to 7 secondary offsets. Writing to incorrect or multiple secondary offsets usually results in the game crashing.
-I was not able to discern any large-scale patterns to the offsets, so this editor takes a somewhat brute-force approach to handling ammunition offsets.
-To determine which secondary offset is the correct one to write to, we loop through them and check for equivalency with the base offset:
+Ammunition is stored on two different offsets. It is always stored on a lower offset, which I call the base ammo offset, and then it is
+stored on an additional offset, which I call the secondary ammo offset. The secondary offsets vary throughout the levels. Some levels have as little as 1
+secondary offset, while others have up to 7 secondary ammo offsets. The "correct" secondary ammo offset changes as you progress through a level.
+Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. I was not able to discern any useful large-scale
+patterns from the ammo offsets, so this editor takes a somewhat brute-force approach to handling ammunition. To determine which secondary offset is the correct
+one to write to, we loop through them and check for equivalency with the base offset:
 
 ```
 int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
@@ -104,11 +107,11 @@ int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
 }
 ```
 
-If no secondary offset matches the base offset, we take a heuristic approach. We loop through the potential secondary offsets,
-and we check its surroundings. If the next offset over is occupied, we know we cannot write to it. If the previous
+If no secondary offset matches the base offset, we take a heuristic approach. We loop through the secondary offsets,
+and we check the surrounding data. If the next offset over is non-zero, we know we cannot write to it. If the preceding
 offset is written to, the game will crash. I have not figured out a method that determines the secondary offset
 with 100% accuracy when a non-zero equivalent cannot be found, but this comes quite close. There are only 3 levels that
-necessitate this heuristic. Here is the heuristic code block, which is nested in the previous function:
+require this heuristic. Here is the heuristic code block, which is nested in the previous function:
 
 ```
 if (validOffsets.Count == 0)
@@ -124,10 +127,10 @@ if (validOffsets.Count == 0)
 ```
 
 ## Offset tables
-Aside from Level Name and Save Number, the save file offsets differ on every level. In general, the offsets for Small Medipack
-and Large Medipack are 1 byte away. Flares is usually 2 bytes away from Large Medipack, and Weapons Config Num is 4 bytes away
-from Flares. Next to the Weapons Config Num at 1 byte away is the Harpoon Gun offset. The first ammo variable on these offset
-tables is considered the base ammo offset, and all subsequent ammo offsets are secondary ammo offsets.
+Aside from the level name and save number, the save file offsets differ on every level. The offsets for small medipack
+and large medipack are 1 byte away. Flares is 2 bytes away from large medipack, and the weapons config number is 4 bytes away
+from flares. Next to the weapons config number is the harpoon gun offset. The first ammo offset listed on each offset
+table is the base ammo offset, and the subsequent ones are secondary ammo offsets.
 
 #### Jungle ####
 | **Variable**            | **File offset**   |
