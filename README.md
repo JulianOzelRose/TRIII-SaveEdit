@@ -85,68 +85,68 @@ WriteToSaveFile(weaponsConfigNumOffset, newWeaponsConfigNum);
 ```
 
 ## How ammunition info is stored
-Ammunition is stored on two different offsets. It is always stored on a lower offset, which I call the base ammo offset, and then it is
-stored on an additional offset, which I call the secondary ammo offset. The secondary offsets vary throughout the levels. Some levels have as little as 1
+Ammunition is stored on two different offsets. It is always stored on a lower offset, which I call the primary ammo offset, and then it is
+stored on an additional offset, which I call the secondary ammo offset. The secondary ammo offsets vary throughout the levels. Some levels have as little as 1
 secondary offset, while others have up to 7 secondary ammo offsets. The "correct" secondary ammo offset changes as you progress through a level.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. I was not able to discern any useful large-scale
 patterns from the ammo offsets at first, so this editor takes a somewhat brute-force approach to handling ammunition.
-To determine which secondary offset is the correct one to write to, we loop through them and check for equivalency with the base offset.
+To determine which secondary offset is the correct one to write to, we loop through them and check for equivalency with the primary offset.
 
 ```
-int[] GetValidAmmoOffsets(int baseOffset, params int[] offsets)
+int[] GetValidAmmoOffsets(int primaryOffset, params int[] secondaryOffsets)
 {
     List<int> validOffsets = new List<int>();
-    int baseAmmoValue = GetAmmoValue(baseOffset);
+    int primaryAmmoValue = GetAmmoValue(primaryOffset);
 
-    for (int i = 0; i < offsets.Length; i++)
+    for (int i = 0; i < secondaryOffsets.Length; i++)
     {
-        int ammoValue = GetAmmoValue(offsets[i]);
+        int ammoValue = GetAmmoValue(secondaryOffsets[i]);
 
-        if (baseAmmoValue == ammoValue && offsets[i] != 0)
+        if (primaryAmmoValue == ammoValue && secondaryOffsets[i] != 0)
         {
-            validOffsets.Add(offsets[i]);
+            validOffsets.Add(secondaryOffsets[i]);
         }
     }
 
     if (validOffsets.Count == 0)
     {
-        for (int i = 0; i < offsets.Length; i++)
+        for (int i = 0; i < secondaryOffsets.Length; i++)
         {
-            if (offsets[i] != 0 && GetSaveFileData(offsets[i] - 1) == 0 && GetSaveFileData(offsets[i] + 1) == 0)
+            if (secondaryOffsets[i] != 0 && GetSaveFileData(secondaryOffsets[i] - 1) == 0 && GetSaveFileData(secondaryOffsets[i] + 1) == 0)
             {
-                validOffsets.Add(offsets[i]);
+                validOffsets.Add(secondaryOffsets[i]);
             }
         }
     }
 
-    validOffsets.Add(baseOffset);
+    validOffsets.Add(primaryOffset);
     return validOffsets.ToArray();
 }
 ```
 
-If no secondary offset matches the base offset, we take a heuristic approach. We loop through the secondary offsets,
+If no secondary offset matches the primary offset, we take a heuristic approach. We loop through the secondary offsets,
 and we check the surrounding data. If the next offset over is non-zero, we know we cannot write to it. If the preceding
 offset is written to, the game will crash. I have not figured out a method that determines the secondary offset
-with 100% accuracy when a non-zero equivalent cannot be found, but this comes quite close. There are only 3 levels that
+with 100% accuracy when it cannot be matched with the primary offset, but this comes quite close. There are only 3 levels that
 require this heuristic. Here is the heuristic code block, which is nested in the previous function.
 
 ```
 if (validOffsets.Count == 0)
 {
-    for (int i = 0; i < offsets.Length; i++)
+    for (int i = 0; i < secondaryOffsets.Length; i++)
     {
-        if (offsets[i] != 0 && GetSaveFileData(offsets[i] - 1) == 0 && GetSaveFileData(offsets[i] + 1) == 0)
+        if (secondaryOffsets[i] != 0 && GetSaveFileData(secondaryOffsets[i] - 1) == 0 && GetSaveFileData(secondaryOffsets[i] + 1) == 0)
         {
-            validOffsets.Add(offsets[i]);
+            validOffsets.Add(secondaryOffsets[i]);
         }
     }
 }
 ```
 
 ## Calculating the secondary ammo offsets algorithmically
-It is worth noting that it would probably be more efficient to simply find a base secondary ammo offset (not to
-be confused with the base ammo offset) and calculate the remaining secondary offsets using a for loop. This is
-very doable, since the secondary ammo offsets seem to have a consistent difference of 0x12. So you use 0x12 as an iterator.
+It is worth noting that it would probably be more efficient to simply find a base secondary ammo offset and calculate the remaining
+secondary offsets using a for loop. This is very doable, since the secondary ammo offsets seem to have a consistent difference of 0x12.
+So you use 0x12 as an iterator.
 
 ```
 int baseSecondaryAmmoOffset = 0x210D;
@@ -160,7 +160,7 @@ for (int i = 0; i < maxIterations; i++)
 }
 ```
 
-We plug in shotgun base secondary ammo 0x210D for from the Area 51 level, and we get the same offsets as we did from our brute force method, plus more.
+We plug in 0x210D as the shotgun base secondary ammo offset from the Area 51 level, and we get the same offsets as we did with our brute force method, plus more.
 In conclusion, go with the more efficient method to save yourself some headache.
 
 ```
@@ -181,7 +181,7 @@ In conclusion, go with the more efficient method to save yourself some headache.
 Aside from the level name and save number, the save file offsets differ on every level. The offsets for small medipack
 and large medipack are 1 byte away. Flares is 2 bytes away from large medipack, and the weapons config number is 4 bytes away
 from flares. Next to the weapons config number is the harpoon gun offset. The first ammo offset listed on each
-table is the base ammo offset, and the subsequent ones are the secondary ammo offsets.
+table is the primary ammo offset, and the subsequent ones are the secondary ammo offsets.
 
 #### Jungle ####
 | **Variable**            | **File offset**   |
