@@ -17,7 +17,7 @@ This editor can enable any weapon on any level, including the bonus level. No se
 ## How weapons information is stored
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently in each level. Another interesting difference is that
 instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
-The only exception is the harpoon gun, which is stored on its own offset; 1 for enabled, 0 for disabled. The weapons configuration variable has a
+The only exception is the harpoon gun, which is stored on its own offset, and is of boolean type. The weapons configuration variable has a
 base number of 1, which indicates no weapons present in inventory. Each weapon adds a unique number to the variable.
 
 ###       ```weaponsConfigNum```             ###
@@ -69,7 +69,8 @@ else
 
 ## Writing new weapons configuration
 When storing our new weapons configuration, we just perform the same operations in reverse.
-Increment based on the desired weapons, then write the calculated number to the save file.
+We start with the base case of 1, and then increment based on the checked weapons.
+Lastly, we write the calculated number to the save file.
 
 ```
 int newWeaponsConfigNum = 1;
@@ -126,7 +127,7 @@ int[] GetValidAmmoOffsets(int primaryOffset, params int[] secondaryOffsets)
 
 If no secondary offset matches the primary offset, we take a heuristic approach. We loop through the secondary offsets,
 and we check the surrounding data. If the next offset over is non-zero, we know we cannot write to it. If the preceding
-offset is written to, the game will crash. I have not figured out a method that determines the secondary offset
+offset is written to, the game will crash. I have not figured out a method that determines the correct secondary offset
 with 100% accuracy when it cannot be matched with the primary offset, but this comes quite close. There are only 3 levels that
 require this heuristic. Here is the heuristic code block, which is nested in the previous function.
 
