@@ -280,33 +280,40 @@ namespace TRIII_SaveEdit
 
                 // Ammo offsets
                 shotgunAmmoOffset = 0xDC;
-                shotgunAmmoOffset2 = 0x165D;
-                shotgunAmmoOffset3 = 0x166F;
-                shotgunAmmoOffset4 = 0x16A5;
+                shotgunAmmoOffset2 = 0x164B;
+                shotgunAmmoOffset3 = 0x165D;
+                shotgunAmmoOffset4 = 0x166F;
+                shotgunAmmoOffset5 = 0x16A5;
                 deagleAmmoOffset = 0xD8;
-                deagleAmmoOffset2 = 0x1655;
-                deagleAmmoOffset3 = 0x1667;
-                deagleAmmoOffset4 = 0x169D;
+                deagleAmmoOffset2 = 0x1643;
+                deagleAmmoOffset3 = 0x1655;
+                deagleAmmoOffset4 = 0x1667;
+                deagleAmmoOffset5 = 0x169D;
                 grenadeLauncherAmmoOffset = 0xE4;
-                grenadeLauncherAmmoOffset2 = 0x1669;
-                grenadeLauncherAmmoOffset3 = 0x167B;
-                grenadeLauncherAmmoOffset4 = 0x16B1;
+                grenadeLauncherAmmoOffset2 = 0x1657;
+                grenadeLauncherAmmoOffset3 = 0x1669;
+                grenadeLauncherAmmoOffset4 = 0x167B;
+                grenadeLauncherAmmoOffset5 = 0x16B1;
                 rocketLauncherAmmoOffset = 0xE0;
-                rocketLauncherAmmoOffset2 = 0x1665;
-                rocketLauncherAmmoOffset3 = 0x1677;
-                rocketLauncherAmmoOffset4 = 0x16AD;
+                rocketLauncherAmmoOffset2 = 0x1653;
+                rocketLauncherAmmoOffset3 = 0x1665;
+                rocketLauncherAmmoOffset4 = 0x1677;
+                rocketLauncherAmmoOffset5 = 0x16AD;
                 harpoonAmmoOffset = 0xE2;
-                harpoonAmmoOffset2 = 0x1661;
-                harpoonAmmoOffset3 = 0x1673;
-                harpoonAmmoOffset4 = 0x16A9;
+                harpoonAmmoOffset2 = 0x164F;
+                harpoonAmmoOffset3 = 0x1661;
+                harpoonAmmoOffset4 = 0x1673;
+                harpoonAmmoOffset5 = 0x16A9;
                 mp5AmmoOffset = 0xDE;
-                mp5AmmoOffset2 = 0x166D;
-                mp5AmmoOffset3 = 0x167F;
-                mp5AmmoOffset4 = 0x16B5;
+                mp5AmmoOffset2 = 0x165B;
+                mp5AmmoOffset3 = 0x166D;
+                mp5AmmoOffset4 = 0x167F;
+                mp5AmmoOffset5 = 0x16B5;
                 uziAmmoOffset = 0xDA;
-                uziAmmoOffset2 = 0x1659;
-                uziAmmoOffset3 = 0x166B;
-                uziAmmoOffset4 = 0x16A1;
+                uziAmmoOffset2 = 0x1647;
+                uziAmmoOffset3 = 0x1659;
+                uziAmmoOffset4 = 0x166B;
+                uziAmmoOffset5 = 0x16A1;
             }
 
             else if (GetCleanLvlName() == "Temple Ruins")
