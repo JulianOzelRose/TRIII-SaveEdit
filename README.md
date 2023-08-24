@@ -211,9 +211,9 @@ table is the primary ammo offset, and the subsequent ones are the secondary ammo
 | Grenade Launcher Ammo 5 | 0x169D            |
 | Rocket Launcher Ammo 1  | 0x00E0            |
 | Rocket Launcher Ammo 2  | 0x1653            |
-| Rocket Launcher Ammo 2  | 0x1665            |
-| Rocket Launcher Ammo 3  | 0x1677            |
-| Rocket Launcher Ammo 4  | 0x16AD            |
+| Rocket Launcher Ammo 3  | 0x1665            |
+| Rocket Launcher Ammo 4  | 0x1677            |
+| Rocket Launcher Ammo 5  | 0x16AD            |
 | Harpoon Ammo 1          | 0x00E2            |
 | Harpoon Ammo 2          | 0x164F            |
 | Harpoon Ammo 3          | 0x1661            |
