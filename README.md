@@ -151,11 +151,9 @@ So you use 0x12 as an iterator.
 
 ```
 int baseSecondaryAmmoOffset = 0x210D;
-int maxIterations = 10;
-
 List<int> secondaryOffsets = new List<int>();
 
-for (int i = 0; i < maxIterations; i++)
+for (int i = 0; i < 10; i++)
 {
     secondaryOffsets.Add(baseSecondaryAmmoOffset + i * 0x12);
 }
