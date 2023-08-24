@@ -195,33 +195,40 @@ table is the primary ammo offset, and the subsequent ones are the secondary ammo
 | Weapons Config Number   | 0x00ED            |
 | Harpoon Gun             | 0x00EE            |
 | Shotgun Ammo 1          | 0x00DC            |
-| Shotgun Ammo 2          | 0x165B            |
-| Shotgun Ammo 3          | 0x166F            |
-| Shotgun Ammo 4          | 0x16A5            |
+| Shotgun Ammo 2          | 0x164B            |
+| Shotgun Ammo 3          | 0x165D            |
+| Shotgun Ammo 4          | 0x166F            |
+| Shotgun Ammo 5          | 0x16A5            |
 | Deagle Ammo 1           | 0x00D8            |
-| Deagle Ammo 2	          | 0x1655            |
-| Deagle Ammo 3	          | 0x1667            |
-| Deagle Ammo 4	          | 0x169D            |
+| Deagle Ammo 2	          | 0x1643            |
+| Deagle Ammo 3	          | 0x1655            |
+| Deagle Ammo 4	          | 0x1667            |
+| Deagle Ammo 5	          | 0x169D            |
 | Grenade Launcher Ammo 1 | 0x00E4            |
-| Grenade Launcher Ammo 2 | 0x1669            |
-| Grenade Launcher Ammo 3 | 0x167B            |
-| Grenade Launcher Ammo 4 | 0x169D            |
+| Grenade Launcher Ammo 2 | 0x1657            |
+| Grenade Launcher Ammo 3 | 0x1669            |
+| Grenade Launcher Ammo 4 | 0x167B            |
+| Grenade Launcher Ammo 5 | 0x169D            |
 | Rocket Launcher Ammo 1  | 0x00E0            |
+| Rocket Launcher Ammo 2  | 0x1653            |
 | Rocket Launcher Ammo 2  | 0x1665            |
 | Rocket Launcher Ammo 3  | 0x1677            |
 | Rocket Launcher Ammo 4  | 0x16AD            |
 | Harpoon Ammo 1          | 0x00E2            |
-| Harpoon Ammo 2          | 0x1661            |
-| Harpoon Ammo 3          | 0x1673            |
-| Harpoon Ammo 4          | 0x16A9            |
+| Harpoon Ammo 2          | 0x164F            |
+| Harpoon Ammo 3          | 0x1661            |
+| Harpoon Ammo 4          | 0x1673            |
+| Harpoon Ammo 5          | 0x16A9            |
 | MP5 Ammo 1              | 0x00DE            |
-| MP5 Ammo 2              | 0x166D            |
-| MP5 Ammo 3              | 0x167F            |
-| MP5 Ammo 4              | 0x16B5            |
+| MP5 Ammo 2              | 0x165B            |
+| MP5 Ammo 3              | 0x166D            |
+| MP5 Ammo 4              | 0x167F            |
+| MP5 Ammo 5              | 0x16B5            |
 | Uzi Ammo 1              | 0x00DA            |
-| Uzi Ammo 2              | 0x1659            |
-| Uzi Ammo 3              | 0x166B            |
-| Uzi Ammo 4              | 0x16A1            |
+| Uzi Ammo 2              | 0x1647            |
+| Uzi Ammo 3              | 0x1659            |
+| Uzi Ammo 4              | 0x166B            |
+| Uzi Ammo 5              | 0x16A1            |
 
 #### Temple Ruins ####
 | **Variable**            | **File offset**   |
