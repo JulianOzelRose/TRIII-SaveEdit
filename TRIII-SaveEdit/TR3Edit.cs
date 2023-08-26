@@ -158,26 +158,34 @@ namespace TRIII_SaveEdit
             }
         }
 
-        int[] GetValidAmmoOffsets(int primaryOffset, params int[] secondaryOffsets)
+        int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
         {
+            List<int> secondaryOffsets = new List<int>();
             List<int> validOffsets = new List<int>();
+
             int primaryAmmoValue = GetAmmoValue(primaryOffset);
 
-            for (int i = 0; i < secondaryOffsets.Length; i++)
+            for (int i = 0; i < 10; i++)
+            {
+                secondaryOffsets.Add(baseSecondaryOffset + i * 0x12);
+            }
+
+
+            for (int i = 0; i < secondaryOffsets.Count; i++)
             {
                 int ammoValue = GetAmmoValue(secondaryOffsets[i]);
 
-                if (primaryAmmoValue == ammoValue && secondaryOffsets[i] != 0)
+                if (primaryAmmoValue == ammoValue)
                 {
                     validOffsets.Add(secondaryOffsets[i]);
                 }
             }
-
+            
             if (validOffsets.Count == 0)
             {
-                for (int i = 0; i < secondaryOffsets.Length; i++)
+                for (int i = 0; i < secondaryOffsets.Count; i++)
                 {
-                    if (secondaryOffsets[i] != 0 && GetSaveFileData(secondaryOffsets[i] - 1) == 0 && GetSaveFileData(secondaryOffsets[i] + 1) == 0)
+                    if (GetAmmoValue(secondaryOffsets[i] - 2) == 0 && GetAmmoValue(secondaryOffsets[i] + 1) == 0)
                     {
                         validOffsets.Add(secondaryOffsets[i]);
                     }
@@ -191,7 +199,6 @@ namespace TRIII_SaveEdit
         void GetLvlInfo()
         {
             string lvlName = GetLvlName();
-
             lvlNameTxtBox.Clear();
             lvlNameTxtBox.AppendText(lvlName);
         }
@@ -281,39 +288,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0xDC;
                 shotgunAmmoOffset2 = 0x164B;
-                shotgunAmmoOffset3 = 0x165D;
-                shotgunAmmoOffset4 = 0x166F;
-                shotgunAmmoOffset5 = 0x16A5;
                 deagleAmmoOffset = 0xD8;
-                deagleAmmoOffset2 = 0x1643;
-                deagleAmmoOffset3 = 0x1655;
-                deagleAmmoOffset4 = 0x1667;
-                deagleAmmoOffset5 = 0x169D;
+                deagleAmmoOffset2 = 0x1631;
                 grenadeLauncherAmmoOffset = 0xE4;
                 grenadeLauncherAmmoOffset2 = 0x1657;
-                grenadeLauncherAmmoOffset3 = 0x1669;
-                grenadeLauncherAmmoOffset4 = 0x167B;
-                grenadeLauncherAmmoOffset5 = 0x16B1;
                 rocketLauncherAmmoOffset = 0xE0;
                 rocketLauncherAmmoOffset2 = 0x1653;
-                rocketLauncherAmmoOffset3 = 0x1665;
-                rocketLauncherAmmoOffset4 = 0x1677;
-                rocketLauncherAmmoOffset5 = 0x16AD;
                 harpoonAmmoOffset = 0xE2;
-                harpoonAmmoOffset2 = 0x164F;
-                harpoonAmmoOffset3 = 0x1661;
-                harpoonAmmoOffset4 = 0x1673;
-                harpoonAmmoOffset5 = 0x16A9;
+                harpoonAmmoOffset2 = 0x1607;
                 mp5AmmoOffset = 0xDE;
                 mp5AmmoOffset2 = 0x165B;
-                mp5AmmoOffset3 = 0x166D;
-                mp5AmmoOffset4 = 0x167F;
-                mp5AmmoOffset5 = 0x16B5;
                 uziAmmoOffset = 0xDA;
                 uziAmmoOffset2 = 0x1647;
-                uziAmmoOffset3 = 0x1659;
-                uziAmmoOffset4 = 0x166B;
-                uziAmmoOffset5 = 0x16A1;
             }
 
             else if (GetCleanLvlName() == "Temple Ruins")
@@ -333,25 +319,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x10F;
                 shotgunAmmoOffset2 = 0x23BB;
-                shotgunAmmoOffset3 = 0x23CD;
                 deagleAmmoOffset = 0x10B;
                 deagleAmmoOffset2 = 0x23B3;
-                deagleAmmoOffset3 = 0x23C5;
                 grenadeLauncherAmmoOffset = 0x117;
                 grenadeLauncherAmmoOffset2 = 0x23C7;
-                grenadeLauncherAmmoOffset3 = 0x23D9;
                 rocketLauncherAmmoOffset = 0x113;
                 rocketLauncherAmmoOffset2 = 0x23C3;
-                rocketLauncherAmmoOffset3 = 0x23D5;
                 harpoonAmmoOffset = 0x115;
                 harpoonAmmoOffset2 = 0x23BF;
-                harpoonAmmoOffset3 = 0x23D1;
                 mp5AmmoOffset = 0x111;
                 mp5AmmoOffset2 = 0x23CB;
-                mp5AmmoOffset3 = 0x23DD;
                 uziAmmoOffset = 0x10D;
                 uziAmmoOffset2 = 0x23B7;
-                uziAmmoOffset3 = 0x23C9;
             }
 
             else if (GetCleanLvlName() == "The River Ganges")
@@ -371,25 +350,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x142;
                 shotgunAmmoOffset2 = 0x1804;
-                shotgunAmmoOffset3 = 0x1816;
                 deagleAmmoOffset = 0x13E;
                 deagleAmmoOffset2 = 0x17FC;
-                deagleAmmoOffset3 = 0x180E;
                 grenadeLauncherAmmoOffset = 0x14A;
                 grenadeLauncherAmmoOffset2 = 0x1810;
-                grenadeLauncherAmmoOffset3 = 0x1822;
                 rocketLauncherAmmoOffset = 0x146;
                 rocketLauncherAmmoOffset2 = 0x180C;
-                rocketLauncherAmmoOffset3 = 0x181E;
                 harpoonAmmoOffset = 0x148;
                 harpoonAmmoOffset2 = 0x1808;
-                harpoonAmmoOffset3 = 0x181A;
                 mp5AmmoOffset = 0x144;
                 mp5AmmoOffset2 = 0x1814;
-                mp5AmmoOffset3 = 0x1826;
                 uziAmmoOffset = 0x140;
                 uziAmmoOffset2 = 0x1800;
-                uziAmmoOffset3 = 0x1812;
             }
 
             else if (GetCleanLvlName() == "Caves Of Kaliya")
@@ -440,39 +412,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x340;
                 shotgunAmmoOffset2 = 0x17A4;
-                shotgunAmmoOffset3 = 0x17B6;
-                shotgunAmmoOffset4 = 0x17C8;
-                shotgunAmmoOffset5 = 0x17DA;
                 deagleAmmoOffset = 0x33C;
                 deagleAmmoOffset2 = 0x179C;
-                deagleAmmoOffset3 = 0x17AE;
-                deagleAmmoOffset4 = 0x17C0;
-                deagleAmmoOffset5 = 0x17D2;
                 grenadeLauncherAmmoOffset = 0x348;
                 grenadeLauncherAmmoOffset2 = 0x17B0;
-                grenadeLauncherAmmoOffset3 = 0x17C2;
-                grenadeLauncherAmmoOffset4 = 0x17D4;
-                grenadeLauncherAmmoOffset5 = 0x17E6;
                 rocketLauncherAmmoOffset = 0x344;
                 rocketLauncherAmmoOffset2 = 0x17AC;
-                rocketLauncherAmmoOffset3 = 0x17BE;
-                rocketLauncherAmmoOffset4 = 0x17D0;
-                rocketLauncherAmmoOffset5 = 0x17E2;
                 harpoonAmmoOffset = 0x346;
                 harpoonAmmoOffset2 = 0x17A8;
-                harpoonAmmoOffset3 = 0x17BA;
-                harpoonAmmoOffset4 = 0x17CC;
-                harpoonAmmoOffset5 = 0x17DE;
                 mp5AmmoOffset = 0x342;
                 mp5AmmoOffset2 = 0x17B4;
-                mp5AmmoOffset3 = 0x17C6;
-                mp5AmmoOffset4 = 0x17D8;
-                mp5AmmoOffset5 = 0x17EA;
                 uziAmmoOffset = 0x33E;
                 uziAmmoOffset2 = 0x17A0;
-                uziAmmoOffset3 = 0x17B2;
-                uziAmmoOffset4 = 0x17C4;
-                uziAmmoOffset5 = 0x17D6;
             }
 
             else if (GetCleanLvlName() == "High Security Compound")
@@ -492,32 +443,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x373;
                 shotgunAmmoOffset2 = 0x1EA5;
-                shotgunAmmoOffset3 = 0x1E4B;
-                shotgunAmmoOffset4 = 0x1EB7;
                 deagleAmmoOffset = 0x36F;
                 deagleAmmoOffset2 = 0x1E43;
-                deagleAmmoOffset3 = 0x1E9D;
-                deagleAmmoOffset4 = 0x1EAF;
                 grenadeLauncherAmmoOffset = 0x37B;
                 grenadeLauncherAmmoOffset2 = 0x1E57;
-                grenadeLauncherAmmoOffset3 = 0x1EB1;
-                grenadeLauncherAmmoOffset4 = 0x1EC3;
                 rocketLauncherAmmoOffset = 0x377;
                 rocketLauncherAmmoOffset2 = 0x1E53;
-                rocketLauncherAmmoOffset3 = 0x1EAD;
-                rocketLauncherAmmoOffset4 = 0x1EBF;
                 harpoonAmmoOffset = 0x379;
                 harpoonAmmoOffset2 = 0x1E4F;
-                harpoonAmmoOffset3 = 0x1EA9;
-                harpoonAmmoOffset4 = 0x1EBB;
                 mp5AmmoOffset = 0x375;
                 mp5AmmoOffset2 = 0x1E5B;
-                mp5AmmoOffset3 = 0x1EB5;
-                mp5AmmoOffset4 = 0x1EC7;
                 uziAmmoOffset = 0x371;
                 uziAmmoOffset2 = 0x1E47;
-                uziAmmoOffset3 = 0x1EA1;
-                uziAmmoOffset4 = 0x1EB3;
             }
 
             else if (GetCleanLvlName() == "Area 51")
@@ -537,60 +474,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x3A6;
                 shotgunAmmoOffset2 = 0x210D;
-                shotgunAmmoOffset3 = 0x211F;
-                shotgunAmmoOffset4 = 0x2143;
-                shotgunAmmoOffset5 = 0x2155;
-                shotgunAmmoOffset6 = 0x2167;
-                shotgunAmmoOffset7 = 0x218B;
-                shotgunAmmoOffset8 = 0x21AF;
                 deagleAmmoOffset = 0x3A2;
                 deagleAmmoOffset2 = 0x2105;
-                deagleAmmoOffset3 = 0x2117;
-                deagleAmmoOffset4 = 0x213B;
-                deagleAmmoOffset5 = 0x214D;
-                deagleAmmoOffset6 = 0x215F;
-                deagleAmmoOffset7 = 0x2183;
-                deagleAmmoOffset8 = 0x21A7;
                 grenadeLauncherAmmoOffset = 0x3AE;
                 grenadeLauncherAmmoOffset2 = 0x2119;
-                grenadeLauncherAmmoOffset3 = 0x212B;
-                grenadeLauncherAmmoOffset4 = 0x214F;
-                grenadeLauncherAmmoOffset5 = 0x2161;
-                grenadeLauncherAmmoOffset6 = 0x2173;
-                grenadeLauncherAmmoOffset7 = 0x2197;
-                grenadeLauncherAmmoOffset8 = 0x21BB;
                 rocketLauncherAmmoOffset = 0x3AA;
                 rocketLauncherAmmoOffset2 = 0x2115;
-                rocketLauncherAmmoOffset3 = 0x2127;
-                rocketLauncherAmmoOffset4 = 0x214B;
-                rocketLauncherAmmoOffset5 = 0x215D;
-                rocketLauncherAmmoOffset6 = 0x216F;
-                rocketLauncherAmmoOffset7 = 0x2193;
-                rocketLauncherAmmoOffset8 = 0x21B7;
                 harpoonAmmoOffset = 0x3AC;
                 harpoonAmmoOffset2 = 0x2111;
-                harpoonAmmoOffset3 = 0x2123;
-                harpoonAmmoOffset4 = 0x2147;
-                harpoonAmmoOffset5 = 0x2159;
-                harpoonAmmoOffset6 = 0x216B;
-                harpoonAmmoOffset7 = 0x218F;
-                harpoonAmmoOffset8 = 0x21B3;
                 mp5AmmoOffset = 0x3A8;
                 mp5AmmoOffset2 = 0x211D;
-                mp5AmmoOffset3 = 0x212F;
-                mp5AmmoOffset4 = 0x2153;
-                mp5AmmoOffset5 = 0x2165;
-                mp5AmmoOffset6 = 0x2177;
-                mp5AmmoOffset7 = 0x219B;
-                mp5AmmoOffset8 = 0x21BF;
                 uziAmmoOffset = 0x3A4;
                 uziAmmoOffset2 = 0x2109;
-                uziAmmoOffset3 = 0x211B;
-                uziAmmoOffset4 = 0x213F;
-                uziAmmoOffset5 = 0x2151;
-                uziAmmoOffset6 = 0x2163;
-                uziAmmoOffset7 = 0x2187;
-                uziAmmoOffset8 = 0x21AB;
             }
 
             else if (GetCleanLvlName() == "Coastal Village")
@@ -610,32 +505,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x1A8;
                 shotgunAmmoOffset2 = 0x17B1;
-                shotgunAmmoOffset3 = 0x17D5;
-                shotgunAmmoOffset4 = 0x17E7;
                 deagleAmmoOffset = 0x1A4;
                 deagleAmmoOffset2 = 0x17A9;
-                deagleAmmoOffset3 = 0x17CD;
-                deagleAmmoOffset4 = 0x17DF;
                 grenadeLauncherAmmoOffset = 0x1B0;
                 grenadeLauncherAmmoOffset2 = 0x17BD;
-                grenadeLauncherAmmoOffset3 = 0x17E1;
-                grenadeLauncherAmmoOffset4 = 0x17F3;
                 rocketLauncherAmmoOffset = 0x1AC;
                 rocketLauncherAmmoOffset2 = 0x17B9;
-                rocketLauncherAmmoOffset3 = 0x17DD;
-                rocketLauncherAmmoOffset4 = 0x17EF;
                 harpoonAmmoOffset = 0x1AE;
                 harpoonAmmoOffset2 = 0x17B5;
-                harpoonAmmoOffset3 = 0x17D9;
-                harpoonAmmoOffset4 = 0x17EB;
                 mp5AmmoOffset = 0x1AA;
                 mp5AmmoOffset2 = 0x17C1;
-                mp5AmmoOffset3 = 0x17E5;
-                mp5AmmoOffset4 = 0x17F7;
                 uziAmmoOffset = 0x1A6;
                 uziAmmoOffset2 = 0x17AD;
-                uziAmmoOffset3 = 0x17D1;
-                uziAmmoOffset4 = 0x17E3;
             }
 
             else if (GetCleanLvlName() == "Crash Site")
@@ -655,32 +536,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x1DB;
                 shotgunAmmoOffset2 = 0x18D3;
-                shotgunAmmoOffset3 = 0x18F7;
-                shotgunAmmoOffset4 = 0x1909;
                 deagleAmmoOffset = 0x1D7;
                 deagleAmmoOffset2 = 0x18CB;
-                deagleAmmoOffset3 = 0x18EF;
-                deagleAmmoOffset4 = 0x1901;
                 grenadeLauncherAmmoOffset = 0x1E3;
                 grenadeLauncherAmmoOffset2 = 0x18DF;
-                grenadeLauncherAmmoOffset3 = 0x1903;
-                grenadeLauncherAmmoOffset4 = 0x1915;
                 rocketLauncherAmmoOffset = 0x1DF;
                 rocketLauncherAmmoOffset2 = 0x18DB;
-                rocketLauncherAmmoOffset3 = 0x18FF;
-                rocketLauncherAmmoOffset4 = 0x1911;
                 harpoonAmmoOffset = 0x1E1;
                 harpoonAmmoOffset2 = 0x18D7;
-                harpoonAmmoOffset3 = 0x18FB;
-                harpoonAmmoOffset4 = 0x190D;
                 mp5AmmoOffset = 0x1DD;
                 mp5AmmoOffset2 = 0x18E3;
-                mp5AmmoOffset3 = 0x1907;
-                mp5AmmoOffset4 = 0x1919;
                 uziAmmoOffset = 0x1D9;
                 uziAmmoOffset2 = 0x18CF;
-                uziAmmoOffset3 = 0x18F3;
-                uziAmmoOffset4 = 0x1905;
             }
 
             else if (GetCleanLvlName() == "Madubu Gorge")
@@ -700,39 +567,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x20E;
                 shotgunAmmoOffset2 = 0x141D;
-                shotgunAmmoOffset3 = 0x1441;
-                shotgunAmmoOffset4 = 0x1453;
-                shotgunAmmoOffset5 = 0x1477;
                 deagleAmmoOffset = 0x20A;
                 deagleAmmoOffset2 = 0x1415;
-                deagleAmmoOffset3 = 0x1439;
-                deagleAmmoOffset4 = 0x144B;
-                deagleAmmoOffset5 = 0x146F;
                 grenadeLauncherAmmoOffset = 0x216;
                 grenadeLauncherAmmoOffset2 = 0x1429;
-                grenadeLauncherAmmoOffset3 = 0x144D;
-                grenadeLauncherAmmoOffset4 = 0x145F;
-                grenadeLauncherAmmoOffset5 = 0x1483;
                 rocketLauncherAmmoOffset = 0x212;
                 rocketLauncherAmmoOffset2 = 0x1425;
-                rocketLauncherAmmoOffset3 = 0x1449;
-                rocketLauncherAmmoOffset4 = 0x145B;
-                rocketLauncherAmmoOffset5 = 0x147F;
                 harpoonAmmoOffset = 0x214;
                 harpoonAmmoOffset2 = 0x1421;
-                harpoonAmmoOffset3 = 0x1445;
-                harpoonAmmoOffset4 = 0x1457;
-                harpoonAmmoOffset5 = 0x147B;
                 mp5AmmoOffset = 0x210;
                 mp5AmmoOffset2 = 0x142D;
-                mp5AmmoOffset3 = 0x1451;
-                mp5AmmoOffset4 = 0x1463;
-                mp5AmmoOffset5 = 0x1487;
                 uziAmmoOffset = 0x20C;
                 uziAmmoOffset2 = 0x1419;
-                uziAmmoOffset3 = 0x143D;
-                uziAmmoOffset4 = 0x144F;
-                uziAmmoOffset5 = 0x1473;
             }
 
             else if (GetCleanLvlName() == "Temple Of Puna")
@@ -752,25 +598,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x241;
                 shotgunAmmoOffset2 = 0x10F5;
-                shotgunAmmoOffset3 = 0x1107;
                 deagleAmmoOffset = 0x23D;
                 deagleAmmoOffset2 = 0x10ED;
-                deagleAmmoOffset3 = 0x10FF;
                 grenadeLauncherAmmoOffset = 0x249;
                 grenadeLauncherAmmoOffset2 = 0x1101;
-                grenadeLauncherAmmoOffset3 = 0x1113;
                 rocketLauncherAmmoOffset = 0x245;
                 rocketLauncherAmmoOffset2 = 0x10FD;
-                rocketLauncherAmmoOffset3 = 0x110F;
                 harpoonAmmoOffset = 0x247;
                 harpoonAmmoOffset2 = 0x10F9;
-                harpoonAmmoOffset3 = 0x110B;
                 mp5AmmoOffset = 0x243;
                 mp5AmmoOffset2 = 0x1105;
-                mp5AmmoOffset3 = 0x1117;
                 uziAmmoOffset = 0x23F;
                 uziAmmoOffset2 = 0x10F1;
-                uziAmmoOffset3 = 0x1103;
             }
 
             else if (GetCleanLvlName() == "Thames Wharf")
@@ -790,32 +629,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x274;
                 shotgunAmmoOffset2 = 0x1873;
-                shotgunAmmoOffset3 = 0x1885;
-                shotgunAmmoOffset4 = 0x1897;
                 deagleAmmoOffset = 0x270;
                 deagleAmmoOffset2 = 0x186B;
-                deagleAmmoOffset3 = 0x187D;
-                deagleAmmoOffset4 = 0x188F;
                 grenadeLauncherAmmoOffset = 0x27C;
                 grenadeLauncherAmmoOffset2 = 0x187F;
-                grenadeLauncherAmmoOffset3 = 0x1891;
-                grenadeLauncherAmmoOffset4 = 0x18A3;
                 rocketLauncherAmmoOffset = 0x278;
                 rocketLauncherAmmoOffset2 = 0x187B;
-                rocketLauncherAmmoOffset3 = 0x188D;
-                rocketLauncherAmmoOffset4 = 0x189F;
                 harpoonAmmoOffset = 0x27A;
                 harpoonAmmoOffset2 = 0x1877;
-                harpoonAmmoOffset3 = 0x1889;
-                harpoonAmmoOffset4 = 0x189B;
                 mp5AmmoOffset = 0x276;
                 mp5AmmoOffset2 = 0x1883;
-                mp5AmmoOffset3 = 0x1895;
-                mp5AmmoOffset4 = 0x18A7;
                 uziAmmoOffset = 0x272;
                 uziAmmoOffset2 = 0x186F;
-                uziAmmoOffset3 = 0x1881;
-                uziAmmoOffset4 = 0x1893;
             }
 
             else if (GetCleanLvlName() == "Aldwych")
@@ -866,26 +691,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x2DA;
                 shotgunAmmoOffset2 = 0x1D89;
-                shotgunAmmoOffset3 = 0x1DAD;
                 deagleAmmoOffset = 0x2D6;
                 deagleAmmoOffset2 = 0x1D81;
-                deagleAmmoOffset3 = 0x1DA5;
                 grenadeLauncherAmmoOffset = 0x2E2;
                 grenadeLauncherAmmoOffset2 = 0x1D95;
-                grenadeLauncherAmmoOffset3 = 0x1DB9;
                 rocketLauncherAmmoOffset = 0x2DE;
                 rocketLauncherAmmoOffset2 = 0x1D91;
-                rocketLauncherAmmoOffset3 = 0x1DB5;
-                rocketLauncherAmmoOffset4 = 0x1DB9;
                 harpoonAmmoOffset = 0x2E0;
                 harpoonAmmoOffset2 = 0x1D8D;
-                harpoonAmmoOffset3 = 0x1DB1;
                 mp5AmmoOffset = 0x2DC;
                 mp5AmmoOffset2 = 0x1D99;
-                mp5AmmoOffset3 = 0x1DBD;
                 uziAmmoOffset = 0x2D8;
                 uziAmmoOffset2 = 0x1D85;
-                uziAmmoOffset3 = 0x1DA9;
             }
 
             else if (GetCleanLvlName() == "City")
@@ -905,25 +722,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x30D;
                 shotgunAmmoOffset2 = 0xAF3;
-                shotgunAmmoOffset3 = 0xB05;
                 deagleAmmoOffset = 0x309;
                 deagleAmmoOffset2 = 0xAEB;
-                deagleAmmoOffset3 = 0xAFD;
                 grenadeLauncherAmmoOffset = 0x315;
                 grenadeLauncherAmmoOffset2 = 0xAFF;
-                grenadeLauncherAmmoOffset3 = 0xB11;
                 rocketLauncherAmmoOffset = 0x311;
                 rocketLauncherAmmoOffset2 = 0xAFB;
-                rocketLauncherAmmoOffset3 = 0xB0D;
                 harpoonAmmoOffset = 0x313;
                 harpoonAmmoOffset2 = 0xAF7;
-                harpoonAmmoOffset3 = 0xB09;
                 mp5AmmoOffset = 0x30F;
                 mp5AmmoOffset2 = 0xB03;
-                mp5AmmoOffset3 = 0xB15;
                 uziAmmoOffset = 0x30B;
                 uziAmmoOffset2 = 0xAEF;
-                uziAmmoOffset3 = 0xB01;
             }
 
             else if (GetCleanLvlName() == "Antarctica")
@@ -943,25 +753,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x3D9;
                 shotgunAmmoOffset2 = 0x1995;
-                shotgunAmmoOffset3 = 0x19A7;
                 deagleAmmoOffset = 0x3D5;
                 deagleAmmoOffset2 = 0x198D;
-                deagleAmmoOffset3 = 0x199F;
                 grenadeLauncherAmmoOffset = 0x3E1;
                 grenadeLauncherAmmoOffset2 = 0x19A1;
-                grenadeLauncherAmmoOffset3 = 0x19B3;
                 rocketLauncherAmmoOffset = 0x3DD;
                 rocketLauncherAmmoOffset2 = 0x199D;
-                rocketLauncherAmmoOffset3 = 0x19AF;
                 harpoonAmmoOffset = 0x3DF;
                 harpoonAmmoOffset2 = 0x1999;
-                harpoonAmmoOffset3 = 0x19AB;
                 mp5AmmoOffset = 0x3DB;
                 mp5AmmoOffset2 = 0x19A5;
-                mp5AmmoOffset3 = 0x19B7;
                 uziAmmoOffset = 0x3D7;
                 uziAmmoOffset2 = 0x1991;
-                uziAmmoOffset3 = 0x19A3;
             }
 
             else if (GetCleanLvlName() == "RX-Tech Mines")
@@ -981,32 +784,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x40C;
                 shotgunAmmoOffset2 = 0x1957;
-                shotgunAmmoOffset3 = 0x197B;
-                shotgunAmmoOffset4 = 0x198D;
                 deagleAmmoOffset = 0x408;
                 deagleAmmoOffset2 = 0x194F;
-                deagleAmmoOffset3 = 0x1973;
-                deagleAmmoOffset4 = 0x1985;
                 grenadeLauncherAmmoOffset = 0x414;
                 grenadeLauncherAmmoOffset2 = 0x1963;
-                grenadeLauncherAmmoOffset3 = 0x1987;
-                grenadeLauncherAmmoOffset4 = 0x1999;
                 rocketLauncherAmmoOffset = 0x410;
                 rocketLauncherAmmoOffset2 = 0x195F;
-                rocketLauncherAmmoOffset3 = 0x1983;
-                rocketLauncherAmmoOffset4 = 0x1995;
                 harpoonAmmoOffset = 0x412;
                 harpoonAmmoOffset2 = 0x195B;
-                harpoonAmmoOffset3 = 0x197F;
-                harpoonAmmoOffset4 = 0x1991;
                 mp5AmmoOffset = 0x40E;
                 mp5AmmoOffset2 = 0x1967;
-                mp5AmmoOffset3 = 0x198B;
-                mp5AmmoOffset4 = 0x199D;
                 uziAmmoOffset = 0x40A;
                 uziAmmoOffset2 = 0x1953;
-                uziAmmoOffset3 = 0x1977;
-                uziAmmoOffset4 = 0x1989;
             }
 
             else if (GetCleanLvlName() == "Lost City Of Tinnos")
@@ -1026,25 +815,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x43F;
                 shotgunAmmoOffset2 = 0x1D97;
-                shotgunAmmoOffset3 = 0x1DCD;
                 deagleAmmoOffset = 0x43B;
                 deagleAmmoOffset2 = 0x1D8F;
-                deagleAmmoOffset3 = 0x1DC5;
                 grenadeLauncherAmmoOffset = 0x447;
                 grenadeLauncherAmmoOffset2 = 0x1DA3;
-                grenadeLauncherAmmoOffset3 = 0x1DD9;
                 rocketLauncherAmmoOffset = 0x443;
                 rocketLauncherAmmoOffset2 = 0x1D9F;
-                rocketLauncherAmmoOffset3 = 0x1DD5;
                 harpoonAmmoOffset = 0x445;
                 harpoonAmmoOffset2 = 0x1D9B;
-                harpoonAmmoOffset3 = 0x1DD1;
                 mp5AmmoOffset = 0x441;
                 mp5AmmoOffset2 = 0x1DA7;
-                mp5AmmoOffset3 = 0x1DDD;
                 uziAmmoOffset = 0x43D;
                 uziAmmoOffset2 = 0x1D93;
-                uziAmmoOffset3 = 0x1DC9;
             }
 
             else if (GetCleanLvlName() == "Meteorite Cavern")
@@ -1064,25 +846,18 @@ namespace TRIII_SaveEdit
                 // Ammo offsets
                 shotgunAmmoOffset = 0x472;
                 shotgunAmmoOffset2 = 0xAE9;
-                shotgunAmmoOffset3 = 0xAFB;
                 deagleAmmoOffset = 0x46E;
                 deagleAmmoOffset2 = 0xAE1;
-                deagleAmmoOffset3 = 0xAF3;
                 grenadeLauncherAmmoOffset = 0x47A;
                 grenadeLauncherAmmoOffset2 = 0xAF5;
-                grenadeLauncherAmmoOffset3 = 0xB07;
                 rocketLauncherAmmoOffset = 0x476;
                 rocketLauncherAmmoOffset2 = 0xAF1;
-                rocketLauncherAmmoOffset3 = 0xB03;
                 harpoonAmmoOffset = 0x478;
                 harpoonAmmoOffset2 = 0xAED;
-                harpoonAmmoOffset3 = 0xAFF;
                 mp5AmmoOffset = 0x474;
                 mp5AmmoOffset2 = 0xAF9;
-                mp5AmmoOffset3 = 0xB0B;
                 uziAmmoOffset = 0x470;
                 uziAmmoOffset2 = 0xAE5;
-                uziAmmoOffset3 = 0xAF7;
             }
 
             else if (GetCleanLvlName() == "All Hallows")
@@ -1179,111 +954,118 @@ namespace TRIII_SaveEdit
         private int harpoonGunOffset = 0;
         private int shotgunAmmoOffset = 0;
         private int shotgunAmmoOffset2 = 0;
-        private int shotgunAmmoOffset3 = 0;
-        private int shotgunAmmoOffset4 = 0;
-        private int shotgunAmmoOffset5 = 0;
-        private int shotgunAmmoOffset6 = 0;
-        private int shotgunAmmoOffset7 = 0;
-        private int shotgunAmmoOffset8 = 0;
         private int deagleAmmoOffset = 0;
         private int deagleAmmoOffset2 = 0;
-        private int deagleAmmoOffset3 = 0;
-        private int deagleAmmoOffset4 = 0;
-        private int deagleAmmoOffset5 = 0;
-        private int deagleAmmoOffset6 = 0;
-        private int deagleAmmoOffset7 = 0;
-        private int deagleAmmoOffset8 = 0;
         private int grenadeLauncherAmmoOffset = 0;
         private int grenadeLauncherAmmoOffset2 = 0;
-        private int grenadeLauncherAmmoOffset3 = 0;
-        private int grenadeLauncherAmmoOffset4 = 0;
-        private int grenadeLauncherAmmoOffset5 = 0;
-        private int grenadeLauncherAmmoOffset6 = 0;
-        private int grenadeLauncherAmmoOffset7 = 0;
-        private int grenadeLauncherAmmoOffset8 = 0;
         private int rocketLauncherAmmoOffset = 0;
         private int rocketLauncherAmmoOffset2 = 0;
-        private int rocketLauncherAmmoOffset3 = 0;
-        private int rocketLauncherAmmoOffset4 = 0;
-        private int rocketLauncherAmmoOffset5 = 0;
-        private int rocketLauncherAmmoOffset6 = 0;
-        private int rocketLauncherAmmoOffset7 = 0;
-        private int rocketLauncherAmmoOffset8 = 0;
         private int harpoonAmmoOffset = 0;
         private int harpoonAmmoOffset2 = 0;
-        private int harpoonAmmoOffset3 = 0;
-        private int harpoonAmmoOffset4 = 0;
-        private int harpoonAmmoOffset5 = 0;
-        private int harpoonAmmoOffset6 = 0;
-        private int harpoonAmmoOffset7 = 0;
-        private int harpoonAmmoOffset8 = 0;
         private int mp5AmmoOffset = 0;
         private int mp5AmmoOffset2 = 0;
-        private int mp5AmmoOffset3 = 0;
-        private int mp5AmmoOffset4 = 0;
-        private int mp5AmmoOffset5 = 0;
-        private int mp5AmmoOffset6 = 0;
-        private int mp5AmmoOffset7 = 0;
-        private int mp5AmmoOffset8 = 0;
         private int uziAmmoOffset = 0;
         private int uziAmmoOffset2 = 0;
-        private int uziAmmoOffset3 = 0;
-        private int uziAmmoOffset4 = 0;
-        private int uziAmmoOffset5 = 0;
-        private int uziAmmoOffset6 = 0;
-        private int uziAmmoOffset7 = 0;
-        private int uziAmmoOffset8 = 0;
 
         private string sSaveFilePath;
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2, shotgunAmmoOffset3, shotgunAmmoOffset4, shotgunAmmoOffset5, shotgunAmmoOffset6, shotgunAmmoOffset7, shotgunAmmoOffset8);
-            int[] validDeagleAmmoOffsets = GetValidAmmoOffsets(deagleAmmoOffset, deagleAmmoOffset2, deagleAmmoOffset3, deagleAmmoOffset4, deagleAmmoOffset5, deagleAmmoOffset6, deagleAmmoOffset7, deagleAmmoOffset8);
-            int[] validGrenadeLauncherAmmoOffsets = GetValidAmmoOffsets(grenadeLauncherAmmoOffset, grenadeLauncherAmmoOffset2, grenadeLauncherAmmoOffset3, grenadeLauncherAmmoOffset4, grenadeLauncherAmmoOffset5, grenadeLauncherAmmoOffset6, grenadeLauncherAmmoOffset7, grenadeLauncherAmmoOffset8);
-            int[] validRocketLauncherAmmoOffsets = GetValidAmmoOffsets(rocketLauncherAmmoOffset, rocketLauncherAmmoOffset2, rocketLauncherAmmoOffset3, rocketLauncherAmmoOffset4, rocketLauncherAmmoOffset5, rocketLauncherAmmoOffset6, rocketLauncherAmmoOffset7, rocketLauncherAmmoOffset8);
-            int[] validHarpoonAmmoOffsets = GetValidAmmoOffsets(harpoonAmmoOffset, harpoonAmmoOffset2, harpoonAmmoOffset3, harpoonAmmoOffset4, harpoonAmmoOffset5, harpoonAmmoOffset6, harpoonAmmoOffset7, harpoonAmmoOffset8);
-            int[] validMp5AmmoOffsets = GetValidAmmoOffsets(mp5AmmoOffset, mp5AmmoOffset2, mp5AmmoOffset3, mp5AmmoOffset4, mp5AmmoOffset5, mp5AmmoOffset6, mp5AmmoOffset7, mp5AmmoOffset8);
-            int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2, uziAmmoOffset3, uziAmmoOffset4, uziAmmoOffset5, uziAmmoOffset6, uziAmmoOffset7, uziAmmoOffset8);
+            int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2);
+            int[] validDeagleAmmoOffsets = GetValidAmmoOffsets(deagleAmmoOffset, deagleAmmoOffset2);
+            int[] validGrenadeLauncherAmmoOffsets = GetValidAmmoOffsets(grenadeLauncherAmmoOffset, grenadeLauncherAmmoOffset2);
+            int[] validRocketLauncherAmmoOffsets = GetValidAmmoOffsets(rocketLauncherAmmoOffset, rocketLauncherAmmoOffset2);
+            int[] validHarpoonAmmoOffsets = GetValidAmmoOffsets(harpoonAmmoOffset, harpoonAmmoOffset2);
+            int[] validMp5AmmoOffsets = GetValidAmmoOffsets(mp5AmmoOffset, mp5AmmoOffset2);
+            int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
 
             WriteToSaveFile(smallMedipackOffset, Decimal.ToInt32(smallMedipacksNumBox.Value));
             WriteToSaveFile(largeMedipackOffset, Decimal.ToInt32(lrgMedipacksNumBox.Value));
             WriteToSaveFile(numFlaresOffset, Decimal.ToInt32(flaresNumBox.Value));
             WriteAmmoValue(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
 
-            for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
+            if (!shotgunCheckBox.Checked)
             {
-                WriteAmmoValue(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value)*6);
+                WriteAmmoValue(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+            }
+            else
+            {
+                for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                }
             }
 
-            for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
+            if (!deagleCheckBox.Checked)
             {
-                WriteAmmoValue(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                WriteAmmoValue(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
+            }
+            else
+            {
+                for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                }
             }
 
-            for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
+            if (!grenadeLauncherCheckBox.Checked)
             {
-                WriteAmmoValue(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                WriteAmmoValue(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+            }
+            else
+            {
+                for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                }
             }
 
-            for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
+            if (!rocketLauncherCheckBox.Checked)
             {
-                WriteAmmoValue(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                WriteAmmoValue(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+            }
+            else
+            {
+                for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                }
             }
 
-            for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
+            if (!harpoonGunCheckBox.Checked)
             {
-                WriteAmmoValue(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                WriteAmmoValue(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+            }
+            else
+            {
+                for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                }
             }
 
-            for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
+            if (!mp5CheckBox.Checked)
             {
-                WriteAmmoValue(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
+                WriteAmmoValue(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
+            }
+            else
+            {
+                for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
+                }
             }
 
-            for (int i = 0; i < validUziAmmoOffsets.Length; i++)
+            if (!uziCheckBox.Checked)
             {
-                WriteAmmoValue(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
+                WriteAmmoValue(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
+            }
+            else
+            {
+                for (int i = 0; i < validUziAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
+                }
             }
 
             // Calculate new weapons config number
@@ -1333,7 +1115,6 @@ namespace TRIII_SaveEdit
                     helperTxtBox.AppendText("Loaded save file: " + Path.GetFileName(openFileDialog.FileName));
 
                     SaveButton.Enabled = true;
-
                     pistolsCheckBox.Enabled = true;
                     deagleCheckBox.Enabled = true;
                     deagleAmmoNumBox.Enabled = true;
