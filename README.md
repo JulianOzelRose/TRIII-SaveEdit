@@ -89,7 +89,7 @@ WriteToSaveFile(weaponsConfigNumOffset, newWeaponsConfigNum);
 Ammunition is stored on up to two different offsets. It is always stored on a lower offset, which I call the primary ammo offset, and then it is
 stored on an additional offset, which I call the secondary ammo offset. If the respective weapon is not in inventory, then the ammo is only stored on
 the primary offset. If the weapon is equipped, then the ammo is stored on both offsets. There can be anywhere from 1-9 different secondary ammo offsets
-per level. The "correct" secondary ammo offset changes as throughout the level, and seems to depend on the number of active entities in the game.
+per level. The "correct" secondary ammo offset changes throughout the level, and seems to depend on the number of active entities in the game.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. To determine which secondary offset is the correct
 one to write to, we take the base secondary offset and loop through the potential secondary offsets, using 0x12 as an iterator.
 We then check each secondary offset for equivalency with the primary offset.
