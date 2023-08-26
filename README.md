@@ -114,7 +114,7 @@ int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
     {
         int ammoValue = GetAmmoValue(secondaryOffsets[i]);
 
-        if (primaryAmmoValue == ammoValue)
+        if (primaryAmmoValue == ammoValue && ammoValue != 0)
         {
             validOffsets.Add(secondaryOffsets[i]);
         }
@@ -172,7 +172,7 @@ table is the primary ammo offset, and the next one is the secondary offset.
 | Weapons Config Number   | 0x00ED            |
 | Harpoon Gun             | 0x00EE            |
 | Shotgun Ammo 1          | 0x00DC            |
-| Shotgun Ammo 2          | 0x164B            |
+| Shotgun Ammo 2          | 0x1639            |
 | Deagle Ammo 1           | 0x00D8            |
 | Deagle Ammo 2	          | 0x1631            |
 | Grenade Launcher Ammo 1 | 0x00E4            |
@@ -180,7 +180,7 @@ table is the primary ammo offset, and the next one is the secondary offset.
 | Rocket Launcher Ammo 1  | 0x00E0            |
 | Rocket Launcher Ammo 2  | 0x1653            |
 | Harpoon Ammo 1          | 0x00E2            |
-| Harpoon Ammo 2          | 0x1607            |
+| Harpoon Ammo 2          | 0x1619            |
 | MP5 Ammo 1              | 0x00DE            |
 | MP5 Ammo 2              | 0x165B            |
 | Uzi Ammo 1              | 0x00DA            |
@@ -297,7 +297,7 @@ table is the primary ammo offset, and the next one is the secondary offset.
 | Weapons Config Number   | 0x0384            |
 | Harpoon Gun             | 0x0385            |
 | Shotgun Ammo 1          | 0x0373            |
-| Shotgun Ammo 2          | 0x1EA5            |
+| Shotgun Ammo 2          | 0x1E4B            |
 | Deagle Ammo 1           | 0x036F            |
 | Deagle Ammo 2	          | 0x1E43            |
 | Grenade Launcher Ammo 1 | 0x037B            |
