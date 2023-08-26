@@ -170,12 +170,11 @@ namespace TRIII_SaveEdit
                 secondaryOffsets.Add(baseSecondaryOffset + i * 0x12);
             }
 
-
             for (int i = 0; i < secondaryOffsets.Count; i++)
             {
                 int ammoValue = GetAmmoValue(secondaryOffsets[i]);
 
-                if (primaryAmmoValue == ammoValue)
+                if (primaryAmmoValue == ammoValue && ammoValue != 0)
                 {
                     validOffsets.Add(secondaryOffsets[i]);
                 }
@@ -287,7 +286,7 @@ namespace TRIII_SaveEdit
 
                 // Ammo offsets
                 shotgunAmmoOffset = 0xDC;
-                shotgunAmmoOffset2 = 0x164B;
+                shotgunAmmoOffset2 = 0x1639;
                 deagleAmmoOffset = 0xD8;
                 deagleAmmoOffset2 = 0x1631;
                 grenadeLauncherAmmoOffset = 0xE4;
@@ -295,9 +294,9 @@ namespace TRIII_SaveEdit
                 rocketLauncherAmmoOffset = 0xE0;
                 rocketLauncherAmmoOffset2 = 0x1653;
                 harpoonAmmoOffset = 0xE2;
-                harpoonAmmoOffset2 = 0x1607;
+                harpoonAmmoOffset2 = 0x1619;
                 mp5AmmoOffset = 0xDE;
-                mp5AmmoOffset2 = 0x165B;
+                mp5AmmoOffset2 = 0x1649;
                 uziAmmoOffset = 0xDA;
                 uziAmmoOffset2 = 0x1647;
             }
@@ -442,7 +441,7 @@ namespace TRIII_SaveEdit
 
                 // Ammo offsets
                 shotgunAmmoOffset = 0x373;
-                shotgunAmmoOffset2 = 0x1EA5;
+                shotgunAmmoOffset2 = 0x1E4B;
                 deagleAmmoOffset = 0x36F;
                 deagleAmmoOffset2 = 0x1E43;
                 grenadeLauncherAmmoOffset = 0x37B;
