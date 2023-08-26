@@ -14,7 +14,7 @@ This editor can enable any weapon on any level, including the bonus level. No se
 #### Screenshot of TRIII-SaveEdit
 ![TRIII-SaveEdit](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/9cc84f2c-299e-4265-8aa0-f30bd6beaf54)
 
-## How weapons information is stored
+## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently in each level. Another interesting difference is that
 instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
 The only exception is the harpoon gun, which is stored on its own offset, and is of boolean type. The weapons configuration variable has a
@@ -67,7 +67,7 @@ else
 }
 ```
 
-## Writing new weapons configuration
+## Writing weapons information
 When storing our new weapons configuration, we just perform the same operations in reverse.
 We start with the base case of 1, and then increment based on the checked weapons.
 Lastly, we write the calculated number to the save file.
@@ -85,11 +85,13 @@ if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
 WriteToSaveFile(weaponsConfigNumOffset, newWeaponsConfigNum);
 ```
 
-## How ammunition info is stored
+## Calculating ammunition offsets
 Ammunition is stored on up to two different offsets. It is always stored on a lower offset, which I call the primary ammo offset, and then it is
 stored on an additional offset, which I call the secondary ammo offset. If the respective weapon is not in inventory, then the ammo is only stored on
 the primary offset. If the weapon is equipped, then the ammo is stored on both offsets. There can be anywhere from 1-9 different secondary ammo offsets
-per level. The "correct" secondary ammo offset changes throughout the level, and seems to depend on the number of active entities in the game.
+per level.
+
+The "correct" secondary ammo offset changes throughout the level, and seems to depend on the number of active entities in the game.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. To determine which secondary offset is the correct
 one to write to, we take the base secondary offset and loop through the potential secondary offsets, using 0x12 as an iterator.
 We then check each secondary offset for equivalency with the primary offset.
