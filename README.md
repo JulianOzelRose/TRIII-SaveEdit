@@ -1,5 +1,5 @@
 # TRIII-SaveEdit
-This is a save game editor for Tomb Raider III. It has been tested to work with the Steam version of the game, but it should work on
+This is a save game editor for Tomb Raider III. It has been rigorously tested to work with the Steam version of the game, but it should work on
 the original and multi-patched version as well. Be sure to back up your save game files anyway as a precaution.
 This editor can enable any weapon on any level, including the bonus level. No setup is necessary, just download and run.
 
@@ -15,7 +15,7 @@ This editor can enable any weapon on any level, including the bonus level. No se
 ![TRIII-SaveEdit](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/9cc84f2c-299e-4265-8aa0-f30bd6beaf54)
 
 ## Reading weapons information
-Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently in each level. Another interesting difference is that
+Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
 instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
 The only exception is the harpoon gun, which is stored on its own offset, and is of boolean type. The weapons configuration variable has a
 base number of 1, which indicates no weapons present in inventory. Each weapon adds a unique number to the variable.
@@ -69,7 +69,7 @@ else
 
 ## Writing weapons information
 When storing our new weapons configuration, we just perform the same operations in reverse.
-We start with the base case of 1, and then increment based on the checked weapons.
+We start with the base number of 1, and then increment based on the checked weapons.
 Lastly, we write the calculated number to the save file.
 
 ```
@@ -94,7 +94,7 @@ per level.
 The "correct" secondary ammo offset changes throughout the level, and seems to depend on the number of active entities in the game.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. To determine which secondary offset is the correct
 one to write to, we take the base secondary offset and loop through the potential secondary offsets, using 0x12 as an iterator.
-We then check each secondary offset for equivalency with the primary offset.
+We then check the current ammo index with ```GetAmmoIndex()``` and add both the primary and secondary offsets to our list, and return as an array.
 
 ```
 int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
@@ -102,56 +102,62 @@ int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
     List<int> secondaryOffsets = new List<int>();
     List<int> validOffsets = new List<int>();
 
-    int primaryAmmoValue = GetAmmoValue(primaryOffset);
+    int currentAmmoIndex = GetAmmoIndex();
 
     for (int i = 0; i < 10; i++)
     {
         secondaryOffsets.Add(baseSecondaryOffset + i * 0x12);
     }
 
-
-    for (int i = 0; i < secondaryOffsets.Count; i++)
-    {
-        int ammoValue = GetAmmoValue(secondaryOffsets[i]);
-
-        if (primaryAmmoValue == ammoValue && ammoValue != 0)
-        {
-            validOffsets.Add(secondaryOffsets[i]);
-        }
-    }
-
-    if (validOffsets.Count == 0)
-    {
-        for (int i = 0; i < secondaryOffsets.Count; i++)
-        {
-            if (GetAmmoValue(secondaryOffsets[i] - 2) == 0 && GetAmmoValue(secondaryOffsets[i] + 1) == 0)
-            {
-                validOffsets.Add(secondaryOffsets[i]);
-            }
-        }
-    }
-
     validOffsets.Add(primaryOffset);
+    validOffsets.Add(secondaryOffsets[currentAmmoIndex]);
+
     return validOffsets.ToArray();
 }
 ```
 
-If no secondary offset matches the primary offset, we take a heuristic approach. We loop through the potential secondary offsets,
-and we check the surrounding data. If the next offset over is non-zero, we know we cannot write to it. If the preceding
-offset is written to, the game will crash. I have not figured out a method that determines the correct secondary offset
-with 100% accuracy when it cannot be matched with the primary offset, but this comes quite close.
-Here is the heuristic code block, which is nested in the previous function.
+## Determining the current ammo index
+The ammo index is based on the number of active entities in the game. If there are no active entities,
+the correct ammo index is 0. If there is 1 entity, the index is 1, and so on. Ammo indices are also uniform,
+meaning if the current ammo index for MP5 is 2, then the ammo index for the shotgun and other weapons is also 2.
+One possible way to determine the current ammo index would be to reverse the entity data structures, and find
+common byte flags which may identify them as active entities. Since there are a total of 32 entities in the game,
+this would be an extremely daunting task.
+
+Fortunately, I was able to identify certain bytes in the save files that changed consistently along with the ammo index.
+I am not entirely sure what this data represents, but it seems to correlate with entity data. It's a 4-byte line
+consisting of 0xFF, 4 times. Here's what that data looks like on the same level with an ammo index of 0 (left) versus an ammo index of 1 (right).
+
+![TR3-Index-Diffs](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/e858081d-604e-4c6b-a1b4-4fd866094d86)
+
+So we take note of the byte patterns for the different ammo indices for each level, then store that data as a dictionary. There are 20
+levels and these bytes are stored differently on each one. We then call the dictionary in ```GetAmmoIndex()``` to check which lines
+the 0xFF bytes are located on. We will then know what the current ammo index is.
 
 ```
-if (validOffsets.Count == 0)
+int GetAmmoIndex()
 {
-    for (int i = 0; i < secondaryOffsets.Count; i++)
+    string lvlName = GetCleanLvlName();
+    int ammoIndex = 0;
+
+    if (ammoIndexData.ContainsKey(lvlName))
     {
-        if (GetAmmoValue(secondaryOffsets[i] - 2) == 0 && GetAmmoValue(secondaryOffsets[i] + 1) == 0)
+        Dictionary<int, int[]> indexData = ammoIndexData[lvlName];
+
+        for (int i = 0; i < indexData.Count; i++)
         {
-            validOffsets.Add(secondaryOffsets[i]);
+            int key = indexData.ElementAt(i).Key;
+            int[] offsets = indexData.ElementAt(i).Value;
+
+            if (offsets.All(offset => GetSaveFileData(offset) == 0xFF))
+            {
+                ammoIndex = key;
+                break;
+            }
         }
     }
+
+    return ammoIndex;
 }
 ```
 
@@ -159,7 +165,7 @@ if (validOffsets.Count == 0)
 Aside from the level name and save number, the save file offsets differ on every level. The offsets for small medipack
 and large medipack are 1 byte away. Flares is 2 bytes away from large medipack, and the weapons config number is 4 bytes away
 from flares. Next to the weapons config number is the harpoon gun offset. The first ammo offset listed on each
-table is the primary ammo offset, and the next one is the secondary offset.
+table is the primary ammo offset, and the next one is the secondary base offset.
 
 #### Jungle ####
 | **Variable**            | **File offset**   |
@@ -172,15 +178,15 @@ table is the primary ammo offset, and the next one is the secondary offset.
 | Weapons Config Number   | 0x00ED            |
 | Harpoon Gun             | 0x00EE            |
 | Shotgun Ammo 1          | 0x00DC            |
-| Shotgun Ammo 2          | 0x1639            |
+| Shotgun Ammo 2          | 0x164B            |
 | Deagle Ammo 1           | 0x00D8            |
-| Deagle Ammo 2	          | 0x1631            |
+| Deagle Ammo 2	          | 0x1643            |
 | Grenade Launcher Ammo 1 | 0x00E4            |
 | Grenade Launcher Ammo 2 | 0x1657            |
 | Rocket Launcher Ammo 1  | 0x00E0            |
 | Rocket Launcher Ammo 2  | 0x1653            |
 | Harpoon Ammo 1          | 0x00E2            |
-| Harpoon Ammo 2          | 0x1619            |
+| Harpoon Ammo 2          | 0x164F            |
 | MP5 Ammo 1              | 0x00DE            |
 | MP5 Ammo 2              | 0x165B            |
 | Uzi Ammo 1              | 0x00DA            |
