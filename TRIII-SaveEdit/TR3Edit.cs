@@ -8,6 +8,7 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TRIII_SaveEdit
 {
@@ -108,6 +109,148 @@ namespace TRIII_SaveEdit
             return null;
         }
 
+        readonly Dictionary<string, Dictionary<int, int[]>> ammoIndexData = new Dictionary<string, Dictionary<int, int[]>>
+        {
+            ["Jungle"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x1663, 0x1664, 0x1665, 0x1666 },
+                [1] = new int[] { 0x1675, 0x1676, 0x1677, 0x1678 },
+                [2] = new int[] { 0x1687, 0x1688, 0x1689, 0x168A },
+                [3] = new int[] { 0x1699, 0x169A, 0x169B, 0x169C },
+                [4] = new int[] { 0x16AB, 0x16AC, 0x16AD, 0x16AE },
+                [5] = new int[] { 0x16BD, 0x16BE, 0x16BF, 0x16C0 }
+            },
+
+            ["Temple Ruins"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x23D3, 0x23D4, 0x23D5, 0x23D6 },
+                [1] = new int[] { 0x23E5, 0x23E6, 0x23E7, 0x23E8 },
+            },
+
+            ["The River Ganges"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x181C, 0x181D, 0x181E, 0x181F },
+                [1] = new int[] { 0x182E, 0x182F, 0x1830, 0x1831 },
+            },
+
+            ["Caves Of Kaliya"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0xD37, 0xD38, 0xD39, 0xD3A },
+                [1] = new int[] { 0xD53, 0xD54, 0xD55, 0xD56 }
+            },
+
+            ["Nevada Desert"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x17BC, 0x17BD, 0x17BE, 0x17BF },
+                [1] = new int[] { 0x17CE, 0x17CF, 0x17D0, 0x17D1 },
+                [2] = new int[] { 0x17E0, 0x17E1, 0x17E2, 0x17E3 },
+                [3] = new int[] { 0x17F2, 0x17F3, 0x17F4, 0x17F5 }
+            },
+
+            ["High Security Compound"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x1E63, 0x1E64, 0x1E65, 0x1E66 },
+                [5] = new int[] { 0x1EBD, 0x1EBE, 0x1EBF, 0x1EC0 },
+                [6] = new int[] { 0x1ECF, 0x1ED0, 0x1ED1, 0x1ED2 }
+            },
+
+            ["Area 51"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x2125, 0x2126, 0x2127, 0x2128 },
+                [1] = new int[] { 0x2137, 0x2138, 0x2139, 0x213A },
+                [3] = new int[] { 0x215B, 0x215C, 0x215D, 0x215E },
+                [4] = new int[] { 0x216D, 0x216E, 0x216F, 0x2170 },
+                [5] = new int[] { 0x217F, 0x2180, 0x2181, 0x2182 },
+                [7] = new int[] { 0x21A3, 0x21A4, 0x21A5, 0x21A6 },
+                [9] = new int[] { 0x21C7, 0x21C8, 0x21C9, 0x21CA }
+            },
+
+            ["Coastal Village"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x17C9, 0x17CA, 0x17CB, 0x17CC },
+                [2] = new int[] { 0x17ED, 0x17EE, 0x17EF, 0x17F0 }
+            },
+
+            ["Crash Site"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x18EB, 0x18EC, 0x18ED, 0x18EE },
+                [1] = new int[] { 0x18FD, 0x18FE, 0x18FF, 0x1900 },
+                [2] = new int[] { 0x190F, 0x1910, 0x1911, 0x1912 },
+                [3] = new int[] { 0x1921, 0x1922, 0x1923, 0x1924 },
+                [4] = new int[] { 0x1933, 0x1934, 0x1935, 0x1936 },
+                [5] = new int[] { 0x1945, 0x1946, 0x1947, 0x1948 }
+            },
+
+            ["Madubu Gorge"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x1435, 0x1436, 0x1437, 0x1438 },
+                [2] = new int[] { 0x1459, 0x145A, 0x145B, 0x145C },
+                [3] = new int[] { 0x146B, 0x146C, 0x146D, 0x146E },
+                [5] = new int[] { 0x148F, 0x1490, 0x1491, 0x1492 }
+            },
+
+            ["Temple Of Puna"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x110D, 0x110E, 0x110F, 0x1110 },
+                [1] = new int[] { 0x105D, 0x105E, 0x105F, 0x1060 }
+            },
+
+            ["Thames Wharf"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x188B, 0x188C, 0x188D, 0x188E },
+                [1] = new int[] { 0x189D, 0x189E, 0x189F, 0x18A0 },
+                [2] = new int[] { 0x18AF, 0x18B0, 0x18B1, 0x18B2 }
+            },
+
+            ["Aldwych"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x2317, 0x2318, 0x2319, 0x231A }
+            },
+
+            ["Lud's Gate"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x1DA1, 0x1DA2, 0x1DA3, 0x1DA4 },
+                [2] = new int[] { 0x1D03, 0x1D04, 0x1D05, 0x1D06 }
+            },
+
+            ["City"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0xB0B, 0xB0C, 0xB0D, 0xB0E },
+                [1] = new int[] { 0xB1D, 0xB1E, 0xB1F, 0xB20 }
+            },
+
+            ["Antarctica"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x19AD, 0x19AE, 0x19AF, 0x19B0 },
+                [1] = new int[] { 0x19BF, 0x19C0, 0x19C1, 0x19C2 }
+            },
+
+            ["RX-Tech Mines"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x196F, 0x1970, 0x1971, 0x1972 },
+                [2] = new int[] { 0x1993, 0x1994, 0x1995, 0x1996 },
+                [3] = new int[] { 0x19A5, 0x19A6, 0x19A7, 0x19A8 }
+            },
+
+            ["Lost City Of Tinnos"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x1DAF, 0x1DB0, 0x1DB1, 0x1DB2 },
+                [1] = new int[] { 0x1DC1, 0x1DC2, 0x1DC3, 0x1DC4 },
+                [2] = new int[] { 0x1DD3, 0x1DD4, 0x1DD5, 0x1DD6 },
+            },
+
+            ["Meteorite Cavern"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0xB01, 0xB02, 0xB03, 0xB04 },
+                [1] = new int[] { 0xB13, 0xB14, 0xB15, 0xB16 },
+            },
+
+            ["All Hallows"] = new Dictionary<int, int[]>
+            {
+                [0] = new int[] { 0x1045, 0x1046, 0x1047, 0x1048 }
+            }
+        };
+
         byte GetSaveFileData(long offset)
         {
             string saveFilePath = GetSaveFilePath();
@@ -158,40 +301,46 @@ namespace TRIII_SaveEdit
             }
         }
 
+        int GetAmmoIndex()
+        {
+            string lvlName = GetCleanLvlName();
+            int ammoIndex = 0;
+
+            if (ammoIndexData.ContainsKey(lvlName))
+            {
+                Dictionary<int, int[]> indexData = ammoIndexData[lvlName];
+
+                for (int i = 0; i < indexData.Count; i++)
+                {
+                    int key = indexData.ElementAt(i).Key;
+                    int[] offsets = indexData.ElementAt(i).Value;
+
+                    if (offsets.All(offset => GetSaveFileData(offset) == 0xFF))
+                    {
+                        ammoIndex = key;
+                        break;
+                    }
+                }
+            }
+
+            return ammoIndex;
+        }
+
         int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
         {
             List<int> secondaryOffsets = new List<int>();
             List<int> validOffsets = new List<int>();
 
-            int primaryAmmoValue = GetAmmoValue(primaryOffset);
+            int currentAmmoIndex = GetAmmoIndex();
 
             for (int i = 0; i < 10; i++)
             {
                 secondaryOffsets.Add(baseSecondaryOffset + i * 0x12);
             }
 
-            for (int i = 0; i < secondaryOffsets.Count; i++)
-            {
-                int ammoValue = GetAmmoValue(secondaryOffsets[i]);
-
-                if (primaryAmmoValue == ammoValue && ammoValue != 0)
-                {
-                    validOffsets.Add(secondaryOffsets[i]);
-                }
-            }
-            
-            if (validOffsets.Count == 0)
-            {
-                for (int i = 0; i < secondaryOffsets.Count; i++)
-                {
-                    if (GetAmmoValue(secondaryOffsets[i] - 2) == 0 && GetAmmoValue(secondaryOffsets[i] + 1) == 0)
-                    {
-                        validOffsets.Add(secondaryOffsets[i]);
-                    }
-                }
-            }
-
             validOffsets.Add(primaryOffset);
+            validOffsets.Add(secondaryOffsets[currentAmmoIndex]);
+
             return validOffsets.ToArray();
         }
 
@@ -286,17 +435,17 @@ namespace TRIII_SaveEdit
 
                 // Ammo offsets
                 shotgunAmmoOffset = 0xDC;
-                shotgunAmmoOffset2 = 0x1639;
+                shotgunAmmoOffset2 = 0x164B;
                 deagleAmmoOffset = 0xD8;
-                deagleAmmoOffset2 = 0x1631;
+                deagleAmmoOffset2 = 0x1643;
                 grenadeLauncherAmmoOffset = 0xE4;
                 grenadeLauncherAmmoOffset2 = 0x1657;
                 rocketLauncherAmmoOffset = 0xE0;
                 rocketLauncherAmmoOffset2 = 0x1653;
                 harpoonAmmoOffset = 0xE2;
-                harpoonAmmoOffset2 = 0x1619;
+                harpoonAmmoOffset2 = 0x164F;
                 mp5AmmoOffset = 0xDE;
-                mp5AmmoOffset2 = 0x1649;
+                mp5AmmoOffset2 = 0x165B;
                 uziAmmoOffset = 0xDA;
                 uziAmmoOffset2 = 0x1647;
             }
@@ -985,6 +1134,11 @@ namespace TRIII_SaveEdit
 
             if (!shotgunCheckBox.Checked)
             {
+                for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validShotgunAmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
             }
             else
@@ -997,6 +1151,11 @@ namespace TRIII_SaveEdit
 
             if (!deagleCheckBox.Checked)
             {
+                for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validDeagleAmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
             }
             else
@@ -1009,6 +1168,11 @@ namespace TRIII_SaveEdit
 
             if (!grenadeLauncherCheckBox.Checked)
             {
+                for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validGrenadeLauncherAmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
             }
             else
@@ -1021,6 +1185,11 @@ namespace TRIII_SaveEdit
 
             if (!rocketLauncherCheckBox.Checked)
             {
+                for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validRocketLauncherAmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
             }
             else
@@ -1033,6 +1202,11 @@ namespace TRIII_SaveEdit
 
             if (!harpoonGunCheckBox.Checked)
             {
+                for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validHarpoonAmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
             }
             else
@@ -1045,6 +1219,11 @@ namespace TRIII_SaveEdit
 
             if (!mp5CheckBox.Checked)
             {
+                for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validMp5AmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
             }
             else
@@ -1057,6 +1236,11 @@ namespace TRIII_SaveEdit
 
             if (!uziCheckBox.Checked)
             {
+                for (int i = 0; i < validUziAmmoOffsets.Length; i++)
+                {
+                    WriteAmmoValue(validUziAmmoOffsets[i], 0);
+                }
+
                 WriteAmmoValue(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
             }
             else
