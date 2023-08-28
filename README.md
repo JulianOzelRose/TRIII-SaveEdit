@@ -236,7 +236,7 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Rocket Launcher Ammo 1  | 0x0146            |
 | Rocket Launcher Ammo 2  | 0x180C            |
 | Harpoon Ammo 1          | 0x0148            |
-| Harpoon Ammo 2          | 0x1814            |
+| Harpoon Ammo 2          | 0x1808            |
 | MP5 Ammo 1              | 0x0144            |
 | MP5 Ammo 2              | 0x1814            |
 | Uzi Ammo 1              | 0x0140            |
@@ -556,9 +556,9 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Shotgun Ammo 2          | 0x1995            |
 | Deagle Ammo 1           | 0x03D5            |
 | Deagle Ammo 2	          | 0x198D            |
-| Grenade Launcher Ammo 1 | 0x0315            |
+| Grenade Launcher Ammo 1 | 0x03E1            |
 | Grenade Launcher Ammo 2 | 0x19A1            |
-| Rocket Launcher Ammo 1  | 0x0311            |
+| Rocket Launcher Ammo 1  | 0x03DD            |
 | Rocket Launcher Ammo 2  | 0x199D            |
 | Harpoon Ammo 1          | 0x03DF            |
 | Harpoon Ammo 2          | 0x1999            |
@@ -584,7 +584,7 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Grenade Launcher Ammo 1 | 0x0414            |
 | Grenade Launcher Ammo 2 | 0x1963            |
 | Rocket Launcher Ammo 1  | 0x0410            |
-| Rocket Launcher Ammo 2  | 0x1963            |
+| Rocket Launcher Ammo 2  | 0x195F            |
 | Harpoon Ammo 1          | 0x0412            |
 | Harpoon Ammo 2          | 0x195B            |
 | MP5 Ammo 1              | 0x040E            |
