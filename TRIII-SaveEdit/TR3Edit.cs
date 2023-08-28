@@ -168,6 +168,7 @@ namespace TRIII_SaveEdit
             ["Coastal Village"] = new Dictionary<int, int[]>
             {
                 [0] = new int[] { 0x17C9, 0x17CA, 0x17CB, 0x17CC },
+                [1] = new int[] { 0x17DB, 0x17DC, 0x17DD, 0x17DE },
                 [2] = new int[] { 0x17ED, 0x17EE, 0x17EF, 0x17F0 }
             },
 
@@ -186,6 +187,7 @@ namespace TRIII_SaveEdit
                 [0] = new int[] { 0x1435, 0x1436, 0x1437, 0x1438 },
                 [2] = new int[] { 0x1459, 0x145A, 0x145B, 0x145C },
                 [3] = new int[] { 0x146B, 0x146C, 0x146D, 0x146E },
+                [4] = new int[] { 0x1487, 0x1488, 0x1489, 0x148A },
                 [5] = new int[] { 0x148F, 0x1490, 0x1491, 0x1492 }
             },
 
@@ -204,7 +206,8 @@ namespace TRIII_SaveEdit
 
             ["Aldwych"] = new Dictionary<int, int[]>
             {
-                [0] = new int[] { 0x2317, 0x2318, 0x2319, 0x231A }
+                [0] = new int[] { 0x2317, 0x2318, 0x2319, 0x231A },
+                [1] = new int[] { 0x2329, 0x232A, 0x232B, 0x232C }
             },
 
             ["Lud's Gate"] = new Dictionary<int, int[]>
@@ -228,6 +231,7 @@ namespace TRIII_SaveEdit
             ["RX-Tech Mines"] = new Dictionary<int, int[]>
             {
                 [0] = new int[] { 0x196F, 0x1970, 0x1971, 0x1972 },
+                [1] = new int[] { 0x1981, 0x1982, 0x1983, 0x1984 },
                 [2] = new int[] { 0x1993, 0x1994, 0x1995, 0x1996 },
                 [3] = new int[] { 0x19A5, 0x19A6, 0x19A7, 0x19A8 }
             },
