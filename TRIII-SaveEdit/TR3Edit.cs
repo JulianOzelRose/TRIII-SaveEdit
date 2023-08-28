@@ -212,8 +212,10 @@ namespace TRIII_SaveEdit
 
             ["Lud's Gate"] = new Dictionary<int, int[]>
             {
-                [0] = new int[] { 0x1DA1, 0x1DA2, 0x1DA3, 0x1DA4 },
-                [2] = new int[] { 0x1D03, 0x1D04, 0x1D05, 0x1D06 }
+                [0] = new int[] { 0x1D8F, 0x1D90, 0x1D91, 0x1D92 },
+                [1] = new int[] { 0x1DA1, 0x1DA2, 0x1DA3, 0x1DA4 },
+                [2] = new int[] { 0x1DB3, 0x1DB4, 0x1DB5, 0x1DB6 },
+                [3] = new int[] { 0x1D03, 0x1D04, 0x1D05, 0x1D06 }
             },
 
             ["City"] = new Dictionary<int, int[]>
@@ -842,19 +844,19 @@ namespace TRIII_SaveEdit
 
                 // Ammo offsets
                 shotgunAmmoOffset = 0x2DA;
-                shotgunAmmoOffset2 = 0x1D89;
+                shotgunAmmoOffset2 = 0x1D77;
                 deagleAmmoOffset = 0x2D6;
-                deagleAmmoOffset2 = 0x1D81;
+                deagleAmmoOffset2 = 0x1D6F;
                 grenadeLauncherAmmoOffset = 0x2E2;
-                grenadeLauncherAmmoOffset2 = 0x1D95;
+                grenadeLauncherAmmoOffset2 = 0x1D83;
                 rocketLauncherAmmoOffset = 0x2DE;
-                rocketLauncherAmmoOffset2 = 0x1D91;
+                rocketLauncherAmmoOffset2 = 0x1D7F;
                 harpoonAmmoOffset = 0x2E0;
-                harpoonAmmoOffset2 = 0x1D8D;
+                harpoonAmmoOffset2 = 0x1D7B;
                 mp5AmmoOffset = 0x2DC;
-                mp5AmmoOffset2 = 0x1D99;
+                mp5AmmoOffset2 = 0x1D87;
                 uziAmmoOffset = 0x2D8;
-                uziAmmoOffset2 = 0x1D85;
+                uziAmmoOffset2 = 0x1D73;
             }
 
             else if (GetCleanLvlName() == "City")
@@ -1138,11 +1140,7 @@ namespace TRIII_SaveEdit
 
             if (!shotgunCheckBox.Checked)
             {
-                for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validShotgunAmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validShotgunAmmoOffsets[1], 0);
                 WriteAmmoValue(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
             }
             else
@@ -1155,11 +1153,7 @@ namespace TRIII_SaveEdit
 
             if (!deagleCheckBox.Checked)
             {
-                for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validDeagleAmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validDeagleAmmoOffsets[1], 0);
                 WriteAmmoValue(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
             }
             else
@@ -1172,11 +1166,7 @@ namespace TRIII_SaveEdit
 
             if (!grenadeLauncherCheckBox.Checked)
             {
-                for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validGrenadeLauncherAmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validGrenadeLauncherAmmoOffsets[1], 0);
                 WriteAmmoValue(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
             }
             else
@@ -1189,11 +1179,7 @@ namespace TRIII_SaveEdit
 
             if (!rocketLauncherCheckBox.Checked)
             {
-                for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validRocketLauncherAmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validRocketLauncherAmmoOffsets[1], 0);
                 WriteAmmoValue(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
             }
             else
@@ -1206,11 +1192,7 @@ namespace TRIII_SaveEdit
 
             if (!harpoonGunCheckBox.Checked)
             {
-                for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validHarpoonAmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validHarpoonAmmoOffsets[1], 0);
                 WriteAmmoValue(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
             }
             else
@@ -1223,11 +1205,7 @@ namespace TRIII_SaveEdit
 
             if (!mp5CheckBox.Checked)
             {
-                for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validMp5AmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validMp5AmmoOffsets[1], 0);
                 WriteAmmoValue(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
             }
             else
@@ -1240,11 +1218,7 @@ namespace TRIII_SaveEdit
 
             if (!uziCheckBox.Checked)
             {
-                for (int i = 0; i < validUziAmmoOffsets.Length; i++)
-                {
-                    WriteAmmoValue(validUziAmmoOffsets[i], 0);
-                }
-
+                WriteAmmoValue(validUziAmmoOffsets[1], 0);
                 WriteAmmoValue(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
             }
             else
