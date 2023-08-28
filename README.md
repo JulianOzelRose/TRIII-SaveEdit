@@ -503,19 +503,19 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Weapons Config Number   | 0x02EB            |
 | Harpoon Gun             | 0x02EC            |
 | Shotgun Ammo 1          | 0x02DA            |
-| Shotgun Ammo 2          | 0x1D89            |
+| Shotgun Ammo 2          | 0x1D77            |
 | Deagle Ammo 1           | 0x02D6            |
-| Deagle Ammo 2	          | 0x1D81            |
+| Deagle Ammo 2	          | 0x1D6F            |
 | Grenade Launcher Ammo 1 | 0x02E2            |
-| Grenade Launcher Ammo 2 | 0x1D95            |
+| Grenade Launcher Ammo 2 | 0x1D83            |
 | Rocket Launcher Ammo 1  | 0x02DE            |
-| Rocket Launcher Ammo 2  | 0x1D91            |
+| Rocket Launcher Ammo 2  | 0x1D7F            |
 | Harpoon Ammo 1          | 0x02E0            |
-| Harpoon Ammo 2          | 0x1D8D            |
+| Harpoon Ammo 2          | 0x1D7B            |
 | MP5 Ammo 1              | 0x02DC            |
-| MP5 Ammo 2              | 0x1D99            |
+| MP5 Ammo 2              | 0x1D87            |
 | Uzi Ammo 1              | 0x02D8            |
-| Uzi Ammo 2              | 0x1D85            |
+| Uzi Ammo 2              | 0x1D73            |
 
 #### City ####
 | **Variable**            | **File offset**   |
