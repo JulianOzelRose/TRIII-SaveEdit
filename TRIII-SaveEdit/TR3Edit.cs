@@ -261,7 +261,9 @@ namespace TRIII_SaveEdit
 
             ["All Hallows"] = new Dictionary<int, int[]>
             {
-                [0] = new int[] { 0x1045, 0x1046, 0x1047, 0x1048 }
+                [0] = new int[] { 0x1045, 0x1046, 0x1047, 0x1048 },
+                [1] = new int[] { 0x1057, 0x1058, 0x1059, 0x105A },
+                [2] = new int[] { 0x1609, 0x106A, 0x106B, 0x106C }
             }
         };
 
