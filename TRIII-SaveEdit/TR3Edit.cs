@@ -150,6 +150,10 @@ namespace TRIII_SaveEdit
             ["High Security Compound"] = new Dictionary<int, int[]>
             {
                 [0] = new int[] { 0x1E63, 0x1E64, 0x1E65, 0x1E66 },
+                [1] = new int[] { 0x1E75, 0x1E76, 0x1E77, 0x1E78 },
+                [2] = new int[] { 0x1E91, 0x1E92, 0x1E93, 0x1E94 },
+                [3] = new int[] { 0x1EA3, 0x1EA4, 0x1EA5, 0x1EA6 },
+                [4] = new int[] { 0x1EA3, 0x1EA4, 0x1EA5, 0x1EA6 },
                 [5] = new int[] { 0x1EBD, 0x1EBE, 0x1EBF, 0x1EC0 },
                 [6] = new int[] { 0x1ECF, 0x1ED0, 0x1ED1, 0x1ED2 }
             },
@@ -158,10 +162,13 @@ namespace TRIII_SaveEdit
             {
                 [0] = new int[] { 0x2125, 0x2126, 0x2127, 0x2128 },
                 [1] = new int[] { 0x2137, 0x2138, 0x2139, 0x213A },
+                [2] = new int[] { 0x2149, 0x214A, 0x214B, 0x214C },
                 [3] = new int[] { 0x215B, 0x215C, 0x215D, 0x215E },
                 [4] = new int[] { 0x216D, 0x216E, 0x216F, 0x2170 },
                 [5] = new int[] { 0x217F, 0x2180, 0x2181, 0x2182 },
+                [6] = new int[] { 0x219B, 0x219C, 0x219D, 0x219E },
                 [7] = new int[] { 0x21A3, 0x21A4, 0x21A5, 0x21A6 },
+                [8] = new int[] { 0x21BF, 0x21C0, 0x21C1, 0x21C2 },
                 [9] = new int[] { 0x21C7, 0x21C8, 0x21C9, 0x21CA }
             },
 
@@ -185,6 +192,7 @@ namespace TRIII_SaveEdit
             ["Madubu Gorge"] = new Dictionary<int, int[]>
             {
                 [0] = new int[] { 0x1435, 0x1436, 0x1437, 0x1438 },
+                [1] = new int[] { 0x1447, 0x1448, 0x1449, 0x144A },
                 [2] = new int[] { 0x1459, 0x145A, 0x145B, 0x145C },
                 [3] = new int[] { 0x146B, 0x146C, 0x146D, 0x146E },
                 [4] = new int[] { 0x1487, 0x1488, 0x1489, 0x148A },
