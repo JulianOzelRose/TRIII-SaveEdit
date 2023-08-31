@@ -4,7 +4,7 @@ the original and multi-patched version as well. Be sure to back up your save gam
 This editor can enable any weapon on any level, including the bonus level. No setup is necessary, just download and run.
 
 ## Installation and usage
-1. Download **TRIII-SaveEdit.exe** from the **TRIII-SaveEdit** folder in this repository.
+1. Download **TRIII-SaveEdit.exe** from the ```TRIII-SaveEdit/bin/x64/Release``` folder in this repository.
 2. Launch the editor and select "Browse" to locate your game directory.
 3. If you're using the Steam version of the game, your directory should be:<br>
 ```\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\```<br>
