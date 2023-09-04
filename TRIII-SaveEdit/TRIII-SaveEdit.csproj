@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="tomb3.ico" />
+    <Content Include="TRIII-SaveEdit.exe" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
