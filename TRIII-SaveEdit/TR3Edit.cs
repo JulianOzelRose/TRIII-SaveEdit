@@ -287,10 +287,10 @@ namespace TRIII_SaveEdit
                 saveFile.Seek(offset, SeekOrigin.Begin);
                 byte[] byteData = { (byte)value };
                 saveFile.Write(byteData, 0, byteData.Length);
-            }    
+            }
         }
 
-        int GetAmmoValue(long offset)
+        int GetValue(long offset)
         {
             int firstHalf = GetSaveFileData(offset);
             int secondHalf = GetSaveFileData(offset + 1);
@@ -300,7 +300,7 @@ namespace TRIII_SaveEdit
             return result;
         }
 
-        void WriteAmmoValue(long offset, int value)
+        void WriteValue(long offset, int value)
         {
             if (value > 255)
             {
@@ -381,19 +381,19 @@ namespace TRIII_SaveEdit
 
         void GetShotgunAmmo()
         {
-            int shotgunAmmo = GetAmmoValue(shotgunAmmoOffset);
+            int shotgunAmmo = GetValue(shotgunAmmoOffset);
             shotgunAmmoNumBox.Value = shotgunAmmo / 6;
         }
 
         void GetDeagleAmmo()
         {
-            int deagleAmmo = GetAmmoValue(deagleAmmoOffset);
+            int deagleAmmo = GetValue(deagleAmmoOffset);
             deagleAmmoNumBox.Value = deagleAmmo;
         }
 
         void GetMP5Ammo()
         {
-            int mp5Ammo = GetAmmoValue(mp5AmmoOffset);
+            int mp5Ammo = GetValue(mp5AmmoOffset);
             mp5AmmoNumBox.Value = mp5Ammo;
         }
 
@@ -405,31 +405,31 @@ namespace TRIII_SaveEdit
 
         void GetUziAmmo()
         {
-            int uziAmmo = GetAmmoValue(uziAmmoOffset);
+            int uziAmmo = GetValue(uziAmmoOffset);
             uziAmmoNumBox.Value = uziAmmo;
         }
 
         void GetGrenadeLauncherAmmo()
         {
-            int grenadeLauncherAmmo = GetAmmoValue(grenadeLauncherAmmoOffset);
+            int grenadeLauncherAmmo = GetValue(grenadeLauncherAmmoOffset);
             grenadeLauncherAmmoNumBox.Value = grenadeLauncherAmmo;
         }
 
         void GetHarpoonAmmo()
         {
-            int harpoonAmmo = GetAmmoValue(harpoonAmmoOffset);
+            int harpoonAmmo = GetValue(harpoonAmmoOffset);
             harpoonGunAmmoNumBox.Value = harpoonAmmo;
         }
 
         void GetRocketLauncherAmmo()
         {
-            int rocketLauncherAmmo = GetAmmoValue(rocketLauncherAmmoOffset);
+            int rocketLauncherAmmo = GetValue(rocketLauncherAmmoOffset);
             rocketLauncherAmmoNumBox.Value = rocketLauncherAmmo;
         }
 
         void GetSaveNum()
         {
-            int saveNum = GetAmmoValue(saveNumOffset);
+            int saveNum = GetValue(saveNumOffset);
             saveNumBox.Value = saveNum;
         }
 
@@ -1146,96 +1146,96 @@ namespace TRIII_SaveEdit
             WriteToSaveFile(smallMedipackOffset, Decimal.ToInt32(smallMedipacksNumBox.Value));
             WriteToSaveFile(largeMedipackOffset, Decimal.ToInt32(lrgMedipacksNumBox.Value));
             WriteToSaveFile(numFlaresOffset, Decimal.ToInt32(flaresNumBox.Value));
-            WriteAmmoValue(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
+            WriteValue(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
 
             if (!shotgunCheckBox.Checked)
             {
-                WriteAmmoValue(validShotgunAmmoOffsets[1], 0);
-                WriteAmmoValue(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                WriteValue(validShotgunAmmoOffsets[1], 0);
+                WriteValue(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
             }
             else
             {
                 for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                    WriteValue(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
                 }
             }
 
             if (!deagleCheckBox.Checked)
             {
-                WriteAmmoValue(validDeagleAmmoOffsets[1], 0);
-                WriteAmmoValue(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                WriteValue(validDeagleAmmoOffsets[1], 0);
+                WriteValue(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                    WriteValue(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
                 }
             }
 
             if (!grenadeLauncherCheckBox.Checked)
             {
-                WriteAmmoValue(validGrenadeLauncherAmmoOffsets[1], 0);
-                WriteAmmoValue(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                WriteValue(validGrenadeLauncherAmmoOffsets[1], 0);
+                WriteValue(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                    WriteValue(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
                 }
             }
 
             if (!rocketLauncherCheckBox.Checked)
             {
-                WriteAmmoValue(validRocketLauncherAmmoOffsets[1], 0);
-                WriteAmmoValue(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                WriteValue(validRocketLauncherAmmoOffsets[1], 0);
+                WriteValue(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                    WriteValue(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
                 }
             }
 
             if (!harpoonGunCheckBox.Checked)
             {
-                WriteAmmoValue(validHarpoonAmmoOffsets[1], 0);
-                WriteAmmoValue(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                WriteValue(validHarpoonAmmoOffsets[1], 0);
+                WriteValue(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                    WriteValue(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
                 }
             }
 
             if (!mp5CheckBox.Checked)
             {
-                WriteAmmoValue(validMp5AmmoOffsets[1], 0);
-                WriteAmmoValue(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
+                WriteValue(validMp5AmmoOffsets[1], 0);
+                WriteValue(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
+                    WriteValue(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
                 }
             }
 
             if (!uziCheckBox.Checked)
             {
-                WriteAmmoValue(validUziAmmoOffsets[1], 0);
-                WriteAmmoValue(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
+                WriteValue(validUziAmmoOffsets[1], 0);
+                WriteValue(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validUziAmmoOffsets.Length; i++)
                 {
-                    WriteAmmoValue(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
+                    WriteValue(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
                 }
             }
 

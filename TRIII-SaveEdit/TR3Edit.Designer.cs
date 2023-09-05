@@ -438,7 +438,7 @@ namespace TRIII_SaveEdit
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TR3Edit";
-            this.Text = "Tomb Raider III - SaveGame Editor";
+            this.Text = "Tomb Raider III - Savegame Editor";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).EndInit();
