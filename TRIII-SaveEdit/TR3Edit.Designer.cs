@@ -68,6 +68,7 @@ namespace TRIII_SaveEdit
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.flaresNumBox = new System.Windows.Forms.NumericUpDown();
+            this.healthErrorLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -173,6 +174,7 @@ namespace TRIII_SaveEdit
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.healthErrorLabel);
             this.groupBox2.Controls.Add(this.healthPercentageLabel);
             this.groupBox2.Controls.Add(this.hpLabel);
             this.groupBox2.Controls.Add(this.healthBar);
@@ -190,7 +192,7 @@ namespace TRIII_SaveEdit
             // healthPercentageLabel
             // 
             this.healthPercentageLabel.AutoSize = true;
-            this.healthPercentageLabel.Location = new System.Drawing.Point(231, 116);
+            this.healthPercentageLabel.Location = new System.Drawing.Point(231, 112);
             this.healthPercentageLabel.Name = "healthPercentageLabel";
             this.healthPercentageLabel.Size = new System.Drawing.Size(30, 13);
             this.healthPercentageLabel.TabIndex = 6;
@@ -199,7 +201,7 @@ namespace TRIII_SaveEdit
             // hpLabel
             // 
             this.hpLabel.AutoSize = true;
-            this.hpLabel.Location = new System.Drawing.Point(31, 116);
+            this.hpLabel.Location = new System.Drawing.Point(31, 112);
             this.hpLabel.Name = "hpLabel";
             this.hpLabel.Size = new System.Drawing.Size(25, 13);
             this.hpLabel.TabIndex = 5;
@@ -207,7 +209,7 @@ namespace TRIII_SaveEdit
             // 
             // healthBar
             // 
-            this.healthBar.Location = new System.Drawing.Point(56, 112);
+            this.healthBar.Location = new System.Drawing.Point(56, 108);
             this.healthBar.Maximum = 100;
             this.healthBar.Name = "healthBar";
             this.healthBar.Size = new System.Drawing.Size(169, 45);
@@ -454,6 +456,15 @@ namespace TRIII_SaveEdit
             this.flaresNumBox.TabIndex = 18;
             this.flaresNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // healthErrorLabel
+            // 
+            this.healthErrorLabel.AutoSize = true;
+            this.healthErrorLabel.Location = new System.Drawing.Point(72, 140);
+            this.healthErrorLabel.Name = "healthErrorLabel";
+            this.healthErrorLabel.Size = new System.Drawing.Size(136, 13);
+            this.healthErrorLabel.TabIndex = 7;
+            this.healthErrorLabel.Text = "Unable to find health bytes.";
+            // 
             // TR3Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,6 +549,7 @@ namespace TRIII_SaveEdit
         private System.Windows.Forms.TrackBar healthBar;
         private System.Windows.Forms.Label healthPercentageLabel;
         private System.Windows.Forms.Label hpLabel;
+        private System.Windows.Forms.Label healthErrorLabel;
     }
 }
 

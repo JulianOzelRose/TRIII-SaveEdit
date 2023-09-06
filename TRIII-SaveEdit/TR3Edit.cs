@@ -39,6 +39,7 @@ namespace TRIII_SaveEdit
             flaresNumBox.Enabled = false;
             healthBar.Enabled = false;
             saveNumBox.Enabled = false;
+            healthErrorLabel.Visible = false;
 
             smallMedipacksNumBox.Maximum = 255;
             lrgMedipacksNumBox.Maximum = 255;
@@ -438,9 +439,22 @@ namespace TRIII_SaveEdit
         {
             const int maxHealth = 1000;
             int health = GetValue(healthOffset);
-            double healthPercentage = (double)health / maxHealth * 100.0;
-            healthBar.Value = (int)Math.Round(healthPercentage, 1);
-            healthPercentageLabel.Text = healthPercentage.ToString("0.0") + "%";
+
+            if (health <= 0 || health > 1000)
+            {
+                healthBar.Enabled = false;
+                healthErrorLabel.Visible = true;
+                isHealthAddressValid = false;
+            }
+            else
+            {
+                healthBar.Enabled = true;
+                healthErrorLabel.Visible = false;
+                double healthPercentage = (double)health / maxHealth * 100.0;
+                healthBar.Value = (int)Math.Round(healthPercentage, 1);
+                healthPercentageLabel.Text = healthPercentage.ToString("0.0") + "%";
+                isHealthAddressValid = true;
+            }
         }
 
         void GetWeaponsInfo()
@@ -1162,6 +1176,7 @@ namespace TRIII_SaveEdit
         private int mp5AmmoOffset2 = 0;
         private int uziAmmoOffset = 0;
         private int uziAmmoOffset2 = 0;
+        private bool isHealthAddressValid = false;
 
         private string sSaveFilePath;
 
@@ -1292,7 +1307,8 @@ namespace TRIII_SaveEdit
             const int maxHealth = 1000;
             double newHealthPercentage = (double)healthBar.Value;
             int newHealth = (int)(newHealthPercentage / 100.0 * maxHealth);
-            WriteValue(healthOffset, newHealth);
+
+            if (isHealthAddressValid) WriteValue(healthOffset, newHealth);
 
             helperTxtBox.Clear();
             helperTxtBox.AppendText("File patched!");
@@ -1344,6 +1360,7 @@ namespace TRIII_SaveEdit
                     flaresNumBox.Enabled = true;
                     saveNumBox.Enabled = true;
                     healthBar.Enabled = true;
+                    healthErrorLabel.Visible = false;
 
                     GetWeaponsInfo();
                 }
