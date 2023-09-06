@@ -40,6 +40,9 @@ namespace TRIII_SaveEdit
             this.label2 = new System.Windows.Forms.Label();
             this.lvlNameTxtBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.healthPercentageLabel = new System.Windows.Forms.Label();
+            this.hpLabel = new System.Windows.Forms.Label();
+            this.healthBar = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lrgMedipacksNumBox = new System.Windows.Forms.NumericUpDown();
@@ -68,6 +71,7 @@ namespace TRIII_SaveEdit
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.healthBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lrgMedipacksNumBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.smallMedipacksNumBox)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -87,12 +91,12 @@ namespace TRIII_SaveEdit
             this.fileTxtBox.Location = new System.Drawing.Point(44, 21);
             this.fileTxtBox.Name = "fileTxtBox";
             this.fileTxtBox.ReadOnly = true;
-            this.fileTxtBox.Size = new System.Drawing.Size(406, 20);
+            this.fileTxtBox.Size = new System.Drawing.Size(398, 20);
             this.fileTxtBox.TabIndex = 0;
             // 
             // BrowseBtn
             // 
-            this.BrowseBtn.Location = new System.Drawing.Point(456, 19);
+            this.BrowseBtn.Location = new System.Drawing.Point(448, 19);
             this.BrowseBtn.Name = "BrowseBtn";
             this.BrowseBtn.Size = new System.Drawing.Size(75, 23);
             this.BrowseBtn.TabIndex = 1;
@@ -102,7 +106,7 @@ namespace TRIII_SaveEdit
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(536, 19);
+            this.SaveButton.Location = new System.Drawing.Point(527, 19);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 2;
@@ -127,7 +131,7 @@ namespace TRIII_SaveEdit
             this.groupBox1.Controls.Add(this.lvlNameTxtBox);
             this.groupBox1.Location = new System.Drawing.Point(13, 52);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(597, 75);
+            this.groupBox1.Size = new System.Drawing.Size(589, 75);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Level";
@@ -135,7 +139,7 @@ namespace TRIII_SaveEdit
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(418, 30);
+            this.label6.Location = new System.Drawing.Point(424, 32);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 5;
@@ -143,7 +147,7 @@ namespace TRIII_SaveEdit
             // 
             // saveNumBox
             // 
-            this.saveNumBox.Location = new System.Drawing.Point(506, 28);
+            this.saveNumBox.Location = new System.Drawing.Point(511, 30);
             this.saveNumBox.Name = "saveNumBox";
             this.saveNumBox.Size = new System.Drawing.Size(55, 20);
             this.saveNumBox.TabIndex = 4;
@@ -152,7 +156,7 @@ namespace TRIII_SaveEdit
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 30);
+            this.label2.Location = new System.Drawing.Point(31, 33);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 1;
@@ -160,30 +164,60 @@ namespace TRIII_SaveEdit
             // 
             // lvlNameTxtBox
             // 
-            this.lvlNameTxtBox.Location = new System.Drawing.Point(75, 27);
+            this.lvlNameTxtBox.Location = new System.Drawing.Point(75, 30);
             this.lvlNameTxtBox.Name = "lvlNameTxtBox";
             this.lvlNameTxtBox.ReadOnly = true;
-            this.lvlNameTxtBox.Size = new System.Drawing.Size(156, 20);
+            this.lvlNameTxtBox.Size = new System.Drawing.Size(224, 20);
             this.lvlNameTxtBox.TabIndex = 0;
             this.lvlNameTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.healthPercentageLabel);
+            this.groupBox2.Controls.Add(this.hpLabel);
+            this.groupBox2.Controls.Add(this.healthBar);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lrgMedipacksNumBox);
             this.groupBox2.Controls.Add(this.smallMedipacksNumBox);
             this.groupBox2.Location = new System.Drawing.Point(13, 133);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(231, 131);
+            this.groupBox2.Size = new System.Drawing.Size(299, 163);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Health";
             // 
+            // healthPercentageLabel
+            // 
+            this.healthPercentageLabel.AutoSize = true;
+            this.healthPercentageLabel.Location = new System.Drawing.Point(231, 116);
+            this.healthPercentageLabel.Name = "healthPercentageLabel";
+            this.healthPercentageLabel.Size = new System.Drawing.Size(30, 13);
+            this.healthPercentageLabel.TabIndex = 6;
+            this.healthPercentageLabel.Text = "0.0%";
+            // 
+            // hpLabel
+            // 
+            this.hpLabel.AutoSize = true;
+            this.hpLabel.Location = new System.Drawing.Point(31, 116);
+            this.hpLabel.Name = "hpLabel";
+            this.hpLabel.Size = new System.Drawing.Size(25, 13);
+            this.hpLabel.TabIndex = 5;
+            this.hpLabel.Text = "HP:";
+            // 
+            // healthBar
+            // 
+            this.healthBar.Location = new System.Drawing.Point(56, 112);
+            this.healthBar.Maximum = 100;
+            this.healthBar.Name = "healthBar";
+            this.healthBar.Size = new System.Drawing.Size(169, 45);
+            this.healthBar.TabIndex = 4;
+            this.healthBar.Scroll += new System.EventHandler(this.HealthBar_Scroll);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 78);
+            this.label4.Location = new System.Drawing.Point(31, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 3;
@@ -192,7 +226,7 @@ namespace TRIII_SaveEdit
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 38);
+            this.label3.Location = new System.Drawing.Point(31, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 2;
@@ -200,7 +234,7 @@ namespace TRIII_SaveEdit
             // 
             // lrgMedipacksNumBox
             // 
-            this.lrgMedipacksNumBox.Location = new System.Drawing.Point(125, 76);
+            this.lrgMedipacksNumBox.Location = new System.Drawing.Point(224, 62);
             this.lrgMedipacksNumBox.Name = "lrgMedipacksNumBox";
             this.lrgMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
             this.lrgMedipacksNumBox.TabIndex = 1;
@@ -208,7 +242,7 @@ namespace TRIII_SaveEdit
             // 
             // smallMedipacksNumBox
             // 
-            this.smallMedipacksNumBox.Location = new System.Drawing.Point(126, 36);
+            this.smallMedipacksNumBox.Location = new System.Drawing.Point(224, 29);
             this.smallMedipacksNumBox.Name = "smallMedipacksNumBox";
             this.smallMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
             this.smallMedipacksNumBox.TabIndex = 0;
@@ -219,7 +253,7 @@ namespace TRIII_SaveEdit
             this.helperTxtBox.Location = new System.Drawing.Point(12, 366);
             this.helperTxtBox.Name = "helperTxtBox";
             this.helperTxtBox.ReadOnly = true;
-            this.helperTxtBox.Size = new System.Drawing.Size(597, 20);
+            this.helperTxtBox.Size = new System.Drawing.Size(590, 20);
             this.helperTxtBox.TabIndex = 6;
             // 
             // groupBox3
@@ -240,9 +274,9 @@ namespace TRIII_SaveEdit
             this.groupBox3.Controls.Add(this.deagleCheckBox);
             this.groupBox3.Controls.Add(this.shotgunAmmoNumBox);
             this.groupBox3.Controls.Add(this.shotgunCheckBox);
-            this.groupBox3.Location = new System.Drawing.Point(273, 133);
+            this.groupBox3.Location = new System.Drawing.Point(318, 133);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(337, 226);
+            this.groupBox3.Size = new System.Drawing.Size(284, 226);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Weapons";
@@ -250,7 +284,7 @@ namespace TRIII_SaveEdit
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 36);
+            this.label7.Location = new System.Drawing.Point(205, 35);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 13);
             this.label7.TabIndex = 4;
@@ -258,7 +292,7 @@ namespace TRIII_SaveEdit
             // 
             // mp5AmmoNumBox
             // 
-            this.mp5AmmoNumBox.Location = new System.Drawing.Point(246, 171);
+            this.mp5AmmoNumBox.Location = new System.Drawing.Point(207, 171);
             this.mp5AmmoNumBox.Name = "mp5AmmoNumBox";
             this.mp5AmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.mp5AmmoNumBox.TabIndex = 21;
@@ -269,14 +303,14 @@ namespace TRIII_SaveEdit
             this.mp5CheckBox.AutoSize = true;
             this.mp5CheckBox.Location = new System.Drawing.Point(19, 169);
             this.mp5CheckBox.Name = "mp5CheckBox";
-            this.mp5CheckBox.Size = new System.Drawing.Size(48, 17);
+            this.mp5CheckBox.Size = new System.Drawing.Size(51, 17);
             this.mp5CheckBox.TabIndex = 20;
-            this.mp5CheckBox.Text = "MP5";
+            this.mp5CheckBox.Text = "MP5:";
             this.mp5CheckBox.UseVisualStyleBackColor = true;
             // 
             // rocketLauncherAmmoNumBox
             // 
-            this.rocketLauncherAmmoNumBox.Location = new System.Drawing.Point(246, 123);
+            this.rocketLauncherAmmoNumBox.Location = new System.Drawing.Point(207, 123);
             this.rocketLauncherAmmoNumBox.Name = "rocketLauncherAmmoNumBox";
             this.rocketLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.rocketLauncherAmmoNumBox.TabIndex = 19;
@@ -287,14 +321,14 @@ namespace TRIII_SaveEdit
             this.rocketLauncherCheckBox.AutoSize = true;
             this.rocketLauncherCheckBox.Location = new System.Drawing.Point(19, 123);
             this.rocketLauncherCheckBox.Name = "rocketLauncherCheckBox";
-            this.rocketLauncherCheckBox.Size = new System.Drawing.Size(105, 17);
+            this.rocketLauncherCheckBox.Size = new System.Drawing.Size(108, 17);
             this.rocketLauncherCheckBox.TabIndex = 18;
-            this.rocketLauncherCheckBox.Text = "Rocket launcher";
+            this.rocketLauncherCheckBox.Text = "Rocket launcher:";
             this.rocketLauncherCheckBox.UseVisualStyleBackColor = true;
             // 
             // uziAmmoNumBox
             // 
-            this.uziAmmoNumBox.Location = new System.Drawing.Point(246, 195);
+            this.uziAmmoNumBox.Location = new System.Drawing.Point(207, 195);
             this.uziAmmoNumBox.Name = "uziAmmoNumBox";
             this.uziAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.uziAmmoNumBox.TabIndex = 15;
@@ -305,14 +339,14 @@ namespace TRIII_SaveEdit
             this.uziCheckBox.AutoSize = true;
             this.uziCheckBox.Location = new System.Drawing.Point(19, 191);
             this.uziCheckBox.Name = "uziCheckBox";
-            this.uziCheckBox.Size = new System.Drawing.Size(41, 17);
+            this.uziCheckBox.Size = new System.Drawing.Size(44, 17);
             this.uziCheckBox.TabIndex = 14;
-            this.uziCheckBox.Text = "Uzi";
+            this.uziCheckBox.Text = "Uzi:";
             this.uziCheckBox.UseVisualStyleBackColor = true;
             // 
             // harpoonGunAmmoNumBox
             // 
-            this.harpoonGunAmmoNumBox.Location = new System.Drawing.Point(246, 147);
+            this.harpoonGunAmmoNumBox.Location = new System.Drawing.Point(207, 147);
             this.harpoonGunAmmoNumBox.Name = "harpoonGunAmmoNumBox";
             this.harpoonGunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.harpoonGunAmmoNumBox.TabIndex = 13;
@@ -323,9 +357,9 @@ namespace TRIII_SaveEdit
             this.harpoonGunCheckBox.AutoSize = true;
             this.harpoonGunCheckBox.Location = new System.Drawing.Point(19, 146);
             this.harpoonGunCheckBox.Name = "harpoonGunCheckBox";
-            this.harpoonGunCheckBox.Size = new System.Drawing.Size(88, 17);
+            this.harpoonGunCheckBox.Size = new System.Drawing.Size(91, 17);
             this.harpoonGunCheckBox.TabIndex = 12;
-            this.harpoonGunCheckBox.Text = "Harpoon gun";
+            this.harpoonGunCheckBox.Text = "Harpoon gun:";
             this.harpoonGunCheckBox.UseVisualStyleBackColor = true;
             // 
             // pistolsCheckBox
@@ -340,7 +374,7 @@ namespace TRIII_SaveEdit
             // 
             // grenadeLauncherAmmoNumBox
             // 
-            this.grenadeLauncherAmmoNumBox.Location = new System.Drawing.Point(246, 99);
+            this.grenadeLauncherAmmoNumBox.Location = new System.Drawing.Point(207, 99);
             this.grenadeLauncherAmmoNumBox.Name = "grenadeLauncherAmmoNumBox";
             this.grenadeLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.grenadeLauncherAmmoNumBox.TabIndex = 8;
@@ -351,14 +385,14 @@ namespace TRIII_SaveEdit
             this.grenadeLauncherCheckBox.AutoSize = true;
             this.grenadeLauncherCheckBox.Location = new System.Drawing.Point(19, 101);
             this.grenadeLauncherCheckBox.Name = "grenadeLauncherCheckBox";
-            this.grenadeLauncherCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.grenadeLauncherCheckBox.Size = new System.Drawing.Size(114, 17);
             this.grenadeLauncherCheckBox.TabIndex = 7;
-            this.grenadeLauncherCheckBox.Text = "Grenade launcher";
+            this.grenadeLauncherCheckBox.Text = "Grenade launcher:";
             this.grenadeLauncherCheckBox.UseVisualStyleBackColor = true;
             // 
             // deagleAmmoNumBox
             // 
-            this.deagleAmmoNumBox.Location = new System.Drawing.Point(246, 76);
+            this.deagleAmmoNumBox.Location = new System.Drawing.Point(207, 76);
             this.deagleAmmoNumBox.Name = "deagleAmmoNumBox";
             this.deagleAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.deagleAmmoNumBox.TabIndex = 6;
@@ -369,14 +403,14 @@ namespace TRIII_SaveEdit
             this.deagleCheckBox.AutoSize = true;
             this.deagleCheckBox.Location = new System.Drawing.Point(19, 79);
             this.deagleCheckBox.Name = "deagleCheckBox";
-            this.deagleCheckBox.Size = new System.Drawing.Size(60, 17);
+            this.deagleCheckBox.Size = new System.Drawing.Size(63, 17);
             this.deagleCheckBox.TabIndex = 5;
-            this.deagleCheckBox.Text = "Deagle";
+            this.deagleCheckBox.Text = "Deagle:";
             this.deagleCheckBox.UseVisualStyleBackColor = true;
             // 
             // shotgunAmmoNumBox
             // 
-            this.shotgunAmmoNumBox.Location = new System.Drawing.Point(246, 52);
+            this.shotgunAmmoNumBox.Location = new System.Drawing.Point(207, 52);
             this.shotgunAmmoNumBox.Name = "shotgunAmmoNumBox";
             this.shotgunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.shotgunAmmoNumBox.TabIndex = 4;
@@ -387,18 +421,18 @@ namespace TRIII_SaveEdit
             this.shotgunCheckBox.AutoSize = true;
             this.shotgunCheckBox.Location = new System.Drawing.Point(19, 58);
             this.shotgunCheckBox.Name = "shotgunCheckBox";
-            this.shotgunCheckBox.Size = new System.Drawing.Size(66, 17);
+            this.shotgunCheckBox.Size = new System.Drawing.Size(69, 17);
             this.shotgunCheckBox.TabIndex = 0;
-            this.shotgunCheckBox.Text = "Shotgun";
+            this.shotgunCheckBox.Text = "Shotgun:";
             this.shotgunCheckBox.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.flaresNumBox);
-            this.groupBox4.Location = new System.Drawing.Point(13, 270);
+            this.groupBox4.Location = new System.Drawing.Point(13, 302);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(231, 89);
+            this.groupBox4.Size = new System.Drawing.Size(299, 57);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Misc";
@@ -406,7 +440,7 @@ namespace TRIII_SaveEdit
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 39);
+            this.label5.Location = new System.Drawing.Point(177, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 4;
@@ -414,7 +448,7 @@ namespace TRIII_SaveEdit
             // 
             // flaresNumBox
             // 
-            this.flaresNumBox.Location = new System.Drawing.Point(126, 37);
+            this.flaresNumBox.Location = new System.Drawing.Point(224, 21);
             this.flaresNumBox.Name = "flaresNumBox";
             this.flaresNumBox.Size = new System.Drawing.Size(55, 20);
             this.flaresNumBox.TabIndex = 18;
@@ -424,7 +458,7 @@ namespace TRIII_SaveEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 395);
+            this.ClientSize = new System.Drawing.Size(613, 395);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.helperTxtBox);
@@ -444,6 +478,7 @@ namespace TRIII_SaveEdit
             ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.healthBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lrgMedipacksNumBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.smallMedipacksNumBox)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -500,6 +535,9 @@ namespace TRIII_SaveEdit
         private System.Windows.Forms.NumericUpDown mp5AmmoNumBox;
         private System.Windows.Forms.CheckBox mp5CheckBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TrackBar healthBar;
+        private System.Windows.Forms.Label healthPercentageLabel;
+        private System.Windows.Forms.Label hpLabel;
     }
 }
 

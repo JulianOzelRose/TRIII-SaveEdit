@@ -37,6 +37,7 @@ namespace TRIII_SaveEdit
             lrgMedipacksNumBox.Enabled = false;
             smallMedipacksNumBox.Enabled = false;
             flaresNumBox.Enabled = false;
+            healthBar.Enabled = false;
             saveNumBox.Enabled = false;
 
             smallMedipacksNumBox.Maximum = 255;
@@ -433,6 +434,15 @@ namespace TRIII_SaveEdit
             saveNumBox.Value = saveNum;
         }
 
+        void GetHealthValue()
+        {
+            const int maxHealth = 1000;
+            int health = GetValue(healthOffset);
+            double healthPercentage = (double)health / maxHealth * 100.0;
+            healthBar.Value = (int)Math.Round(healthPercentage, 1);
+            healthPercentageLabel.Text = healthPercentage.ToString("0.0") + "%";
+        }
+
         void GetWeaponsInfo()
         {
             if (GetCleanLvlName() == "Jungle")
@@ -440,6 +450,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0xE6;
                 largeMedipackOffset = 0xE7;
+                healthOffset = 0x6D3;
 
                 // Misc offsets
                 numFlaresOffset = 0xE9;
@@ -471,6 +482,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x119;
                 largeMedipackOffset = 0x11A;
+                healthOffset = 0x8F7;
 
                 // Misc offsets
                 numFlaresOffset = 0x11C;
@@ -502,6 +514,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x14C;
                 largeMedipackOffset = 0x14D;
+                healthOffset = 0x6B9;
 
                 // Misc offsets
                 numFlaresOffset = 0x14F;
@@ -533,6 +546,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x17F;
                 largeMedipackOffset = 0x180;
+                healthOffset = 0xB05;
 
                 // Misc offsets
                 numFlaresOffset = 0x182;
@@ -564,6 +578,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x34A;
                 largeMedipackOffset = 0x34B;
+                healthOffset = 0x6B5;
 
                 // Misc offsets
                 numFlaresOffset = 0x34A;
@@ -595,6 +610,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x37D;
                 largeMedipackOffset = 0x37E;
+                healthOffset = 0x709;
 
                 // Misc offsets
                 numFlaresOffset = 0x380;
@@ -626,6 +642,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x3B0;
                 largeMedipackOffset = 0x3B1;
+                healthOffset = 0xC57;
 
                 // Misc offsets
                 numFlaresOffset = 0x3B3;
@@ -657,6 +674,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x1B2;
                 largeMedipackOffset = 0x1B3;
+                healthOffset = 0x7BB;
 
                 // Misc offsets
                 numFlaresOffset = 0x1B5;
@@ -688,6 +706,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x1E5;
                 largeMedipackOffset = 0x1E6;
+                healthOffset = 0x1797;
 
                 // Misc offsets
                 numFlaresOffset = 0x1E8;
@@ -719,6 +738,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x218;
                 largeMedipackOffset = 0x219;
+                healthOffset = 0xBE3;
 
                 // Misc offsets
                 numFlaresOffset = 0x21B;
@@ -750,6 +770,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x24B;
                 largeMedipackOffset = 0x24C;
+                healthOffset = 0x68F;
 
                 // Misc offsets
                 numFlaresOffset = 0x24E;
@@ -781,6 +802,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x27E;
                 largeMedipackOffset = 0x27F;
+                healthOffset = 0xB15;
 
                 // Misc offsets
                 numFlaresOffset = 0x281;
@@ -812,6 +834,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x2B1;
                 largeMedipackOffset = 0x2B2;
+                healthOffset = 0x2135;
 
                 // Misc offsets
                 numFlaresOffset = 0x2B4;
@@ -843,6 +866,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x2E4;
                 largeMedipackOffset = 0x2E5;
+                healthOffset = 0xAB1;
 
                 // Misc offsets
                 numFlaresOffset = 0x2E7;
@@ -874,6 +898,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x317;
                 largeMedipackOffset = 0x318;
+                healthOffset = 0x737;
 
                 // Misc offsets
                 numFlaresOffset = 0x31A;
@@ -905,6 +930,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x3E3;
                 largeMedipackOffset = 0x3E4;
+                healthOffset = 0x6C5;
 
                 // Misc offsets
                 numFlaresOffset = 0x3E6;
@@ -936,6 +962,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x416;
                 largeMedipackOffset = 0x417;
+                healthOffset = 0xA65;
 
                 // Misc offsets
                 numFlaresOffset = 0x419;
@@ -967,6 +994,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x449;
                 largeMedipackOffset = 0x44A;
+                healthOffset = 0x711;
 
                 // Misc offsets
                 numFlaresOffset = 0x44C;
@@ -998,6 +1026,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x47C;
                 largeMedipackOffset = 0x47D;
+                healthOffset = 0x68D;
 
                 // Misc offsets
                 numFlaresOffset = 0x47F;
@@ -1029,6 +1058,7 @@ namespace TRIII_SaveEdit
                 // Health offsets
                 smallMedipackOffset = 0x4AF;
                 largeMedipackOffset = 0x4B0;
+                healthOffset = 0xAF5;
 
                 // Misc offsets
                 numFlaresOffset = 0x4B2;
@@ -1107,9 +1137,11 @@ namespace TRIII_SaveEdit
             GetGrenadeLauncherAmmo();
             GetHarpoonAmmo();
             GetRocketLauncherAmmo();
+            GetHealthValue();
         }
 
         // Offsets
+        private int healthOffset = 0;
         private int smallMedipackOffset = 0;
         private int largeMedipackOffset = 0;
         private int numFlaresOffset = 0;
@@ -1256,6 +1288,12 @@ namespace TRIII_SaveEdit
             if (harpoonGunCheckBox.Checked) WriteToSaveFile(harpoonGunOffset, 1);
             else WriteToSaveFile(harpoonGunOffset, 0);
 
+            // Write new health value to save file
+            const int maxHealth = 1000;
+            double newHealthPercentage = (double)healthBar.Value;
+            int newHealth = (int)(newHealthPercentage / 100.0 * maxHealth);
+            WriteValue(healthOffset, newHealth);
+
             helperTxtBox.Clear();
             helperTxtBox.AppendText("File patched!");
 
@@ -1305,10 +1343,17 @@ namespace TRIII_SaveEdit
                     smallMedipacksNumBox.Enabled = true;
                     flaresNumBox.Enabled = true;
                     saveNumBox.Enabled = true;
+                    healthBar.Enabled = true;
 
                     GetWeaponsInfo();
                 }
             }
+        }
+
+        private void HealthBar_Scroll(object sender, EventArgs e)
+        {
+            double healthPercentage = (double)healthBar.Value;
+            healthPercentageLabel.Text = healthPercentage.ToString("0.0") + "%";
         }
     }
 }
