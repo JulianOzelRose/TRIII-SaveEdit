@@ -12,7 +12,7 @@ This editor can enable any weapon on any level, including the bonus level. No se
 5. Click ```Save``` to apply your changes, and enjoy.
 
 #### Screenshot of TRIII-SaveEdit
-![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/0b087b40-2b6e-46d4-bb90-080ab02bb50f)
+![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/f9850ea1-987f-48f5-9cd0-d00336647408)
 
 ## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
