@@ -12,7 +12,7 @@ This editor can enable any weapon on any level, including the bonus level. No se
 5. Click ```Save``` to apply your changes, and enjoy.
 
 #### Screenshot of TRIII-SaveEdit
-![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/f9850ea1-987f-48f5-9cd0-d00336647408)
+![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/b3efe018-2529-42fe-92ed-0227d91cb17b)
 
 ## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
@@ -161,6 +161,37 @@ int GetAmmoIndex()
 }
 ```
 
+## Reading health information
+Health is stored on anywhere from 1 to 3 different offsets per level. The exact offset it is written to changes
+as you progress through a level. Writing to the incorrect offset may crash the game or lead to other glitches.
+To get around this issue, this savegame editor stores the known health offsets for each level on an array.
+When pulling health information, it loops through the known health offsets, and does a couple of heuristic
+checks to see which is the correct health offset. First, it checks for impossible health values (0 or greater than 1000).
+Then, it checks the surrounding data. Since health is always stored 6 bytes away from the character movement data,
+it checks those addresses for known character movement byte flags. If a match is found, it returns the correct offset. 
+
+```
+int GetHealthOffset()
+{
+    for (int i = 0; i < healthOffsets.Count; i++)
+    {
+        int healthValue = GetValue(healthOffsets[i]);
+
+        if (healthValue > MIN_HEALTH_VALUE && healthValue <= MAX_HEALTH_VALUE)
+        {
+            int byteFlag = GetSaveFileData(healthOffsets[i] - 4);
+
+            if (IsKnownByteFlag(byteFlag))
+            {
+                return healthOffsets[i];
+            }
+        }
+    }
+
+    return -1;
+}
+```
+
 ## Offset tables
 Aside from the level name and save number, the save file offsets differ on every level. The offsets for small medipack
 and large medipack are 1 byte away. Flares is 2 bytes away from large medipack, and the weapons config number is 4 bytes away
@@ -174,7 +205,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x00E6            |
 | Large Medipack          | 0x00E7            |
-| Health                  | 0x06D3            |
 | Flares                  | 0x00E9            |
 | Weapons Config Number   | 0x00ED            |
 | Harpoon Gun             | 0x00EE            |
@@ -200,7 +230,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x0119            |
 | Large Medipack          | 0x011A            |
-| Health                  | 0x08F7            |
 | Flares                  | 0x011C            |
 | Weapons Config Number   | 0x0120            |
 | Harpoon Gun             | 0x0121            |
@@ -226,7 +255,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x014C            |
 | Large Medipack          | 0x014D            |
-| Health                  | 0x06B9            |
 | Flares                  | 0x014F            |
 | Weapons Config Number   | 0x0153            |
 | Harpoon Gun             | 0x0154            |
@@ -252,7 +280,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x017F            |
 | Large Medipack          | 0x0180            |
-| Health                  | 0x0B05            |
 | Flares                  | 0x0182            |
 | Weapons Config Number   | 0x0186            |
 | Harpoon Gun             | 0x0187            |
@@ -278,7 +305,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x034A            |
 | Large Medipack          | 0x034B            |
-| Health                  | 0x06B5            |
 | Flares                  | 0x034A            |
 | Weapons Config Number   | 0x0351            |
 | Harpoon Gun             | 0x0352            |
@@ -304,7 +330,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x037D            |
 | Large Medipack          | 0x037E            |
-| Health                  | 0x0709            |
 | Flares                  | 0x0380            |
 | Weapons Config Number   | 0x0384            |
 | Harpoon Gun             | 0x0385            |
@@ -330,7 +355,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x03B0            |
 | Large Medipack          | 0x03B1            |
-| Health                  | 0x0C57            |
 | Flares                  | 0x03B3            |
 | Weapons Config Number   | 0x03B7            |
 | Harpoon Gun             | 0x03B8            |
@@ -356,7 +380,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x01B2            |
 | Large Medipack          | 0x01B3            |
-| Health                  | 0x07BB            |
 | Flares                  | 0x01B5            |
 | Weapons Config Number   | 0x01B9            |
 | Harpoon Gun             | 0x01BA            |
@@ -383,7 +406,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Small Medipack          | 0x01E5            |
 | Large Medipack          | 0x01E6            |
 | Health                  | 0x1797            |
-| Flares                  | 0x01E8            |
 | Weapons Config Number   | 0x01EC            |
 | Harpoon Gun             | 0x01ED            |
 | Shotgun Ammo 1          | 0x01DB            |
@@ -409,7 +431,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Small Medipack          | 0x0218            |
 | Large Medipack          | 0x0219            |
 | Health                  | 0x0BE3            |
-| Flares                  | 0x021B            |
 | Weapons Config Number   | 0x021F            |
 | Harpoon Gun             | 0x0220            |
 | Shotgun Ammo 1          | 0x020E            |
@@ -434,7 +455,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x024B            |
 | Large Medipack          | 0x024C            |
-| Health                  | 0x068F            |
 | Flares                  | 0x024E            |
 | Weapons Config Number   | 0x0252            |
 | Harpoon Gun             | 0x0253            |
@@ -460,7 +480,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x027E            |
 | Large Medipack          | 0x027F            |
-| Health                  | 0x0B15            |
 | Flares                  | 0x0281            |
 | Weapons Config Number   | 0x0285            |
 | Harpoon Gun             | 0x0286            |
@@ -486,7 +505,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x02B1            |
 | Large Medipack          | 0x02B2            |
-| Health                  | 0x2135            |
 | Flares                  | 0x02B4            |
 | Weapons Config Number   | 0x02B8            |
 | Harpoon Gun             | 0x02B9            |
@@ -512,7 +530,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x02E4            |
 | Large Medipack          | 0x02E5            |
-| Health                  | 0x0AB1            |
 | Flares                  | 0x02E7            |
 | Weapons Config Number   | 0x02EB            |
 | Harpoon Gun             | 0x02EC            |
@@ -538,7 +555,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x0317            |
 | Large Medipack          | 0x0318            |
-| Health                  | 0x0737            |
 | Flares                  | 0x031A            |
 | Weapons Config Number   | 0x031E            |
 | Harpoon Gun             | 0x031F            |
@@ -564,7 +580,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x03E3            |
 | Large Medipack          | 0x03E4            |
-| Health                  | 0x06C5            |
 | Flares                  | 0x03E6            |
 | Weapons Config Number   | 0x03EA            |
 | Harpoon Gun             | 0x03EB            |
@@ -590,7 +605,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x0416            |
 | Large Medipack          | 0x0417            |
-| Health                  | 0x0A65            |
 | Flares                  | 0x0419            |
 | Weapons Config Number   | 0x041D            |
 | Harpoon Gun             | 0x041E            |
@@ -616,7 +630,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x0449            |
 | Large Medipack          | 0x044A            |
-| Health                  | 0x0711            |
 | Flares                  | 0x044C            |
 | Weapons Config Number   | 0x0450            |
 | Harpoon Gun             | 0x0451            |
@@ -642,7 +655,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x047C            |
 | Large Medipack          | 0x047D            |
-| Health                  | 0x068D            |
 | Flares                  | 0x047F            |
 | Weapons Config Number   | 0x0483            |
 | Harpoon Gun             | 0x0484            |
@@ -668,7 +680,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x04AF            |
 | Large Medipack          | 0x04B0            |
-| Health                  | 0x0AF5            |
 | Flares                  | 0x04B2            |
 | Weapons Config Number   | 0x04B6            |
 | Harpoon Gun             | 0x04B7            |
