@@ -40,7 +40,7 @@ namespace TRIII_SaveEdit
             healthBar.Enabled = false;
             saveNumBox.Enabled = false;
             healthErrorLabel.Visible = false;
-            healthPercentageLabel.Visible = false;
+            healthPercentageLabel.Visible = true;
 
             smallMedipacksNumBox.Maximum = 255;
             lrgMedipacksNumBox.Maximum = 255;
@@ -363,80 +363,80 @@ namespace TRIII_SaveEdit
             return validOffsets.ToArray();
         }
 
-        void GetLvlInfo()
+        void DisplayLvlName()
         {
             string lvlName = GetLvlName();
             lvlNameTxtBox.Clear();
             lvlNameTxtBox.AppendText(lvlName);
         }
 
-        void GetNumSmallMedipacks()
+        void DisplayNumSmallMedipacks()
         {
             int numSmallMedipacks = GetSaveFileData(smallMedipackOffset);
             smallMedipacksNumBox.Value = numSmallMedipacks;
         }
 
-        void GetNumLargeMedipacks()
+        void DisplayNumLargeMedipacks()
         {
             int numLargeMedipacks = GetSaveFileData(largeMedipackOffset);
             lrgMedipacksNumBox.Value = numLargeMedipacks;
         }
 
-        void GetShotgunAmmo()
+        void DisplayShotgunAmmo()
         {
             int shotgunAmmo = GetValue(shotgunAmmoOffset);
             shotgunAmmoNumBox.Value = shotgunAmmo / 6;
         }
 
-        void GetDeagleAmmo()
+        void DisplayDeagleAmmo()
         {
             int deagleAmmo = GetValue(deagleAmmoOffset);
             deagleAmmoNumBox.Value = deagleAmmo;
         }
 
-        void GetMP5Ammo()
+        void DisplayMP5Ammo()
         {
             int mp5Ammo = GetValue(mp5AmmoOffset);
             mp5AmmoNumBox.Value = mp5Ammo;
         }
 
-        void GetNumFlares()
+        void DisplayNumFlares()
         {
             int numFlares = GetSaveFileData(numFlaresOffset);
             flaresNumBox.Value = numFlares;
         }
 
-        void GetUziAmmo()
+        void DisplayUziAmmo()
         {
             int uziAmmo = GetValue(uziAmmoOffset);
             uziAmmoNumBox.Value = uziAmmo;
         }
 
-        void GetGrenadeLauncherAmmo()
+        void DisplayGrenadeLauncherAmmo()
         {
             int grenadeLauncherAmmo = GetValue(grenadeLauncherAmmoOffset);
             grenadeLauncherAmmoNumBox.Value = grenadeLauncherAmmo;
         }
 
-        void GetHarpoonAmmo()
+        void DisplayHarpoonAmmo()
         {
             int harpoonAmmo = GetValue(harpoonAmmoOffset);
             harpoonGunAmmoNumBox.Value = harpoonAmmo;
         }
 
-        void GetRocketLauncherAmmo()
+        void DisplayRocketLauncherAmmo()
         {
             int rocketLauncherAmmo = GetValue(rocketLauncherAmmoOffset);
             rocketLauncherAmmoNumBox.Value = rocketLauncherAmmo;
         }
 
-        void GetSaveNum()
+        void DisplaySaveNum()
         {
             int saveNum = GetValue(saveNumOffset);
             saveNumBox.Value = saveNum;
         }
 
-        void GetHealthValue()
+        void DisplayHealthValue()
         {
             int healthOffset = GetHealthOffset();
 
@@ -505,7 +505,7 @@ namespace TRIII_SaveEdit
             return -1;
         }
 
-        void GetWeaponsInfo()
+        void SetLvlParams()
         {
             if (GetCleanLvlName() == "Jungle")
             {
@@ -1186,20 +1186,20 @@ namespace TRIII_SaveEdit
             if (harpoonGunVal == 1) harpoonGunCheckBox.Checked = true;
             else harpoonGunCheckBox.Checked = false;
 
-            // Get remaining values
-            GetNumSmallMedipacks();
-            GetNumLargeMedipacks();
-            GetLvlInfo();
-            GetShotgunAmmo();
-            GetDeagleAmmo();
-            GetNumFlares();
-            GetMP5Ammo();
-            GetSaveNum();
-            GetUziAmmo();
-            GetGrenadeLauncherAmmo();
-            GetHarpoonAmmo();
-            GetRocketLauncherAmmo();
-            GetHealthValue();
+            // Display remaining values
+            DisplayNumSmallMedipacks();
+            DisplayNumLargeMedipacks();
+            DisplayLvlName();
+            DisplayShotgunAmmo();
+            DisplayDeagleAmmo();
+            DisplayNumFlares();
+            DisplayMP5Ammo();
+            DisplaySaveNum();
+            DisplayUziAmmo();
+            DisplayGrenadeLauncherAmmo();
+            DisplayHarpoonAmmo();
+            DisplayRocketLauncherAmmo();
+            DisplayHealthValue();
         }
 
         // Offsets
@@ -1413,7 +1413,7 @@ namespace TRIII_SaveEdit
                     healthBar.Enabled = true;
                     healthErrorLabel.Visible = false;
 
-                    GetWeaponsInfo();
+                    SetLvlParams();
                 }
             }
         }
