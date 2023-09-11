@@ -436,6 +436,48 @@ namespace TRIII_SaveEdit
             saveNumBox.Value = saveNum;
         }
 
+        void DisplayWeaponsInfo()
+        {
+            // Update weapons vars
+            int weaponsConfigNum = GetSaveFileData(weaponsConfigNumOffset);
+            int harpoonGunVal = GetSaveFileData(harpoonGunOffset);
+
+            // Define weapons config constants
+            const int Pistol = 2;
+            const int Deagle = 4;
+            const int Uzi = 8;
+            const int Shotgun = 16;
+            const int MP5 = 32;
+            const int RocketLauncher = 64;
+            const int GrenadeLauncher = 128;
+
+            // Update weapons checkboxes
+            if (weaponsConfigNum == 1)
+            {
+                pistolsCheckBox.Checked = false;
+                shotgunCheckBox.Checked = false;
+                deagleCheckBox.Checked = false;
+                uziCheckBox.Checked = false;
+                mp5CheckBox.Checked = false;
+                rocketLauncherCheckBox.Checked = false;
+                grenadeLauncherCheckBox.Checked = false;
+            }
+            else
+            {
+                pistolsCheckBox.Checked = (weaponsConfigNum & Pistol) != 0;
+                shotgunCheckBox.Checked = (weaponsConfigNum & Shotgun) != 0;
+                deagleCheckBox.Checked = (weaponsConfigNum & Deagle) != 0;
+                uziCheckBox.Checked = (weaponsConfigNum & Uzi) != 0;
+                mp5CheckBox.Checked = (weaponsConfigNum & MP5) != 0;
+                rocketLauncherCheckBox.Checked = (weaponsConfigNum & RocketLauncher) != 0;
+                grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
+            }
+
+            // Update harpoon gun checkbox
+            if (harpoonGunVal == 1) harpoonGunCheckBox.Checked = true;
+            else harpoonGunCheckBox.Checked = false;
+        }
+
         void DisplayHealthValue()
         {
             int healthOffset = GetHealthOffset();
@@ -462,7 +504,7 @@ namespace TRIII_SaveEdit
         void SetHealthOffsets(params int[] offsets)
         {
             healthOffsets.Clear();
-            
+
             for (int i = 0; i < offsets.Length; i++)
             {
                 healthOffsets.Add(offsets[i]);
@@ -472,15 +514,17 @@ namespace TRIII_SaveEdit
         bool IsKnownByteFlag(int byteFlag)
         {
             if (byteFlag == 0x02) return true;      // Finishing a climb
+            if (byteFlag == 0x0B) return true;      // Standing
+            if (byteFlag == 0x1F) return true;      // Climbing
             if (byteFlag == 0x46) return true;      // Sliding
             if (byteFlag == 0x47) return true;      // Unknown
             if (byteFlag == 0x61) return true;      // Climbing
             if (byteFlag == 0x67) return true;      // Standing
-            if (byteFlag == 0x1F) return true;      // Climbing
-            if (byteFlag == 0x0B) return true;      // Standing
             if (byteFlag == 0x6C) return true;      // Underwater
-            if (byteFlag == 0x6E) return true;      // In water
+            if (byteFlag == 0x6E) return true;      // On water
             if (byteFlag == 0x7B) return true;      // Pushing a block
+            if (byteFlag == 0x83) return true;      // Puzzle
+            if (byteFlag == 0x87) return true;      // Picking up item
 
             return false;
         }
@@ -1146,60 +1190,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x4A3;
                 uziAmmoOffset2 = 0x1029;
             }
-
-            // Update weapons vars
-            int weaponsConfigNum = GetSaveFileData(weaponsConfigNumOffset);
-            int harpoonGunVal = GetSaveFileData(harpoonGunOffset);
-
-            // Define weapons config constants
-            const int Pistol = 2;
-            const int Deagle = 4;
-            const int Uzi = 8;
-            const int Shotgun = 16;
-            const int MP5 = 32;
-            const int RocketLauncher = 64;
-            const int GrenadeLauncher = 128;
-
-            // Update weapons checkboxes
-            if (weaponsConfigNum == 1)
-            {
-                pistolsCheckBox.Checked = false;
-                shotgunCheckBox.Checked = false;
-                deagleCheckBox.Checked = false;
-                uziCheckBox.Checked = false;
-                mp5CheckBox.Checked = false;
-                rocketLauncherCheckBox.Checked = false;
-                grenadeLauncherCheckBox.Checked = false;
-            }
-            else
-            {
-                pistolsCheckBox.Checked = (weaponsConfigNum & Pistol) != 0;
-                shotgunCheckBox.Checked = (weaponsConfigNum & Shotgun) != 0;
-                deagleCheckBox.Checked = (weaponsConfigNum & Deagle) != 0;
-                uziCheckBox.Checked = (weaponsConfigNum & Uzi) != 0;
-                mp5CheckBox.Checked = (weaponsConfigNum & MP5) != 0;
-                rocketLauncherCheckBox.Checked = (weaponsConfigNum & RocketLauncher) != 0;
-                grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
-            }
-
-            // Update harpoon gun checkbox
-            if (harpoonGunVal == 1) harpoonGunCheckBox.Checked = true;
-            else harpoonGunCheckBox.Checked = false;
-
-            // Display remaining values
-            DisplayNumSmallMedipacks();
-            DisplayNumLargeMedipacks();
-            DisplayLvlName();
-            DisplayShotgunAmmo();
-            DisplayDeagleAmmo();
-            DisplayNumFlares();
-            DisplayMP5Ammo();
-            DisplaySaveNum();
-            DisplayUziAmmo();
-            DisplayGrenadeLauncherAmmo();
-            DisplayHarpoonAmmo();
-            DisplayRocketLauncherAmmo();
-            DisplayHealthValue();
         }
 
         // Offsets
@@ -1414,6 +1404,20 @@ namespace TRIII_SaveEdit
                     healthErrorLabel.Visible = false;
 
                     SetLvlParams();
+                    DisplayWeaponsInfo();
+                    DisplayNumSmallMedipacks();
+                    DisplayNumLargeMedipacks();
+                    DisplayLvlName();
+                    DisplayShotgunAmmo();
+                    DisplayDeagleAmmo();
+                    DisplayNumFlares();
+                    DisplayMP5Ammo();
+                    DisplaySaveNum();
+                    DisplayUziAmmo();
+                    DisplayGrenadeLauncherAmmo();
+                    DisplayHarpoonAmmo();
+                    DisplayRocketLauncherAmmo();
+                    DisplayHealthValue();
                 }
             }
         }
