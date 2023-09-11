@@ -429,7 +429,6 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | Save Number             | 0x004B            |
 | Small Medipack          | 0x0218            |
 | Large Medipack          | 0x0219            |
-| Health                  | 0x0BE3            |
 | Weapons Config Number   | 0x021F            |
 | Harpoon Gun             | 0x0220            |
 | Shotgun Ammo 1          | 0x020E            |
