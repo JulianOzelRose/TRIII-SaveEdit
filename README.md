@@ -74,6 +74,7 @@ Lastly, we write the calculated number to the save file.
 
 ```
 int newWeaponsConfigNum = 1;
+
 if (pistolsCheckBox.Checked) newWeaponsConfigNum += 2;
 if (deagleCheckBox.Checked) newWeaponsConfigNum += 4;
 if (uziCheckBox.Checked) newWeaponsConfigNum += 8;
