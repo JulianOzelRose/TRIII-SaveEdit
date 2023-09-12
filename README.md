@@ -162,14 +162,14 @@ int GetAmmoIndex()
 }
 ```
 
-## Reading health information
+## Determining the correct health offset
 Health is stored on anywhere from 1 to 3 different offsets per level. The exact offset it is written to changes
 as you progress through a level. Writing to the incorrect offset may crash the game or lead to other glitches.
 To get around this issue, this savegame editor stores the known health offsets for each level on an array.
 When pulling health information, it loops through the known health offsets, and does a couple of heuristic
 checks to see which is the correct health offset. First, it checks for impossible health values (0 or greater than 1000).
-Then, it checks the surrounding data. Since health is always stored 4 bytes away from the character movement data,
-it checks those addresses for known character movement byte flags. If a match is found, it returns the correct offset. 
+Then, it checks the surrounding data. Since health is always stored 4 bytes away from the character animation data,
+it checks those addresses for known character animation byte flags. If a match is found, it returns the correct offset. 
 
 ```
 int GetHealthOffset()
