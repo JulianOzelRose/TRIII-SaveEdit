@@ -3,6 +3,8 @@ This is a savegame editor for Tomb Raider III. It has been rigorously tested to 
 the original and multi-patched version as well. Be sure to back up your save game files anyway as a precaution.
 This editor can enable any weapon on any level, including the bonus level. No setup is necessary, just download and run.
 
+![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/b3efe018-2529-42fe-92ed-0227d91cb17b)
+
 ## Installation and usage
 1. Navigate to the [Release](https://github.com/JulianOzelRose/TRIII-SaveEdit/tree/master/TRIII-SaveEdit/bin/x64/Release) folder, then download ```TRIII-SaveEdit.exe```.
 2. Launch the editor and click ```Browse``` to locate your game directory.
@@ -10,9 +12,6 @@ This editor can enable any weapon on any level, including the bonus level. No se
 ```\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\```<br>
 4. Once your save game is selected, make the desired modifications.
 5. Click ```Save``` to apply your changes, and enjoy.
-
-#### Screenshot of TRIII-SaveEdit
-![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/b3efe018-2529-42fe-92ed-0227d91cb17b)
 
 ## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
