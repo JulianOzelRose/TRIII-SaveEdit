@@ -473,9 +473,7 @@ namespace TRIII_SaveEdit
                 grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
             }
 
-            // Update harpoon gun checkbox
-            if (harpoonGunVal == 1) harpoonGunCheckBox.Checked = true;
-            else harpoonGunCheckBox.Checked = false;
+            harpoonGunCheckBox.Checked = (harpoonGunVal == 1) ? true : false;
         }
 
         void DisplayHealthValue()
