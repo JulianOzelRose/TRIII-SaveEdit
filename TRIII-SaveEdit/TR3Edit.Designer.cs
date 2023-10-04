@@ -148,6 +148,11 @@ namespace TRIII_SaveEdit
             // saveNumBox
             // 
             this.saveNumBox.Location = new System.Drawing.Point(511, 21);
+            this.saveNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.saveNumBox.Name = "saveNumBox";
             this.saveNumBox.Size = new System.Drawing.Size(55, 20);
             this.saveNumBox.TabIndex = 4;
@@ -198,6 +203,11 @@ namespace TRIII_SaveEdit
             // flaresNumBox
             // 
             this.flaresNumBox.Location = new System.Drawing.Point(225, 96);
+            this.flaresNumBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.flaresNumBox.Name = "flaresNumBox";
             this.flaresNumBox.Size = new System.Drawing.Size(55, 20);
             this.flaresNumBox.TabIndex = 18;
@@ -224,6 +234,11 @@ namespace TRIII_SaveEdit
             // lrgMedipacksNumBox
             // 
             this.lrgMedipacksNumBox.Location = new System.Drawing.Point(225, 62);
+            this.lrgMedipacksNumBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.lrgMedipacksNumBox.Name = "lrgMedipacksNumBox";
             this.lrgMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
             this.lrgMedipacksNumBox.TabIndex = 1;
@@ -232,6 +247,11 @@ namespace TRIII_SaveEdit
             // smallMedipacksNumBox
             // 
             this.smallMedipacksNumBox.Location = new System.Drawing.Point(225, 27);
+            this.smallMedipacksNumBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.smallMedipacksNumBox.Name = "smallMedipacksNumBox";
             this.smallMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
             this.smallMedipacksNumBox.TabIndex = 0;
@@ -245,6 +265,7 @@ namespace TRIII_SaveEdit
             this.healthErrorLabel.Size = new System.Drawing.Size(136, 13);
             this.healthErrorLabel.TabIndex = 7;
             this.healthErrorLabel.Text = "Unable to find health bytes.";
+            this.healthErrorLabel.Visible = false;
             // 
             // healthPercentageLabel
             // 
@@ -309,6 +330,11 @@ namespace TRIII_SaveEdit
             // mp5AmmoNumBox
             // 
             this.mp5AmmoNumBox.Location = new System.Drawing.Point(207, 162);
+            this.mp5AmmoNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.mp5AmmoNumBox.Name = "mp5AmmoNumBox";
             this.mp5AmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.mp5AmmoNumBox.TabIndex = 21;
@@ -327,6 +353,11 @@ namespace TRIII_SaveEdit
             // rocketLauncherAmmoNumBox
             // 
             this.rocketLauncherAmmoNumBox.Location = new System.Drawing.Point(207, 114);
+            this.rocketLauncherAmmoNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.rocketLauncherAmmoNumBox.Name = "rocketLauncherAmmoNumBox";
             this.rocketLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.rocketLauncherAmmoNumBox.TabIndex = 19;
@@ -345,6 +376,11 @@ namespace TRIII_SaveEdit
             // uziAmmoNumBox
             // 
             this.uziAmmoNumBox.Location = new System.Drawing.Point(207, 186);
+            this.uziAmmoNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.uziAmmoNumBox.Name = "uziAmmoNumBox";
             this.uziAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.uziAmmoNumBox.TabIndex = 15;
@@ -363,6 +399,11 @@ namespace TRIII_SaveEdit
             // harpoonGunAmmoNumBox
             // 
             this.harpoonGunAmmoNumBox.Location = new System.Drawing.Point(207, 138);
+            this.harpoonGunAmmoNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.harpoonGunAmmoNumBox.Name = "harpoonGunAmmoNumBox";
             this.harpoonGunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.harpoonGunAmmoNumBox.TabIndex = 13;
@@ -391,6 +432,11 @@ namespace TRIII_SaveEdit
             // grenadeLauncherAmmoNumBox
             // 
             this.grenadeLauncherAmmoNumBox.Location = new System.Drawing.Point(207, 90);
+            this.grenadeLauncherAmmoNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.grenadeLauncherAmmoNumBox.Name = "grenadeLauncherAmmoNumBox";
             this.grenadeLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.grenadeLauncherAmmoNumBox.TabIndex = 8;
@@ -409,6 +455,11 @@ namespace TRIII_SaveEdit
             // deagleAmmoNumBox
             // 
             this.deagleAmmoNumBox.Location = new System.Drawing.Point(207, 67);
+            this.deagleAmmoNumBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.deagleAmmoNumBox.Name = "deagleAmmoNumBox";
             this.deagleAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.deagleAmmoNumBox.TabIndex = 6;
@@ -427,6 +478,11 @@ namespace TRIII_SaveEdit
             // shotgunAmmoNumBox
             // 
             this.shotgunAmmoNumBox.Location = new System.Drawing.Point(207, 43);
+            this.shotgunAmmoNumBox.Maximum = new decimal(new int[] {
+            10922,
+            0,
+            0,
+            0});
             this.shotgunAmmoNumBox.Name = "shotgunAmmoNumBox";
             this.shotgunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.shotgunAmmoNumBox.TabIndex = 4;
@@ -472,6 +528,7 @@ namespace TRIII_SaveEdit
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TR3Edit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tomb Raider III - Savegame Editor";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

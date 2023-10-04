@@ -17,42 +17,6 @@ namespace TRIII_SaveEdit
         public TR3Edit()
         {
             InitializeComponent();
-
-            SaveButton.Enabled = false;
-            pistolsCheckBox.Enabled = false;
-            deagleCheckBox.Enabled = false;
-            deagleAmmoNumBox.Enabled = false;
-            grenadeLauncherAmmoNumBox.Enabled = false;
-            grenadeLauncherCheckBox.Enabled = false;
-            mp5AmmoNumBox.Enabled = false;
-            mp5CheckBox.Enabled = false;
-            harpoonGunCheckBox.Enabled = false;
-            harpoonGunAmmoNumBox.Enabled = false;
-            uziAmmoNumBox.Enabled = false;
-            uziCheckBox.Enabled = false;
-            rocketLauncherAmmoNumBox.Enabled = false;
-            rocketLauncherCheckBox.Enabled = false;
-            shotgunAmmoNumBox.Enabled = false;
-            shotgunCheckBox.Enabled = false;
-            lrgMedipacksNumBox.Enabled = false;
-            smallMedipacksNumBox.Enabled = false;
-            flaresNumBox.Enabled = false;
-            healthBar.Enabled = false;
-            saveNumBox.Enabled = false;
-            healthErrorLabel.Visible = false;
-            healthPercentageLabel.Visible = true;
-
-            smallMedipacksNumBox.Maximum = 255;
-            lrgMedipacksNumBox.Maximum = 255;
-            flaresNumBox.Maximum = 255;
-            saveNumBox.Maximum = 65535;
-            shotgunAmmoNumBox.Maximum = 10922;
-            rocketLauncherAmmoNumBox.Maximum = 65535;
-            harpoonGunAmmoNumBox.Maximum = 65535;
-            grenadeLauncherAmmoNumBox.Maximum = 65535;
-            uziAmmoNumBox.Maximum = 65535;
-            mp5AmmoNumBox.Maximum = 65535;
-            deagleAmmoNumBox.Maximum = 65535;
         }
 
         void SetSaveFilePath(string filePath)
@@ -1375,31 +1339,10 @@ namespace TRIII_SaveEdit
                     fileTxtBox.Clear();
                     fileTxtBox.AppendText(filePath);
 
+                    SaveButton.Enabled = true;
+
                     helperTxtBox.Clear();
                     helperTxtBox.AppendText("Loaded save file: " + Path.GetFileName(openFileDialog.FileName));
-
-                    SaveButton.Enabled = true;
-                    pistolsCheckBox.Enabled = true;
-                    deagleCheckBox.Enabled = true;
-                    deagleAmmoNumBox.Enabled = true;
-                    grenadeLauncherAmmoNumBox.Enabled = true;
-                    grenadeLauncherCheckBox.Enabled = true;
-                    mp5AmmoNumBox.Enabled = true;
-                    mp5CheckBox.Enabled = true;
-                    harpoonGunCheckBox.Enabled = true;
-                    harpoonGunAmmoNumBox.Enabled = true;
-                    uziAmmoNumBox.Enabled = true;
-                    uziCheckBox.Enabled = true;
-                    rocketLauncherAmmoNumBox.Enabled = true;
-                    rocketLauncherCheckBox.Enabled = true;
-                    shotgunAmmoNumBox.Enabled = true;
-                    shotgunCheckBox.Enabled = true;
-                    lrgMedipacksNumBox.Enabled = true;
-                    smallMedipacksNumBox.Enabled = true;
-                    flaresNumBox.Enabled = true;
-                    saveNumBox.Enabled = true;
-                    healthBar.Enabled = true;
-                    healthErrorLabel.Visible = false;
 
                     SetLvlParams();
                     DisplayWeaponsInfo();
