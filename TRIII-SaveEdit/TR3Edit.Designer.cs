@@ -49,7 +49,6 @@ namespace TRIII_SaveEdit
             this.healthErrorLabel = new System.Windows.Forms.Label();
             this.healthPercentageLabel = new System.Windows.Forms.Label();
             this.healthBar = new System.Windows.Forms.TrackBar();
-            this.helperTxtBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.mp5AmmoNumBox = new System.Windows.Forms.NumericUpDown();
@@ -68,6 +67,8 @@ namespace TRIII_SaveEdit
             this.shotgunAmmoNumBox = new System.Windows.Forms.NumericUpDown();
             this.shotgunCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -84,6 +85,7 @@ namespace TRIII_SaveEdit
             ((System.ComponentModel.ISupportInitialize)(this.deagleAmmoNumBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shotgunAmmoNumBox)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileTxtBox
@@ -156,7 +158,6 @@ namespace TRIII_SaveEdit
             this.saveNumBox.Name = "saveNumBox";
             this.saveNumBox.Size = new System.Drawing.Size(55, 20);
             this.saveNumBox.TabIndex = 4;
-            this.saveNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -211,7 +212,6 @@ namespace TRIII_SaveEdit
             this.flaresNumBox.Name = "flaresNumBox";
             this.flaresNumBox.Size = new System.Drawing.Size(55, 20);
             this.flaresNumBox.TabIndex = 18;
-            this.flaresNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -242,7 +242,6 @@ namespace TRIII_SaveEdit
             this.lrgMedipacksNumBox.Name = "lrgMedipacksNumBox";
             this.lrgMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
             this.lrgMedipacksNumBox.TabIndex = 1;
-            this.lrgMedipacksNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // smallMedipacksNumBox
             // 
@@ -255,7 +254,6 @@ namespace TRIII_SaveEdit
             this.smallMedipacksNumBox.Name = "smallMedipacksNumBox";
             this.smallMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
             this.smallMedipacksNumBox.TabIndex = 0;
-            this.smallMedipacksNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // healthErrorLabel
             // 
@@ -284,14 +282,6 @@ namespace TRIII_SaveEdit
             this.healthBar.Size = new System.Drawing.Size(241, 45);
             this.healthBar.TabIndex = 4;
             this.healthBar.Scroll += new System.EventHandler(this.HealthBar_Scroll);
-            // 
-            // helperTxtBox
-            // 
-            this.helperTxtBox.Location = new System.Drawing.Point(8, 325);
-            this.helperTxtBox.Name = "helperTxtBox";
-            this.helperTxtBox.ReadOnly = true;
-            this.helperTxtBox.Size = new System.Drawing.Size(589, 20);
-            this.helperTxtBox.TabIndex = 6;
             // 
             // groupBox3
             // 
@@ -338,7 +328,6 @@ namespace TRIII_SaveEdit
             this.mp5AmmoNumBox.Name = "mp5AmmoNumBox";
             this.mp5AmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.mp5AmmoNumBox.TabIndex = 21;
-            this.mp5AmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mp5CheckBox
             // 
@@ -361,7 +350,6 @@ namespace TRIII_SaveEdit
             this.rocketLauncherAmmoNumBox.Name = "rocketLauncherAmmoNumBox";
             this.rocketLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.rocketLauncherAmmoNumBox.TabIndex = 19;
-            this.rocketLauncherAmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rocketLauncherCheckBox
             // 
@@ -384,7 +372,6 @@ namespace TRIII_SaveEdit
             this.uziAmmoNumBox.Name = "uziAmmoNumBox";
             this.uziAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.uziAmmoNumBox.TabIndex = 15;
-            this.uziAmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // uziCheckBox
             // 
@@ -407,7 +394,6 @@ namespace TRIII_SaveEdit
             this.harpoonGunAmmoNumBox.Name = "harpoonGunAmmoNumBox";
             this.harpoonGunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.harpoonGunAmmoNumBox.TabIndex = 13;
-            this.harpoonGunAmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // harpoonGunCheckBox
             // 
@@ -440,7 +426,6 @@ namespace TRIII_SaveEdit
             this.grenadeLauncherAmmoNumBox.Name = "grenadeLauncherAmmoNumBox";
             this.grenadeLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.grenadeLauncherAmmoNumBox.TabIndex = 8;
-            this.grenadeLauncherAmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // grenadeLauncherCheckBox
             // 
@@ -463,7 +448,6 @@ namespace TRIII_SaveEdit
             this.deagleAmmoNumBox.Name = "deagleAmmoNumBox";
             this.deagleAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.deagleAmmoNumBox.TabIndex = 6;
-            this.deagleAmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // deagleCheckBox
             // 
@@ -486,7 +470,6 @@ namespace TRIII_SaveEdit
             this.shotgunAmmoNumBox.Name = "shotgunAmmoNumBox";
             this.shotgunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
             this.shotgunAmmoNumBox.TabIndex = 4;
-            this.shotgunAmmoNumBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // shotgunCheckBox
             // 
@@ -510,14 +493,30 @@ namespace TRIII_SaveEdit
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Health";
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 329);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(604, 22);
+            this.statusStrip.SizingGrip = false;
+            this.statusStrip.TabIndex = 19;
+            this.statusStrip.Text = "statusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // TR3Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 351);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.helperTxtBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -550,6 +549,8 @@ namespace TRIII_SaveEdit
             ((System.ComponentModel.ISupportInitialize)(this.shotgunAmmoNumBox)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,7 +570,6 @@ namespace TRIII_SaveEdit
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown lrgMedipacksNumBox;
         private System.Windows.Forms.NumericUpDown smallMedipacksNumBox;
-        private System.Windows.Forms.TextBox helperTxtBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown shotgunAmmoNumBox;
         private System.Windows.Forms.CheckBox shotgunCheckBox;
@@ -595,6 +595,8 @@ namespace TRIII_SaveEdit
         private System.Windows.Forms.TrackBar healthBar;
         private System.Windows.Forms.Label healthPercentageLabel;
         private System.Windows.Forms.Label healthErrorLabel;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
 

@@ -1313,8 +1313,7 @@ namespace TRIII_SaveEdit
 
             if (healthOffset != -1) WriteValue(healthOffset, newHealth);
 
-            helperTxtBox.Clear();
-            helperTxtBox.AppendText("File patched!");
+            toolStripStatusLabel.Text = "File patched!";
 
             MessageBox.Show("Save file patched!", "SUCCESS");
         }
@@ -1341,8 +1340,7 @@ namespace TRIII_SaveEdit
 
                     SaveButton.Enabled = true;
 
-                    helperTxtBox.Clear();
-                    helperTxtBox.AppendText("Loaded save file: " + Path.GetFileName(openFileDialog.FileName));
+                    toolStripStatusLabel.Text = "Loaded save file: " + Path.GetFileName(openFileDialog.FileName);
 
                     SetLvlParams();
                     DisplayWeaponsInfo();
