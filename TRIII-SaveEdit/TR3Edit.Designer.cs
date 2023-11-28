@@ -313,9 +313,9 @@ namespace TRIII_SaveEdit
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(205, 26);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 13);
+            this.label7.Size = new System.Drawing.Size(50, 13);
             this.label7.TabIndex = 4;
-            this.label7.Text = "(Unlimited)";
+            this.label7.Text = "Unlimited";
             // 
             // mp5AmmoNumBox
             // 
@@ -356,9 +356,9 @@ namespace TRIII_SaveEdit
             this.rocketLauncherCheckBox.AutoSize = true;
             this.rocketLauncherCheckBox.Location = new System.Drawing.Point(19, 116);
             this.rocketLauncherCheckBox.Name = "rocketLauncherCheckBox";
-            this.rocketLauncherCheckBox.Size = new System.Drawing.Size(108, 17);
+            this.rocketLauncherCheckBox.Size = new System.Drawing.Size(112, 17);
             this.rocketLauncherCheckBox.TabIndex = 18;
-            this.rocketLauncherCheckBox.Text = "Rocket launcher:";
+            this.rocketLauncherCheckBox.Text = "Rocket Launcher:";
             this.rocketLauncherCheckBox.UseVisualStyleBackColor = true;
             // 
             // uziAmmoNumBox
@@ -378,9 +378,9 @@ namespace TRIII_SaveEdit
             this.uziCheckBox.AutoSize = true;
             this.uziCheckBox.Location = new System.Drawing.Point(19, 184);
             this.uziCheckBox.Name = "uziCheckBox";
-            this.uziCheckBox.Size = new System.Drawing.Size(44, 17);
+            this.uziCheckBox.Size = new System.Drawing.Size(49, 17);
             this.uziCheckBox.TabIndex = 14;
-            this.uziCheckBox.Text = "Uzi:";
+            this.uziCheckBox.Text = "Uzis:";
             this.uziCheckBox.UseVisualStyleBackColor = true;
             // 
             // harpoonGunAmmoNumBox
@@ -400,9 +400,9 @@ namespace TRIII_SaveEdit
             this.harpoonGunCheckBox.AutoSize = true;
             this.harpoonGunCheckBox.Location = new System.Drawing.Point(19, 139);
             this.harpoonGunCheckBox.Name = "harpoonGunCheckBox";
-            this.harpoonGunCheckBox.Size = new System.Drawing.Size(91, 17);
+            this.harpoonGunCheckBox.Size = new System.Drawing.Size(93, 17);
             this.harpoonGunCheckBox.TabIndex = 12;
-            this.harpoonGunCheckBox.Text = "Harpoon gun:";
+            this.harpoonGunCheckBox.Text = "Harpoon Gun:";
             this.harpoonGunCheckBox.UseVisualStyleBackColor = true;
             // 
             // pistolsCheckBox
@@ -432,9 +432,9 @@ namespace TRIII_SaveEdit
             this.grenadeLauncherCheckBox.AutoSize = true;
             this.grenadeLauncherCheckBox.Location = new System.Drawing.Point(19, 94);
             this.grenadeLauncherCheckBox.Name = "grenadeLauncherCheckBox";
-            this.grenadeLauncherCheckBox.Size = new System.Drawing.Size(114, 17);
+            this.grenadeLauncherCheckBox.Size = new System.Drawing.Size(118, 17);
             this.grenadeLauncherCheckBox.TabIndex = 7;
-            this.grenadeLauncherCheckBox.Text = "Grenade launcher:";
+            this.grenadeLauncherCheckBox.Text = "Grenade Launcher:";
             this.grenadeLauncherCheckBox.UseVisualStyleBackColor = true;
             // 
             // deagleAmmoNumBox

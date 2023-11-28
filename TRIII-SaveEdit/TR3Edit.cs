@@ -19,17 +19,67 @@ namespace TRIII_SaveEdit
             InitializeComponent();
         }
 
-        void SetSaveFilePath(string filePath)
+        public void SetSaveFilePath(string filePath)
         {
-            sSaveFilePath = filePath;
+            strSaveFilePath = filePath;
         }
 
-        string GetSaveFilePath()
+        public string GetSaveFilePath()
         {
-            return sSaveFilePath;
+            return strSaveFilePath;
         }
 
-        string GetLvlName()
+        public byte ReadByte(long offset)
+        {
+            string saveFilePath = GetSaveFilePath();
+
+            using (FileStream saveFile = new FileStream(saveFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                saveFile.Seek(offset, SeekOrigin.Begin);
+                return (byte)saveFile.ReadByte();
+            }
+        }
+
+        public int ReadUInt16(long offset)
+        {
+            int lowerByte = ReadByte(offset);
+            int upperByte = ReadByte(offset + 1);
+
+            int value = lowerByte + (upperByte << 8);
+
+            return value;
+        }
+
+        public void WriteByte(long offset, int value)
+        {
+            string saveFilePath = GetSaveFilePath();
+
+            using (FileStream saveFile = new FileStream(saveFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                saveFile.Seek(offset, SeekOrigin.Begin);
+                byte[] byteData = { (byte)value };
+                saveFile.Write(byteData, 0, byteData.Length);
+            }
+        }
+
+        public void WriteUInt16(long offset, int value)
+        {
+            if (value > 255)
+            {
+                byte upperByte = (byte)(value / 256);
+                byte lowerByte = (byte)(value % 256);
+
+                WriteByte(offset + 1, upperByte);
+                WriteByte(offset, lowerByte);
+            }
+            else
+            {
+                WriteByte(offset + 1, 0);
+                WriteByte(offset, (byte)value);
+            }
+        }
+
+        public string GetLvlName()
         {
             string saveFilePath = GetSaveFilePath();
 
@@ -47,7 +97,7 @@ namespace TRIII_SaveEdit
             return null;
         }
 
-        string GetCleanLvlName()
+        public string GetCleanLvlName()
         {
             string lvlName = GetLvlName();
             lvlName = lvlName.Trim();
@@ -76,7 +126,7 @@ namespace TRIII_SaveEdit
             return null;
         }
 
-        readonly Dictionary<string, Dictionary<int, int[]>> ammoIndexData = new Dictionary<string, Dictionary<int, int[]>>
+        private readonly Dictionary<string, Dictionary<int, int[]>> ammoIndexData = new Dictionary<string, Dictionary<int, int[]>>
         {
             ["Jungle"] = new Dictionary<int, int[]>
             {
@@ -234,57 +284,7 @@ namespace TRIII_SaveEdit
             }
         };
 
-        byte GetSaveFileData(long offset)
-        {
-            string saveFilePath = GetSaveFilePath();
-
-            using (FileStream saveFile = new FileStream(saveFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                saveFile.Seek(offset, SeekOrigin.Begin);
-                return (byte)saveFile.ReadByte();
-            }
-        }
-
-        void WriteToSaveFile(long offset, int value)
-        {
-            string saveFilePath = GetSaveFilePath();
-
-            using (FileStream saveFile = new FileStream(saveFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
-            {
-                saveFile.Seek(offset, SeekOrigin.Begin);
-                byte[] byteData = { (byte)value };
-                saveFile.Write(byteData, 0, byteData.Length);
-            }
-        }
-
-        int GetValue(long offset)
-        {
-            int firstHalf = GetSaveFileData(offset);
-            int secondHalf = GetSaveFileData(offset + 1);
-
-            int result = firstHalf + (secondHalf << 8);
-
-            return result;
-        }
-
-        void WriteValue(long offset, int value)
-        {
-            if (value > 255)
-            {
-                byte firstHalf = (byte)(value / 256);
-                byte secondHalf = (byte)(value % 256);
-
-                WriteToSaveFile(offset + 1, firstHalf);
-                WriteToSaveFile(offset, secondHalf);
-            }
-            else
-            {
-                WriteToSaveFile(offset + 1, 0);
-                WriteToSaveFile(offset, (byte)value);
-            }
-        }
-
-        int GetAmmoIndex()
+        public int GetAmmoIndex()
         {
             string lvlName = GetCleanLvlName();
             int ammoIndex = 0;
@@ -298,7 +298,7 @@ namespace TRIII_SaveEdit
                     int key = indexData.ElementAt(i).Key;
                     int[] offsets = indexData.ElementAt(i).Value;
 
-                    if (offsets.All(offset => GetSaveFileData(offset) == 0xFF))
+                    if (offsets.All(offset => ReadByte(offset) == 0xFF))
                     {
                         ammoIndex = key;
                         break;
@@ -309,7 +309,7 @@ namespace TRIII_SaveEdit
             return ammoIndex;
         }
 
-        int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
+        public int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
         {
             List<int> secondaryOffsets = new List<int>();
             List<int> validOffsets = new List<int>();
@@ -327,89 +327,89 @@ namespace TRIII_SaveEdit
             return validOffsets.ToArray();
         }
 
-        void DisplayLvlName()
+        public void DisplayLvlName()
         {
             string lvlName = GetLvlName();
             lvlNameTxtBox.Clear();
             lvlNameTxtBox.AppendText(lvlName);
         }
 
-        void DisplayNumSmallMedipacks()
+        public void DisplayNumSmallMedipacks()
         {
-            int numSmallMedipacks = GetSaveFileData(smallMedipackOffset);
+            int numSmallMedipacks = ReadByte(smallMedipackOffset);
             smallMedipacksNumBox.Value = numSmallMedipacks;
         }
 
-        void DisplayNumLargeMedipacks()
+        public void DisplayNumLargeMedipacks()
         {
-            int numLargeMedipacks = GetSaveFileData(largeMedipackOffset);
+            int numLargeMedipacks = ReadByte(largeMedipackOffset);
             lrgMedipacksNumBox.Value = numLargeMedipacks;
         }
 
-        void DisplayShotgunAmmo()
+        public void DisplayShotgunAmmo()
         {
-            int shotgunAmmo = GetValue(shotgunAmmoOffset);
+            int shotgunAmmo = ReadUInt16(shotgunAmmoOffset);
             shotgunAmmoNumBox.Value = shotgunAmmo / 6;
         }
 
-        void DisplayDeagleAmmo()
+        public void DisplayDeagleAmmo()
         {
-            int deagleAmmo = GetValue(deagleAmmoOffset);
+            int deagleAmmo = ReadUInt16(deagleAmmoOffset);
             deagleAmmoNumBox.Value = deagleAmmo;
         }
 
-        void DisplayMP5Ammo()
+        public void DisplayMP5Ammo()
         {
-            int mp5Ammo = GetValue(mp5AmmoOffset);
+            int mp5Ammo = ReadUInt16(mp5AmmoOffset);
             mp5AmmoNumBox.Value = mp5Ammo;
         }
 
-        void DisplayNumFlares()
+        public void DisplayNumFlares()
         {
-            int numFlares = GetSaveFileData(numFlaresOffset);
+            int numFlares = ReadByte(numFlaresOffset);
             flaresNumBox.Value = numFlares;
         }
 
-        void DisplayUziAmmo()
+        public void DisplayUziAmmo()
         {
-            int uziAmmo = GetValue(uziAmmoOffset);
+            int uziAmmo = ReadUInt16(uziAmmoOffset);
             uziAmmoNumBox.Value = uziAmmo;
         }
 
-        void DisplayGrenadeLauncherAmmo()
+        public void DisplayGrenadeLauncherAmmo()
         {
-            int grenadeLauncherAmmo = GetValue(grenadeLauncherAmmoOffset);
+            int grenadeLauncherAmmo = ReadUInt16(grenadeLauncherAmmoOffset);
             grenadeLauncherAmmoNumBox.Value = grenadeLauncherAmmo;
         }
 
-        void DisplayHarpoonAmmo()
+        public void DisplayHarpoonAmmo()
         {
-            int harpoonAmmo = GetValue(harpoonAmmoOffset);
+            int harpoonAmmo = ReadUInt16(harpoonAmmoOffset);
             harpoonGunAmmoNumBox.Value = harpoonAmmo;
         }
 
-        void DisplayRocketLauncherAmmo()
+        public void DisplayRocketLauncherAmmo()
         {
-            int rocketLauncherAmmo = GetValue(rocketLauncherAmmoOffset);
+            int rocketLauncherAmmo = ReadUInt16(rocketLauncherAmmoOffset);
             rocketLauncherAmmoNumBox.Value = rocketLauncherAmmo;
         }
 
-        void DisplaySaveNum()
+        public void DisplaySaveNum()
         {
-            int saveNum = GetValue(saveNumOffset);
+            int saveNum = ReadUInt16(saveNumOffset);
             saveNumBox.Value = saveNum;
         }
 
-        void DisplayWeaponsInfo()
+        public void DisplayWeaponsInfo()
         {
             // Update weapons vars
-            int weaponsConfigNum = GetSaveFileData(weaponsConfigNumOffset);
-            int harpoonGunVal = GetSaveFileData(harpoonGunOffset);
+            int weaponsConfigNum = ReadByte(weaponsConfigNumOffset);
+            int harpoonGunVal = ReadByte(harpoonGunOffset);
 
             // Define weapons config constants
-            const int Pistol = 2;
+            const int Pistols = 2;
             const int Deagle = 4;
-            const int Uzi = 8;
+            const int Uzis = 8;
             const int Shotgun = 16;
             const int MP5 = 32;
             const int RocketLauncher = 64;
@@ -428,10 +428,10 @@ namespace TRIII_SaveEdit
             }
             else
             {
-                pistolsCheckBox.Checked = (weaponsConfigNum & Pistol) != 0;
+                pistolsCheckBox.Checked = (weaponsConfigNum & Pistols) != 0;
                 shotgunCheckBox.Checked = (weaponsConfigNum & Shotgun) != 0;
                 deagleCheckBox.Checked = (weaponsConfigNum & Deagle) != 0;
-                uziCheckBox.Checked = (weaponsConfigNum & Uzi) != 0;
+                uziCheckBox.Checked = (weaponsConfigNum & Uzis) != 0;
                 mp5CheckBox.Checked = (weaponsConfigNum & MP5) != 0;
                 rocketLauncherCheckBox.Checked = (weaponsConfigNum & RocketLauncher) != 0;
                 grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
@@ -440,7 +440,7 @@ namespace TRIII_SaveEdit
             harpoonGunCheckBox.Checked = (harpoonGunVal == 1) ? true : false;
         }
 
-        void DisplayHealthValue()
+        public void DisplayHealthValue()
         {
             int healthOffset = GetHealthOffset();
 
@@ -453,7 +453,7 @@ namespace TRIII_SaveEdit
             }
             else
             {
-                int health = GetValue(healthOffset);
+                int health = ReadUInt16(healthOffset);
                 healthBar.Enabled = true;
                 healthErrorLabel.Visible = false;
                 double healthPercentage = (double)health / MAX_HEALTH_VALUE * 100.0;
@@ -463,7 +463,7 @@ namespace TRIII_SaveEdit
             }
         }
 
-        void SetHealthOffsets(params int[] offsets)
+        public void SetHealthOffsets(params int[] offsets)
         {
             healthOffsets.Clear();
 
@@ -473,7 +473,7 @@ namespace TRIII_SaveEdit
             }
         }
 
-        bool IsKnownByteFlag(int byteFlag)
+        public bool IsKnownByteFlag(int byteFlag)
         {
             if (byteFlag == 0x02) return true;      // Finishing a climb
             if (byteFlag == 0x0B) return true;      // Standing
@@ -491,15 +491,15 @@ namespace TRIII_SaveEdit
             return false;
         }
 
-        int GetHealthOffset()
+        public int GetHealthOffset()
         {
             for (int i = 0; i < healthOffsets.Count; i++)
             {
-                int healthValue = GetValue(healthOffsets[i]);
+                int healthValue = ReadUInt16(healthOffsets[i]);
 
                 if (healthValue > MIN_HEALTH_VALUE && healthValue <= MAX_HEALTH_VALUE)
                 {
-                    int byteFlag = GetSaveFileData(healthOffsets[i] - 4);
+                    int byteFlag = ReadByte(healthOffsets[i] - 4);
 
                     if (IsKnownByteFlag(byteFlag))
                     {
@@ -511,7 +511,7 @@ namespace TRIII_SaveEdit
             return -1;
         }
 
-        void SetLvlParams()
+        public void SetLvlParams()
         {
             if (GetCleanLvlName() == "Jungle")
             {
@@ -544,7 +544,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0xDA;
                 uziAmmoOffset2 = 0x1647;
             }
-
             else if (GetCleanLvlName() == "Temple Ruins")
             {
                 // Health offsets
@@ -576,7 +575,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x10D;
                 uziAmmoOffset2 = 0x23B7;
             }
-
             else if (GetCleanLvlName() == "The River Ganges")
             {
                 // Health offsets
@@ -608,7 +606,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x140;
                 uziAmmoOffset2 = 0x1800;
             }
-
             else if (GetCleanLvlName() == "Caves Of Kaliya")
             {
                 // Health offsets
@@ -640,7 +637,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x173;
                 uziAmmoOffset2 = 0xD1B;
             }
-
             else if (GetCleanLvlName() == "Nevada Desert")
             {
                 // Health offsets
@@ -672,7 +668,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x33E;
                 uziAmmoOffset2 = 0x17A0;
             }
-
             else if (GetCleanLvlName() == "High Security Compound")
             {
                 // Health offsets
@@ -704,7 +699,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x371;
                 uziAmmoOffset2 = 0x1E47;
             }
-
             else if (GetCleanLvlName() == "Area 51")
             {
                 // Health offsets
@@ -736,7 +730,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x3A4;
                 uziAmmoOffset2 = 0x2109;
             }
-
             else if (GetCleanLvlName() == "Coastal Village")
             {
                 // Health offsets
@@ -768,7 +761,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x1A6;
                 uziAmmoOffset2 = 0x17AD;
             }
-
             else if (GetCleanLvlName() == "Crash Site")
             {
                 // Health offsets
@@ -800,7 +792,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x1D9;
                 uziAmmoOffset2 = 0x18CF;
             }
-
             else if (GetCleanLvlName() == "Madubu Gorge")
             {
                 // Health offsets
@@ -832,7 +823,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x20C;
                 uziAmmoOffset2 = 0x1419;
             }
-
             else if (GetCleanLvlName() == "Temple Of Puna")
             {
                 // Health offsets
@@ -864,7 +854,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x23F;
                 uziAmmoOffset2 = 0x10F1;
             }
-
             else if (GetCleanLvlName() == "Thames Wharf")
             {
                 // Health offsets
@@ -896,7 +885,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x272;
                 uziAmmoOffset2 = 0x186F;
             }
-
             else if (GetCleanLvlName() == "Aldwych")
             {
                 // Health offsets
@@ -928,7 +916,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x2A5;
                 uziAmmoOffset2 = 0x22FB;
             }
-
             else if (GetCleanLvlName() == "Lud's Gate")
             {
                 // Health offsets
@@ -960,7 +947,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x2D8;
                 uziAmmoOffset2 = 0x1D73;
             }
-
             else if (GetCleanLvlName() == "City")
             {
                 // Health offsets
@@ -992,7 +978,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x30B;
                 uziAmmoOffset2 = 0xAEF;
             }
-
             else if (GetCleanLvlName() == "Antarctica")
             {
                 // Health offsets
@@ -1024,7 +1009,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x3D7;
                 uziAmmoOffset2 = 0x1991;
             }
-
             else if (GetCleanLvlName() == "RX-Tech Mines")
             {
                 // Health offsets
@@ -1056,7 +1040,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x40A;
                 uziAmmoOffset2 = 0x1953;
             }
-
             else if (GetCleanLvlName() == "Lost City Of Tinnos")
             {
                 // Health offsets
@@ -1088,7 +1071,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x43D;
                 uziAmmoOffset2 = 0x1D93;
             }
-
             else if (GetCleanLvlName() == "Meteorite Cavern")
             {
                 // Health offsets
@@ -1120,7 +1102,6 @@ namespace TRIII_SaveEdit
                 uziAmmoOffset = 0x470;
                 uziAmmoOffset2 = 0xAE5;
             }
-
             else if (GetCleanLvlName() == "All Hallows")
             {
                 // Health offsets
@@ -1176,12 +1157,14 @@ namespace TRIII_SaveEdit
         private int mp5AmmoOffset2 = 0;
         private int uziAmmoOffset = 0;
         private int uziAmmoOffset2 = 0;
+
         // Health
-        const int MAX_HEALTH_VALUE = 1000;
-        const int MIN_HEALTH_VALUE = 0;
-        List<int> healthOffsets = new List<int>();
+        private const int MAX_HEALTH_VALUE = 1000;
+        private const int MIN_HEALTH_VALUE = 0;
+        private List<int> healthOffsets = new List<int>();
+
         // Strings
-        private string sSaveFilePath;
+        private string strSaveFilePath;
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
@@ -1193,99 +1176,99 @@ namespace TRIII_SaveEdit
             int[] validMp5AmmoOffsets = GetValidAmmoOffsets(mp5AmmoOffset, mp5AmmoOffset2);
             int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
 
-            WriteToSaveFile(smallMedipackOffset, Decimal.ToInt32(smallMedipacksNumBox.Value));
-            WriteToSaveFile(largeMedipackOffset, Decimal.ToInt32(lrgMedipacksNumBox.Value));
-            WriteToSaveFile(numFlaresOffset, Decimal.ToInt32(flaresNumBox.Value));
-            WriteValue(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
+            WriteByte(smallMedipackOffset, Decimal.ToInt32(smallMedipacksNumBox.Value));
+            WriteByte(largeMedipackOffset, Decimal.ToInt32(lrgMedipacksNumBox.Value));
+            WriteByte(numFlaresOffset, Decimal.ToInt32(flaresNumBox.Value));
+            WriteUInt16(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
 
             if (!shotgunCheckBox.Checked)
             {
-                WriteValue(validShotgunAmmoOffsets[1], 0);
-                WriteValue(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                WriteUInt16(validShotgunAmmoOffsets[1], 0);
+                WriteUInt16(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
             }
             else
             {
                 for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
                 {
-                    WriteValue(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                    WriteUInt16(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
                 }
             }
 
             if (!deagleCheckBox.Checked)
             {
-                WriteValue(validDeagleAmmoOffsets[1], 0);
-                WriteValue(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                WriteUInt16(validDeagleAmmoOffsets[1], 0);
+                WriteUInt16(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
                 {
-                    WriteValue(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                    WriteUInt16(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
                 }
             }
 
             if (!grenadeLauncherCheckBox.Checked)
             {
-                WriteValue(validGrenadeLauncherAmmoOffsets[1], 0);
-                WriteValue(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                WriteUInt16(validGrenadeLauncherAmmoOffsets[1], 0);
+                WriteUInt16(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
                 {
-                    WriteValue(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                    WriteUInt16(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
                 }
             }
 
             if (!rocketLauncherCheckBox.Checked)
             {
-                WriteValue(validRocketLauncherAmmoOffsets[1], 0);
-                WriteValue(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                WriteUInt16(validRocketLauncherAmmoOffsets[1], 0);
+                WriteUInt16(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
                 {
-                    WriteValue(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                    WriteUInt16(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
                 }
             }
 
             if (!harpoonGunCheckBox.Checked)
             {
-                WriteValue(validHarpoonAmmoOffsets[1], 0);
-                WriteValue(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                WriteUInt16(validHarpoonAmmoOffsets[1], 0);
+                WriteUInt16(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
                 {
-                    WriteValue(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                    WriteUInt16(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
                 }
             }
 
             if (!mp5CheckBox.Checked)
             {
-                WriteValue(validMp5AmmoOffsets[1], 0);
-                WriteValue(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
+                WriteUInt16(validMp5AmmoOffsets[1], 0);
+                WriteUInt16(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
                 {
-                    WriteValue(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
+                    WriteUInt16(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
                 }
             }
 
             if (!uziCheckBox.Checked)
             {
-                WriteValue(validUziAmmoOffsets[1], 0);
-                WriteValue(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
+                WriteUInt16(validUziAmmoOffsets[1], 0);
+                WriteUInt16(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
             }
             else
             {
                 for (int i = 0; i < validUziAmmoOffsets.Length; i++)
                 {
-                    WriteValue(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
+                    WriteUInt16(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
                 }
             }
 
@@ -1300,18 +1283,18 @@ namespace TRIII_SaveEdit
             if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
 
             // Write new weapons config num to save file
-            WriteToSaveFile(weaponsConfigNumOffset, newWeaponsConfigNum);
+            WriteByte(weaponsConfigNumOffset, newWeaponsConfigNum);
 
             // Write harpoon gun value to save file
-            if (harpoonGunCheckBox.Checked) WriteToSaveFile(harpoonGunOffset, 1);
-            else WriteToSaveFile(harpoonGunOffset, 0);
+            if (harpoonGunCheckBox.Checked) WriteByte(harpoonGunOffset, 1);
+            else WriteByte(harpoonGunOffset, 0);
 
             // Write new health value to save file
             double newHealthPercentage = (double)healthBar.Value;
             int newHealth = (int)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
             healthOffset = GetHealthOffset();
 
-            if (healthOffset != -1) WriteValue(healthOffset, newHealth);
+            if (healthOffset != -1) WriteUInt16(healthOffset, newHealth);
 
             toolStripStatusLabel.Text = "File patched!";
 
