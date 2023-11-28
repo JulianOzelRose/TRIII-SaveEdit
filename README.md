@@ -3,7 +3,7 @@ This is a savegame editor for Tomb Raider III. It has been rigorously tested to 
 the original and multi-patched version as well. Be sure to back up your save game files anyway as a precaution.
 This editor can enable any weapon on any level, including the bonus level. No setup is necessary, just download and run.
 
-![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/1f253e48-53df-4e3a-86d6-d3730a5f3c73)
+![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/eafeedb6-abfb-4dd8-83b1-68c3bc584608)
 
 
 ## Installation and usage
@@ -23,9 +23,9 @@ base number of 1, which indicates no weapons present in inventory. Each weapon a
 ###       ```weaponsConfigNum```             ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
-| Pistol                  | 2                 |
+| Pistols                 | 2                 |
 | Deagle                  | 4                 |
-| Uzi                     | 8                 |
+| Uzis                    | 8                 |
 | Shotgun                 | 16                |
 | MP5                     | 32                |
 | Rocket Launcher         | 64                |
@@ -37,9 +37,9 @@ operations would be extremely inefficient. Bitwise operations are perfect for th
 and then we use our else block to check if the unique bit of a weapon is present in the config variable, and then set our values to display accordingly.
 
 ```
-const int Pistol = 2;
+const int Pistols = 2;
 const int Deagle = 4;
-const int Uzi = 8;
+const int Uzis = 8;
 const int Shotgun = 16;
 const int MP5 = 32;
 const int RocketLauncher = 64;
@@ -57,10 +57,10 @@ if (weaponsConfigNum == 1)
 }
 else
 {
-    pistolsCheckBox.Checked = (weaponsConfigNum & Pistol) != 0;
+    pistolsCheckBox.Checked = (weaponsConfigNum & Pistols) != 0;
     shotgunCheckBox.Checked = (weaponsConfigNum & Shotgun) != 0;
     deagleCheckBox.Checked = (weaponsConfigNum & Deagle) != 0;
-    uziCheckBox.Checked = (weaponsConfigNum & Uzi) != 0;
+    uziCheckBox.Checked = (weaponsConfigNum & Uzis) != 0;
     mp5CheckBox.Checked = (weaponsConfigNum & MP5) != 0;
     rocketLauncherCheckBox.Checked = (weaponsConfigNum & RocketLauncher) != 0;
     grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
@@ -83,7 +83,7 @@ if (mp5CheckBox.Checked) newWeaponsConfigNum += 32;
 if (rocketLauncherCheckBox.Checked) newWeaponsConfigNum += 64;
 if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
 
-WriteToSaveFile(weaponsConfigNumOffset, newWeaponsConfigNum);
+WriteByte(weaponsConfigNumOffset, newWeaponsConfigNum);
 ```
 
 ## Calculating ammunition offsets
@@ -98,7 +98,7 @@ one to write to, we take the base secondary offset and loop through the potentia
 We then check the current ammo index with ```GetAmmoIndex()``` and add both the primary and secondary offsets to our list, and return as an array.
 
 ```
-int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
+public int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
 {
     List<int> secondaryOffsets = new List<int>();
     List<int> validOffsets = new List<int>();
@@ -136,7 +136,7 @@ levels and these bytes are stored differently on each one. We then call the dict
 the 0xFF bytes are located on. We will then know what the current ammo index is.
 
 ```
-int GetAmmoIndex()
+public int GetAmmoIndex()
 {
     string lvlName = GetCleanLvlName();
     int ammoIndex = 0;
@@ -150,7 +150,7 @@ int GetAmmoIndex()
             int key = indexData.ElementAt(i).Key;
             int[] offsets = indexData.ElementAt(i).Value;
 
-            if (offsets.All(offset => GetSaveFileData(offset) == 0xFF))
+            if (offsets.All(offset = > ReadByte(offset) == 0xFF))
             {
                 ammoIndex = key;
                 break;
@@ -172,15 +172,15 @@ Then, it checks the surrounding data. Since health is always stored 4 bytes away
 it checks those addresses for known character animation byte flags. If a match is found, it returns the correct offset. 
 
 ```
-int GetHealthOffset()
+public int GetHealthOffset()
 {
     for (int i = 0; i < healthOffsets.Count; i++)
     {
-        int healthValue = GetValue(healthOffsets[i]);
+        int healthValue = ReadUInt16(healthOffsets[i]);
 
         if (healthValue > MIN_HEALTH_VALUE && healthValue <= MAX_HEALTH_VALUE)
         {
-            int byteFlag = GetSaveFileData(healthOffsets[i] - 4);
+            int byteFlag = ReadByte(healthOffsets[i] - 4);
 
             if (IsKnownByteFlag(byteFlag))
             {
