@@ -455,9 +455,9 @@ namespace TRIII_SaveEdit
             this.deagleCheckBox.AutoSize = true;
             this.deagleCheckBox.Location = new System.Drawing.Point(19, 72);
             this.deagleCheckBox.Name = "deagleCheckBox";
-            this.deagleCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.deagleCheckBox.Size = new System.Drawing.Size(90, 17);
             this.deagleCheckBox.TabIndex = 5;
-            this.deagleCheckBox.Text = "Deagle:";
+            this.deagleCheckBox.Text = "Desert Eagle:";
             this.deagleCheckBox.UseVisualStyleBackColor = true;
             // 
             // shotgunAmmoNumBox
