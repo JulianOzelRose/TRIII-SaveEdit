@@ -1,7 +1,7 @@
 # Tomb Raider III - Savegame Editor
-This is a savegame editor for Tomb Raider III. It has been rigorously tested to work with the Steam version of the game, but it should work on
-the original and multi-patched version as well. Be sure to back up your save game files anyway as a precaution.
-This editor can enable any weapon on any level, including the bonus level. No setup is necessary, just download and run.
+This is a standalone savegame editor for Tomb Raider III. It has been rigorously tested to work with the Steam version of the game, but it should work on
+the original and multi-patched versions as well. Be sure to back up your save game files as a precaution.
+This editor can enable any weapon on any level, including the bonus level. No setup is necessary, simply download and run.
 
 ![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/eafeedb6-abfb-4dd8-83b1-68c3bc584608)
 
