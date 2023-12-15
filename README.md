@@ -168,8 +168,8 @@ as you progress through a level. Writing to the incorrect offset may crash the g
 To get around this issue, this savegame editor stores the known health offsets for each level on an array.
 When pulling health information, it loops through the known health offsets, and does a couple of heuristic
 checks to see which is the correct health offset. First, it checks for impossible health values (0 or greater than 1000).
-Then, it checks the surrounding data. Since health is always stored 4 bytes away from the character animation data,
-it checks those addresses for known character animation byte flags. If a match is found, it returns the correct offset. 
+Then, it checks the surrounding data. Since health is always stored 8 bytes away from the character animation data,
+it checks those addresses for character animation byte flags. If a match is found, it returns the correct health offset. 
 
 ```
 public int GetHealthOffset()
@@ -180,9 +180,11 @@ public int GetHealthOffset()
 
         if (healthValue > MIN_HEALTH_VALUE && healthValue <= MAX_HEALTH_VALUE)
         {
-            int byteFlag = ReadByte(healthOffsets[i] - 4);
+            byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
+            byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
+            byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
 
-            if (IsKnownByteFlag(byteFlag))
+            if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
             {
                 return healthOffsets[i];
             }
