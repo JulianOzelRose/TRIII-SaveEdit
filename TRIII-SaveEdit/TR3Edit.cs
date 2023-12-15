@@ -473,20 +473,13 @@ namespace TRIII_SaveEdit
             }
         }
 
-        public bool IsKnownByteFlag(int byteFlag)
+        public bool IsKnownByteFlagPattern(byte byteFlag1, byte byteFlag2, byte byteFlag3)
         {
-            if (byteFlag == 0x02) return true;      // Finishing a climb
-            if (byteFlag == 0x0B) return true;      // Standing
-            if (byteFlag == 0x1F) return true;      // Climbing
-            if (byteFlag == 0x46) return true;      // Sliding
-            if (byteFlag == 0x47) return true;      // Unknown
-            if (byteFlag == 0x61) return true;      // Climbing
-            if (byteFlag == 0x67) return true;      // Standing
-            if (byteFlag == 0x6C) return true;      // Underwater
-            if (byteFlag == 0x6E) return true;      // On water
-            if (byteFlag == 0x7B) return true;      // Pushing a block
-            if (byteFlag == 0x83) return true;      // Puzzle
-            if (byteFlag == 0x87) return true;      // Picking up item
+            if (byteFlag1 == 0x02 && byteFlag2 == 0x00 && byteFlag3 == 0x02) return true;       // Standing
+            if (byteFlag1 == 0x13 && byteFlag2 == 0x00 && byteFlag3 == 0x13) return true;       // Climbing
+            if (byteFlag1 == 0x21 && byteFlag2 == 0x00 && byteFlag3 == 0x21) return true;       // On water
+            if (byteFlag1 == 0x0D && byteFlag2 == 0x00 && byteFlag3 == 0x12) return true;       // Underwater
+            if (byteFlag1 == 0x57 && byteFlag2 == 0x00 && byteFlag3 == 0x57) return true;       // Climbing 2
 
             return false;
         }
@@ -499,9 +492,11 @@ namespace TRIII_SaveEdit
 
                 if (healthValue > MIN_HEALTH_VALUE && healthValue <= MAX_HEALTH_VALUE)
                 {
-                    int byteFlag = ReadByte(healthOffsets[i] - 4);
+                    byte byteFlag1 = ReadByte(healthOffsets[i] - 10);
+                    byte byteFlag2 = ReadByte(healthOffsets[i] - 9);
+                    byte byteFlag3 = ReadByte(healthOffsets[i] - 8);
 
-                    if (IsKnownByteFlag(byteFlag))
+                    if (IsKnownByteFlagPattern(byteFlag1, byteFlag2, byteFlag3))
                     {
                         return healthOffsets[i];
                     }
