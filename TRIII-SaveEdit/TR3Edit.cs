@@ -1293,7 +1293,7 @@ namespace TRIII_SaveEdit
 
             toolStripStatusLabel.Text = "File patched!";
 
-            MessageBox.Show("Save file patched!", "SUCCESS");
+            MessageBox.Show("Save file patched!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BrowseButton_Click(object sender, EventArgs e)
