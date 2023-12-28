@@ -30,528 +30,528 @@ namespace TRIII_SaveEdit
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TR3Edit));
-            this.fileTxtBox = new System.Windows.Forms.TextBox();
-            this.BrowseBtn = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.saveNumBox = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lvlNameTxtBox = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.flaresNumBox = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lrgMedipacksNumBox = new System.Windows.Forms.NumericUpDown();
-            this.smallMedipacksNumBox = new System.Windows.Forms.NumericUpDown();
-            this.healthErrorLabel = new System.Windows.Forms.Label();
-            this.healthPercentageLabel = new System.Windows.Forms.Label();
-            this.healthBar = new System.Windows.Forms.TrackBar();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.mp5AmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.mp5CheckBox = new System.Windows.Forms.CheckBox();
-            this.rocketLauncherAmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.rocketLauncherCheckBox = new System.Windows.Forms.CheckBox();
-            this.uziAmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.uziCheckBox = new System.Windows.Forms.CheckBox();
-            this.harpoonGunAmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.harpoonGunCheckBox = new System.Windows.Forms.CheckBox();
-            this.pistolsCheckBox = new System.Windows.Forms.CheckBox();
-            this.grenadeLauncherAmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.grenadeLauncherCheckBox = new System.Windows.Forms.CheckBox();
-            this.deagleAmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.deagleCheckBox = new System.Windows.Forms.CheckBox();
-            this.shotgunAmmoNumBox = new System.Windows.Forms.NumericUpDown();
-            this.shotgunCheckBox = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.flaresNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lrgMedipacksNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smallMedipacksNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.healthBar)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mp5AmmoNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rocketLauncherAmmoNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uziAmmoNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.harpoonGunAmmoNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grenadeLauncherAmmoNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deagleAmmoNumBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shotgunAmmoNumBox)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            this.statusStrip.SuspendLayout();
+            this.txtFilePath = new System.Windows.Forms.TextBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblFile = new System.Windows.Forms.Label();
+            this.grpLevel = new System.Windows.Forms.GroupBox();
+            this.lblSaveNumber = new System.Windows.Forms.Label();
+            this.nudSaveNum = new System.Windows.Forms.NumericUpDown();
+            this.lblLvlName = new System.Windows.Forms.Label();
+            this.txtLvlName = new System.Windows.Forms.TextBox();
+            this.grpItems = new System.Windows.Forms.GroupBox();
+            this.lblFlares = new System.Windows.Forms.Label();
+            this.nudFlares = new System.Windows.Forms.NumericUpDown();
+            this.lblLargeMedipacks = new System.Windows.Forms.Label();
+            this.lblSmallMedipacks = new System.Windows.Forms.Label();
+            this.nudLargeMedipacks = new System.Windows.Forms.NumericUpDown();
+            this.nudSmallMedipacks = new System.Windows.Forms.NumericUpDown();
+            this.lblHealthError = new System.Windows.Forms.Label();
+            this.lblHealth = new System.Windows.Forms.Label();
+            this.trbHealth = new System.Windows.Forms.TrackBar();
+            this.grpWeapons = new System.Windows.Forms.GroupBox();
+            this.lblPistolAmmo = new System.Windows.Forms.Label();
+            this.nudMp5Ammo = new System.Windows.Forms.NumericUpDown();
+            this.chkMp5 = new System.Windows.Forms.CheckBox();
+            this.nudRocketLauncher = new System.Windows.Forms.NumericUpDown();
+            this.chkRocketLauncher = new System.Windows.Forms.CheckBox();
+            this.nudUziAmmo = new System.Windows.Forms.NumericUpDown();
+            this.chkUzis = new System.Windows.Forms.CheckBox();
+            this.nudHarpoonGunAmmo = new System.Windows.Forms.NumericUpDown();
+            this.chkHarpoonGun = new System.Windows.Forms.CheckBox();
+            this.chkPistols = new System.Windows.Forms.CheckBox();
+            this.nudGrenadeLauncher = new System.Windows.Forms.NumericUpDown();
+            this.chkGrenadeLauncher = new System.Windows.Forms.CheckBox();
+            this.nudDesertEagleAmmo = new System.Windows.Forms.NumericUpDown();
+            this.chkDesertEagle = new System.Windows.Forms.CheckBox();
+            this.nudShotgunAmmo = new System.Windows.Forms.NumericUpDown();
+            this.chkShotgun = new System.Windows.Forms.CheckBox();
+            this.grpHealth = new System.Windows.Forms.GroupBox();
+            this.ssStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.grpLevel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSaveNum)).BeginInit();
+            this.grpItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFlares)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLargeMedipacks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSmallMedipacks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbHealth)).BeginInit();
+            this.grpWeapons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMp5Ammo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRocketLauncher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUziAmmo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHarpoonGunAmmo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeLauncher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesertEagleAmmo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudShotgunAmmo)).BeginInit();
+            this.grpHealth.SuspendLayout();
+            this.ssStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // fileTxtBox
+            // txtFilePath
             // 
-            this.fileTxtBox.Location = new System.Drawing.Point(39, 15);
-            this.fileTxtBox.Name = "fileTxtBox";
-            this.fileTxtBox.ReadOnly = true;
-            this.fileTxtBox.Size = new System.Drawing.Size(398, 20);
-            this.fileTxtBox.TabIndex = 0;
+            this.txtFilePath.Location = new System.Drawing.Point(39, 15);
+            this.txtFilePath.Name = "txtFilePath";
+            this.txtFilePath.ReadOnly = true;
+            this.txtFilePath.Size = new System.Drawing.Size(398, 20);
+            this.txtFilePath.TabIndex = 0;
             // 
-            // BrowseBtn
+            // btnBrowse
             // 
-            this.BrowseBtn.Location = new System.Drawing.Point(441, 14);
-            this.BrowseBtn.Name = "BrowseBtn";
-            this.BrowseBtn.Size = new System.Drawing.Size(75, 23);
-            this.BrowseBtn.TabIndex = 1;
-            this.BrowseBtn.Text = "Browse";
-            this.BrowseBtn.UseVisualStyleBackColor = true;
-            this.BrowseBtn.Click += new System.EventHandler(this.BrowseButton_Click);
+            this.btnBrowse.Location = new System.Drawing.Point(441, 14);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowse.TabIndex = 1;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // SaveButton
+            // btnSave
             // 
-            this.SaveButton.Enabled = false;
-            this.SaveButton.Location = new System.Drawing.Point(520, 14);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 2;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(520, 14);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label1
+            // lblFile
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "File:";
+            this.lblFile.AutoSize = true;
+            this.lblFile.Location = new System.Drawing.Point(12, 18);
+            this.lblFile.Name = "lblFile";
+            this.lblFile.Size = new System.Drawing.Size(26, 13);
+            this.lblFile.TabIndex = 3;
+            this.lblFile.Text = "File:";
             // 
-            // groupBox1
+            // grpLevel
             // 
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.saveNumBox);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.lvlNameTxtBox);
-            this.groupBox1.Location = new System.Drawing.Point(8, 41);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(589, 56);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Level";
+            this.grpLevel.Controls.Add(this.lblSaveNumber);
+            this.grpLevel.Controls.Add(this.nudSaveNum);
+            this.grpLevel.Controls.Add(this.lblLvlName);
+            this.grpLevel.Controls.Add(this.txtLvlName);
+            this.grpLevel.Location = new System.Drawing.Point(8, 41);
+            this.grpLevel.Name = "grpLevel";
+            this.grpLevel.Size = new System.Drawing.Size(589, 56);
+            this.grpLevel.TabIndex = 4;
+            this.grpLevel.TabStop = false;
+            this.grpLevel.Text = "Level";
             // 
-            // label6
+            // lblSaveNumber
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(424, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Save Number:";
+            this.lblSaveNumber.AutoSize = true;
+            this.lblSaveNumber.Location = new System.Drawing.Point(424, 23);
+            this.lblSaveNumber.Name = "lblSaveNumber";
+            this.lblSaveNumber.Size = new System.Drawing.Size(75, 13);
+            this.lblSaveNumber.TabIndex = 5;
+            this.lblSaveNumber.Text = "Save Number:";
             // 
-            // saveNumBox
+            // nudSaveNum
             // 
-            this.saveNumBox.Location = new System.Drawing.Point(511, 21);
-            this.saveNumBox.Maximum = new decimal(new int[] {
+            this.nudSaveNum.Location = new System.Drawing.Point(511, 21);
+            this.nudSaveNum.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.saveNumBox.Name = "saveNumBox";
-            this.saveNumBox.Size = new System.Drawing.Size(55, 20);
-            this.saveNumBox.TabIndex = 4;
+            this.nudSaveNum.Name = "nudSaveNum";
+            this.nudSaveNum.Size = new System.Drawing.Size(55, 20);
+            this.nudSaveNum.TabIndex = 4;
             // 
-            // label2
+            // lblLvlName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Name:";
+            this.lblLvlName.AutoSize = true;
+            this.lblLvlName.Location = new System.Drawing.Point(31, 24);
+            this.lblLvlName.Name = "lblLvlName";
+            this.lblLvlName.Size = new System.Drawing.Size(38, 13);
+            this.lblLvlName.TabIndex = 1;
+            this.lblLvlName.Text = "Name:";
             // 
-            // lvlNameTxtBox
+            // txtLvlName
             // 
-            this.lvlNameTxtBox.Location = new System.Drawing.Point(75, 21);
-            this.lvlNameTxtBox.Name = "lvlNameTxtBox";
-            this.lvlNameTxtBox.ReadOnly = true;
-            this.lvlNameTxtBox.Size = new System.Drawing.Size(224, 20);
-            this.lvlNameTxtBox.TabIndex = 0;
-            this.lvlNameTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtLvlName.Location = new System.Drawing.Point(75, 21);
+            this.txtLvlName.Name = "txtLvlName";
+            this.txtLvlName.ReadOnly = true;
+            this.txtLvlName.Size = new System.Drawing.Size(224, 20);
+            this.txtLvlName.TabIndex = 0;
+            this.txtLvlName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox2
+            // grpItems
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.flaresNumBox);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.lrgMedipacksNumBox);
-            this.groupBox2.Controls.Add(this.smallMedipacksNumBox);
-            this.groupBox2.Location = new System.Drawing.Point(8, 103);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 136);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Items";
+            this.grpItems.Controls.Add(this.lblFlares);
+            this.grpItems.Controls.Add(this.nudFlares);
+            this.grpItems.Controls.Add(this.lblLargeMedipacks);
+            this.grpItems.Controls.Add(this.lblSmallMedipacks);
+            this.grpItems.Controls.Add(this.nudLargeMedipacks);
+            this.grpItems.Controls.Add(this.nudSmallMedipacks);
+            this.grpItems.Location = new System.Drawing.Point(8, 103);
+            this.grpItems.Name = "grpItems";
+            this.grpItems.Size = new System.Drawing.Size(299, 136);
+            this.grpItems.TabIndex = 5;
+            this.grpItems.TabStop = false;
+            this.grpItems.Text = "Items";
             // 
-            // label5
+            // lblFlares
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 101);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Flares:";
+            this.lblFlares.AutoSize = true;
+            this.lblFlares.Location = new System.Drawing.Point(31, 101);
+            this.lblFlares.Name = "lblFlares";
+            this.lblFlares.Size = new System.Drawing.Size(38, 13);
+            this.lblFlares.TabIndex = 4;
+            this.lblFlares.Text = "Flares:";
             // 
-            // flaresNumBox
+            // nudFlares
             // 
-            this.flaresNumBox.Location = new System.Drawing.Point(225, 96);
-            this.flaresNumBox.Maximum = new decimal(new int[] {
+            this.nudFlares.Location = new System.Drawing.Point(225, 96);
+            this.nudFlares.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.flaresNumBox.Name = "flaresNumBox";
-            this.flaresNumBox.Size = new System.Drawing.Size(55, 20);
-            this.flaresNumBox.TabIndex = 18;
+            this.nudFlares.Name = "nudFlares";
+            this.nudFlares.Size = new System.Drawing.Size(55, 20);
+            this.nudFlares.TabIndex = 18;
             // 
-            // label4
+            // lblLargeMedipacks
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 63);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Large Medipacks:";
+            this.lblLargeMedipacks.AutoSize = true;
+            this.lblLargeMedipacks.Location = new System.Drawing.Point(31, 63);
+            this.lblLargeMedipacks.Name = "lblLargeMedipacks";
+            this.lblLargeMedipacks.Size = new System.Drawing.Size(92, 13);
+            this.lblLargeMedipacks.TabIndex = 3;
+            this.lblLargeMedipacks.Text = "Large Medipacks:";
             // 
-            // label3
+            // lblSmallMedipacks
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Small Medipacks:";
+            this.lblSmallMedipacks.AutoSize = true;
+            this.lblSmallMedipacks.Location = new System.Drawing.Point(31, 30);
+            this.lblSmallMedipacks.Name = "lblSmallMedipacks";
+            this.lblSmallMedipacks.Size = new System.Drawing.Size(90, 13);
+            this.lblSmallMedipacks.TabIndex = 2;
+            this.lblSmallMedipacks.Text = "Small Medipacks:";
             // 
-            // lrgMedipacksNumBox
+            // nudLargeMedipacks
             // 
-            this.lrgMedipacksNumBox.Location = new System.Drawing.Point(225, 62);
-            this.lrgMedipacksNumBox.Maximum = new decimal(new int[] {
+            this.nudLargeMedipacks.Location = new System.Drawing.Point(225, 62);
+            this.nudLargeMedipacks.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.lrgMedipacksNumBox.Name = "lrgMedipacksNumBox";
-            this.lrgMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
-            this.lrgMedipacksNumBox.TabIndex = 1;
+            this.nudLargeMedipacks.Name = "nudLargeMedipacks";
+            this.nudLargeMedipacks.Size = new System.Drawing.Size(55, 20);
+            this.nudLargeMedipacks.TabIndex = 1;
             // 
-            // smallMedipacksNumBox
+            // nudSmallMedipacks
             // 
-            this.smallMedipacksNumBox.Location = new System.Drawing.Point(225, 27);
-            this.smallMedipacksNumBox.Maximum = new decimal(new int[] {
+            this.nudSmallMedipacks.Location = new System.Drawing.Point(225, 27);
+            this.nudSmallMedipacks.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.smallMedipacksNumBox.Name = "smallMedipacksNumBox";
-            this.smallMedipacksNumBox.Size = new System.Drawing.Size(55, 20);
-            this.smallMedipacksNumBox.TabIndex = 0;
+            this.nudSmallMedipacks.Name = "nudSmallMedipacks";
+            this.nudSmallMedipacks.Size = new System.Drawing.Size(55, 20);
+            this.nudSmallMedipacks.TabIndex = 0;
             // 
-            // healthErrorLabel
+            // lblHealthError
             // 
-            this.healthErrorLabel.AutoSize = true;
-            this.healthErrorLabel.Location = new System.Drawing.Point(64, 53);
-            this.healthErrorLabel.Name = "healthErrorLabel";
-            this.healthErrorLabel.Size = new System.Drawing.Size(136, 13);
-            this.healthErrorLabel.TabIndex = 7;
-            this.healthErrorLabel.Text = "Unable to find health bytes.";
-            this.healthErrorLabel.Visible = false;
+            this.lblHealthError.AutoSize = true;
+            this.lblHealthError.Location = new System.Drawing.Point(64, 53);
+            this.lblHealthError.Name = "lblHealthError";
+            this.lblHealthError.Size = new System.Drawing.Size(136, 13);
+            this.lblHealthError.TabIndex = 7;
+            this.lblHealthError.Text = "Unable to find health bytes.";
+            this.lblHealthError.Visible = false;
             // 
-            // healthPercentageLabel
+            // lblHealth
             // 
-            this.healthPercentageLabel.AutoSize = true;
-            this.healthPercentageLabel.Location = new System.Drawing.Point(251, 27);
-            this.healthPercentageLabel.Name = "healthPercentageLabel";
-            this.healthPercentageLabel.Size = new System.Drawing.Size(30, 13);
-            this.healthPercentageLabel.TabIndex = 6;
-            this.healthPercentageLabel.Text = "0.0%";
+            this.lblHealth.AutoSize = true;
+            this.lblHealth.Location = new System.Drawing.Point(251, 27);
+            this.lblHealth.Name = "lblHealth";
+            this.lblHealth.Size = new System.Drawing.Size(30, 13);
+            this.lblHealth.TabIndex = 6;
+            this.lblHealth.Text = "0.0%";
             // 
-            // healthBar
+            // trbHealth
             // 
-            this.healthBar.Location = new System.Drawing.Point(12, 21);
-            this.healthBar.Maximum = 100;
-            this.healthBar.Name = "healthBar";
-            this.healthBar.Size = new System.Drawing.Size(241, 45);
-            this.healthBar.TabIndex = 4;
-            this.healthBar.Scroll += new System.EventHandler(this.HealthBar_Scroll);
+            this.trbHealth.Location = new System.Drawing.Point(12, 21);
+            this.trbHealth.Maximum = 100;
+            this.trbHealth.Name = "trbHealth";
+            this.trbHealth.Size = new System.Drawing.Size(241, 45);
+            this.trbHealth.TabIndex = 4;
+            this.trbHealth.Scroll += new System.EventHandler(this.trbHealth_Scroll);
             // 
-            // groupBox3
+            // grpWeapons
             // 
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.mp5AmmoNumBox);
-            this.groupBox3.Controls.Add(this.mp5CheckBox);
-            this.groupBox3.Controls.Add(this.rocketLauncherAmmoNumBox);
-            this.groupBox3.Controls.Add(this.rocketLauncherCheckBox);
-            this.groupBox3.Controls.Add(this.uziAmmoNumBox);
-            this.groupBox3.Controls.Add(this.uziCheckBox);
-            this.groupBox3.Controls.Add(this.harpoonGunAmmoNumBox);
-            this.groupBox3.Controls.Add(this.harpoonGunCheckBox);
-            this.groupBox3.Controls.Add(this.pistolsCheckBox);
-            this.groupBox3.Controls.Add(this.grenadeLauncherAmmoNumBox);
-            this.groupBox3.Controls.Add(this.grenadeLauncherCheckBox);
-            this.groupBox3.Controls.Add(this.deagleAmmoNumBox);
-            this.groupBox3.Controls.Add(this.deagleCheckBox);
-            this.groupBox3.Controls.Add(this.shotgunAmmoNumBox);
-            this.groupBox3.Controls.Add(this.shotgunCheckBox);
-            this.groupBox3.Location = new System.Drawing.Point(313, 103);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(284, 216);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Weapons";
+            this.grpWeapons.Controls.Add(this.lblPistolAmmo);
+            this.grpWeapons.Controls.Add(this.nudMp5Ammo);
+            this.grpWeapons.Controls.Add(this.chkMp5);
+            this.grpWeapons.Controls.Add(this.nudRocketLauncher);
+            this.grpWeapons.Controls.Add(this.chkRocketLauncher);
+            this.grpWeapons.Controls.Add(this.nudUziAmmo);
+            this.grpWeapons.Controls.Add(this.chkUzis);
+            this.grpWeapons.Controls.Add(this.nudHarpoonGunAmmo);
+            this.grpWeapons.Controls.Add(this.chkHarpoonGun);
+            this.grpWeapons.Controls.Add(this.chkPistols);
+            this.grpWeapons.Controls.Add(this.nudGrenadeLauncher);
+            this.grpWeapons.Controls.Add(this.chkGrenadeLauncher);
+            this.grpWeapons.Controls.Add(this.nudDesertEagleAmmo);
+            this.grpWeapons.Controls.Add(this.chkDesertEagle);
+            this.grpWeapons.Controls.Add(this.nudShotgunAmmo);
+            this.grpWeapons.Controls.Add(this.chkShotgun);
+            this.grpWeapons.Location = new System.Drawing.Point(313, 103);
+            this.grpWeapons.Name = "grpWeapons";
+            this.grpWeapons.Size = new System.Drawing.Size(284, 216);
+            this.grpWeapons.TabIndex = 7;
+            this.grpWeapons.TabStop = false;
+            this.grpWeapons.Text = "Weapons";
             // 
-            // label7
+            // lblPistolAmmo
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(205, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Unlimited";
+            this.lblPistolAmmo.AutoSize = true;
+            this.lblPistolAmmo.Location = new System.Drawing.Point(205, 26);
+            this.lblPistolAmmo.Name = "lblPistolAmmo";
+            this.lblPistolAmmo.Size = new System.Drawing.Size(50, 13);
+            this.lblPistolAmmo.TabIndex = 4;
+            this.lblPistolAmmo.Text = "Unlimited";
             // 
-            // mp5AmmoNumBox
+            // nudMp5Ammo
             // 
-            this.mp5AmmoNumBox.Location = new System.Drawing.Point(207, 162);
-            this.mp5AmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudMp5Ammo.Location = new System.Drawing.Point(207, 162);
+            this.nudMp5Ammo.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.mp5AmmoNumBox.Name = "mp5AmmoNumBox";
-            this.mp5AmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.mp5AmmoNumBox.TabIndex = 21;
+            this.nudMp5Ammo.Name = "nudMp5Ammo";
+            this.nudMp5Ammo.Size = new System.Drawing.Size(55, 20);
+            this.nudMp5Ammo.TabIndex = 21;
             // 
-            // mp5CheckBox
+            // chkMp5
             // 
-            this.mp5CheckBox.AutoSize = true;
-            this.mp5CheckBox.Location = new System.Drawing.Point(19, 162);
-            this.mp5CheckBox.Name = "mp5CheckBox";
-            this.mp5CheckBox.Size = new System.Drawing.Size(51, 17);
-            this.mp5CheckBox.TabIndex = 20;
-            this.mp5CheckBox.Text = "MP5:";
-            this.mp5CheckBox.UseVisualStyleBackColor = true;
+            this.chkMp5.AutoSize = true;
+            this.chkMp5.Location = new System.Drawing.Point(19, 162);
+            this.chkMp5.Name = "chkMp5";
+            this.chkMp5.Size = new System.Drawing.Size(51, 17);
+            this.chkMp5.TabIndex = 20;
+            this.chkMp5.Text = "MP5:";
+            this.chkMp5.UseVisualStyleBackColor = true;
             // 
-            // rocketLauncherAmmoNumBox
+            // nudRocketLauncher
             // 
-            this.rocketLauncherAmmoNumBox.Location = new System.Drawing.Point(207, 114);
-            this.rocketLauncherAmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudRocketLauncher.Location = new System.Drawing.Point(207, 114);
+            this.nudRocketLauncher.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.rocketLauncherAmmoNumBox.Name = "rocketLauncherAmmoNumBox";
-            this.rocketLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.rocketLauncherAmmoNumBox.TabIndex = 19;
+            this.nudRocketLauncher.Name = "nudRocketLauncher";
+            this.nudRocketLauncher.Size = new System.Drawing.Size(55, 20);
+            this.nudRocketLauncher.TabIndex = 19;
             // 
-            // rocketLauncherCheckBox
+            // chkRocketLauncher
             // 
-            this.rocketLauncherCheckBox.AutoSize = true;
-            this.rocketLauncherCheckBox.Location = new System.Drawing.Point(19, 116);
-            this.rocketLauncherCheckBox.Name = "rocketLauncherCheckBox";
-            this.rocketLauncherCheckBox.Size = new System.Drawing.Size(112, 17);
-            this.rocketLauncherCheckBox.TabIndex = 18;
-            this.rocketLauncherCheckBox.Text = "Rocket Launcher:";
-            this.rocketLauncherCheckBox.UseVisualStyleBackColor = true;
+            this.chkRocketLauncher.AutoSize = true;
+            this.chkRocketLauncher.Location = new System.Drawing.Point(19, 116);
+            this.chkRocketLauncher.Name = "chkRocketLauncher";
+            this.chkRocketLauncher.Size = new System.Drawing.Size(112, 17);
+            this.chkRocketLauncher.TabIndex = 18;
+            this.chkRocketLauncher.Text = "Rocket Launcher:";
+            this.chkRocketLauncher.UseVisualStyleBackColor = true;
             // 
-            // uziAmmoNumBox
+            // nudUziAmmo
             // 
-            this.uziAmmoNumBox.Location = new System.Drawing.Point(207, 186);
-            this.uziAmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudUziAmmo.Location = new System.Drawing.Point(207, 186);
+            this.nudUziAmmo.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.uziAmmoNumBox.Name = "uziAmmoNumBox";
-            this.uziAmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.uziAmmoNumBox.TabIndex = 15;
+            this.nudUziAmmo.Name = "nudUziAmmo";
+            this.nudUziAmmo.Size = new System.Drawing.Size(55, 20);
+            this.nudUziAmmo.TabIndex = 15;
             // 
-            // uziCheckBox
+            // chkUzis
             // 
-            this.uziCheckBox.AutoSize = true;
-            this.uziCheckBox.Location = new System.Drawing.Point(19, 184);
-            this.uziCheckBox.Name = "uziCheckBox";
-            this.uziCheckBox.Size = new System.Drawing.Size(49, 17);
-            this.uziCheckBox.TabIndex = 14;
-            this.uziCheckBox.Text = "Uzis:";
-            this.uziCheckBox.UseVisualStyleBackColor = true;
+            this.chkUzis.AutoSize = true;
+            this.chkUzis.Location = new System.Drawing.Point(19, 184);
+            this.chkUzis.Name = "chkUzis";
+            this.chkUzis.Size = new System.Drawing.Size(49, 17);
+            this.chkUzis.TabIndex = 14;
+            this.chkUzis.Text = "Uzis:";
+            this.chkUzis.UseVisualStyleBackColor = true;
             // 
-            // harpoonGunAmmoNumBox
+            // nudHarpoonGunAmmo
             // 
-            this.harpoonGunAmmoNumBox.Location = new System.Drawing.Point(207, 138);
-            this.harpoonGunAmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudHarpoonGunAmmo.Location = new System.Drawing.Point(207, 138);
+            this.nudHarpoonGunAmmo.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.harpoonGunAmmoNumBox.Name = "harpoonGunAmmoNumBox";
-            this.harpoonGunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.harpoonGunAmmoNumBox.TabIndex = 13;
+            this.nudHarpoonGunAmmo.Name = "nudHarpoonGunAmmo";
+            this.nudHarpoonGunAmmo.Size = new System.Drawing.Size(55, 20);
+            this.nudHarpoonGunAmmo.TabIndex = 13;
             // 
-            // harpoonGunCheckBox
+            // chkHarpoonGun
             // 
-            this.harpoonGunCheckBox.AutoSize = true;
-            this.harpoonGunCheckBox.Location = new System.Drawing.Point(19, 139);
-            this.harpoonGunCheckBox.Name = "harpoonGunCheckBox";
-            this.harpoonGunCheckBox.Size = new System.Drawing.Size(93, 17);
-            this.harpoonGunCheckBox.TabIndex = 12;
-            this.harpoonGunCheckBox.Text = "Harpoon Gun:";
-            this.harpoonGunCheckBox.UseVisualStyleBackColor = true;
+            this.chkHarpoonGun.AutoSize = true;
+            this.chkHarpoonGun.Location = new System.Drawing.Point(19, 139);
+            this.chkHarpoonGun.Name = "chkHarpoonGun";
+            this.chkHarpoonGun.Size = new System.Drawing.Size(93, 17);
+            this.chkHarpoonGun.TabIndex = 12;
+            this.chkHarpoonGun.Text = "Harpoon Gun:";
+            this.chkHarpoonGun.UseVisualStyleBackColor = true;
             // 
-            // pistolsCheckBox
+            // chkPistols
             // 
-            this.pistolsCheckBox.AutoSize = true;
-            this.pistolsCheckBox.Location = new System.Drawing.Point(19, 29);
-            this.pistolsCheckBox.Name = "pistolsCheckBox";
-            this.pistolsCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.pistolsCheckBox.TabIndex = 11;
-            this.pistolsCheckBox.Text = "Pistols";
-            this.pistolsCheckBox.UseVisualStyleBackColor = true;
+            this.chkPistols.AutoSize = true;
+            this.chkPistols.Location = new System.Drawing.Point(19, 29);
+            this.chkPistols.Name = "chkPistols";
+            this.chkPistols.Size = new System.Drawing.Size(56, 17);
+            this.chkPistols.TabIndex = 11;
+            this.chkPistols.Text = "Pistols";
+            this.chkPistols.UseVisualStyleBackColor = true;
             // 
-            // grenadeLauncherAmmoNumBox
+            // nudGrenadeLauncher
             // 
-            this.grenadeLauncherAmmoNumBox.Location = new System.Drawing.Point(207, 90);
-            this.grenadeLauncherAmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudGrenadeLauncher.Location = new System.Drawing.Point(207, 90);
+            this.nudGrenadeLauncher.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.grenadeLauncherAmmoNumBox.Name = "grenadeLauncherAmmoNumBox";
-            this.grenadeLauncherAmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.grenadeLauncherAmmoNumBox.TabIndex = 8;
+            this.nudGrenadeLauncher.Name = "nudGrenadeLauncher";
+            this.nudGrenadeLauncher.Size = new System.Drawing.Size(55, 20);
+            this.nudGrenadeLauncher.TabIndex = 8;
             // 
-            // grenadeLauncherCheckBox
+            // chkGrenadeLauncher
             // 
-            this.grenadeLauncherCheckBox.AutoSize = true;
-            this.grenadeLauncherCheckBox.Location = new System.Drawing.Point(19, 94);
-            this.grenadeLauncherCheckBox.Name = "grenadeLauncherCheckBox";
-            this.grenadeLauncherCheckBox.Size = new System.Drawing.Size(118, 17);
-            this.grenadeLauncherCheckBox.TabIndex = 7;
-            this.grenadeLauncherCheckBox.Text = "Grenade Launcher:";
-            this.grenadeLauncherCheckBox.UseVisualStyleBackColor = true;
+            this.chkGrenadeLauncher.AutoSize = true;
+            this.chkGrenadeLauncher.Location = new System.Drawing.Point(19, 94);
+            this.chkGrenadeLauncher.Name = "chkGrenadeLauncher";
+            this.chkGrenadeLauncher.Size = new System.Drawing.Size(118, 17);
+            this.chkGrenadeLauncher.TabIndex = 7;
+            this.chkGrenadeLauncher.Text = "Grenade Launcher:";
+            this.chkGrenadeLauncher.UseVisualStyleBackColor = true;
             // 
-            // deagleAmmoNumBox
+            // nudDesertEagleAmmo
             // 
-            this.deagleAmmoNumBox.Location = new System.Drawing.Point(207, 67);
-            this.deagleAmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudDesertEagleAmmo.Location = new System.Drawing.Point(207, 67);
+            this.nudDesertEagleAmmo.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.deagleAmmoNumBox.Name = "deagleAmmoNumBox";
-            this.deagleAmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.deagleAmmoNumBox.TabIndex = 6;
+            this.nudDesertEagleAmmo.Name = "nudDesertEagleAmmo";
+            this.nudDesertEagleAmmo.Size = new System.Drawing.Size(55, 20);
+            this.nudDesertEagleAmmo.TabIndex = 6;
             // 
-            // deagleCheckBox
+            // chkDesertEagle
             // 
-            this.deagleCheckBox.AutoSize = true;
-            this.deagleCheckBox.Location = new System.Drawing.Point(19, 72);
-            this.deagleCheckBox.Name = "deagleCheckBox";
-            this.deagleCheckBox.Size = new System.Drawing.Size(90, 17);
-            this.deagleCheckBox.TabIndex = 5;
-            this.deagleCheckBox.Text = "Desert Eagle:";
-            this.deagleCheckBox.UseVisualStyleBackColor = true;
+            this.chkDesertEagle.AutoSize = true;
+            this.chkDesertEagle.Location = new System.Drawing.Point(19, 72);
+            this.chkDesertEagle.Name = "chkDesertEagle";
+            this.chkDesertEagle.Size = new System.Drawing.Size(90, 17);
+            this.chkDesertEagle.TabIndex = 5;
+            this.chkDesertEagle.Text = "Desert Eagle:";
+            this.chkDesertEagle.UseVisualStyleBackColor = true;
             // 
-            // shotgunAmmoNumBox
+            // nudShotgunAmmo
             // 
-            this.shotgunAmmoNumBox.Location = new System.Drawing.Point(207, 43);
-            this.shotgunAmmoNumBox.Maximum = new decimal(new int[] {
+            this.nudShotgunAmmo.Location = new System.Drawing.Point(207, 43);
+            this.nudShotgunAmmo.Maximum = new decimal(new int[] {
             10922,
             0,
             0,
             0});
-            this.shotgunAmmoNumBox.Name = "shotgunAmmoNumBox";
-            this.shotgunAmmoNumBox.Size = new System.Drawing.Size(55, 20);
-            this.shotgunAmmoNumBox.TabIndex = 4;
+            this.nudShotgunAmmo.Name = "nudShotgunAmmo";
+            this.nudShotgunAmmo.Size = new System.Drawing.Size(55, 20);
+            this.nudShotgunAmmo.TabIndex = 4;
             // 
-            // shotgunCheckBox
+            // chkShotgun
             // 
-            this.shotgunCheckBox.AutoSize = true;
-            this.shotgunCheckBox.Location = new System.Drawing.Point(19, 51);
-            this.shotgunCheckBox.Name = "shotgunCheckBox";
-            this.shotgunCheckBox.Size = new System.Drawing.Size(69, 17);
-            this.shotgunCheckBox.TabIndex = 0;
-            this.shotgunCheckBox.Text = "Shotgun:";
-            this.shotgunCheckBox.UseVisualStyleBackColor = true;
+            this.chkShotgun.AutoSize = true;
+            this.chkShotgun.Location = new System.Drawing.Point(19, 51);
+            this.chkShotgun.Name = "chkShotgun";
+            this.chkShotgun.Size = new System.Drawing.Size(69, 17);
+            this.chkShotgun.TabIndex = 0;
+            this.chkShotgun.Text = "Shotgun:";
+            this.chkShotgun.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // grpHealth
             // 
-            this.groupBox4.Controls.Add(this.healthErrorLabel);
-            this.groupBox4.Controls.Add(this.healthBar);
-            this.groupBox4.Controls.Add(this.healthPercentageLabel);
-            this.groupBox4.Location = new System.Drawing.Point(8, 245);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(299, 74);
-            this.groupBox4.TabIndex = 18;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Health";
+            this.grpHealth.Controls.Add(this.lblHealthError);
+            this.grpHealth.Controls.Add(this.trbHealth);
+            this.grpHealth.Controls.Add(this.lblHealth);
+            this.grpHealth.Location = new System.Drawing.Point(8, 245);
+            this.grpHealth.Name = "grpHealth";
+            this.grpHealth.Size = new System.Drawing.Size(299, 74);
+            this.grpHealth.TabIndex = 18;
+            this.grpHealth.TabStop = false;
+            this.grpHealth.Text = "Health";
             // 
-            // statusStrip
+            // ssStatusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 329);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(604, 22);
-            this.statusStrip.SizingGrip = false;
-            this.statusStrip.TabIndex = 19;
-            this.statusStrip.Text = "statusStrip";
+            this.ssStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.slblStatus});
+            this.ssStatusStrip.Location = new System.Drawing.Point(0, 329);
+            this.ssStatusStrip.Name = "ssStatusStrip";
+            this.ssStatusStrip.Size = new System.Drawing.Size(604, 22);
+            this.ssStatusStrip.SizingGrip = false;
+            this.ssStatusStrip.TabIndex = 19;
+            this.ssStatusStrip.Text = "statusStrip";
             // 
             // toolStripStatusLabel
             // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            this.slblStatus.Name = "toolStripStatusLabel";
+            this.slblStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // TR3Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 351);
-            this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.BrowseBtn);
-            this.Controls.Add(this.fileTxtBox);
+            this.Controls.Add(this.ssStatusStrip);
+            this.Controls.Add(this.grpHealth);
+            this.Controls.Add(this.grpWeapons);
+            this.Controls.Add(this.grpItems);
+            this.Controls.Add(this.grpLevel);
+            this.Controls.Add(this.lblFile);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnBrowse);
+            this.Controls.Add(this.txtFilePath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TR3Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tomb Raider III - Savegame Editor";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.saveNumBox)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.flaresNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lrgMedipacksNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smallMedipacksNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.healthBar)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mp5AmmoNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rocketLauncherAmmoNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uziAmmoNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.harpoonGunAmmoNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grenadeLauncherAmmoNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deagleAmmoNumBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shotgunAmmoNumBox)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
+            this.grpLevel.ResumeLayout(false);
+            this.grpLevel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSaveNum)).EndInit();
+            this.grpItems.ResumeLayout(false);
+            this.grpItems.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFlares)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLargeMedipacks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSmallMedipacks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbHealth)).EndInit();
+            this.grpWeapons.ResumeLayout(false);
+            this.grpWeapons.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMp5Ammo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRocketLauncher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUziAmmo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHarpoonGunAmmo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGrenadeLauncher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDesertEagleAmmo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudShotgunAmmo)).EndInit();
+            this.grpHealth.ResumeLayout(false);
+            this.grpHealth.PerformLayout();
+            this.ssStatusStrip.ResumeLayout(false);
+            this.ssStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -559,45 +559,45 @@ namespace TRIII_SaveEdit
 
         #endregion
 
-        private System.Windows.Forms.TextBox fileTxtBox;
-        private System.Windows.Forms.Button BrowseBtn;
-        private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox lvlNameTxtBox;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown lrgMedipacksNumBox;
-        private System.Windows.Forms.NumericUpDown smallMedipacksNumBox;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown shotgunAmmoNumBox;
-        private System.Windows.Forms.CheckBox shotgunCheckBox;
-        private System.Windows.Forms.CheckBox deagleCheckBox;
-        private System.Windows.Forms.NumericUpDown deagleAmmoNumBox;
-        private System.Windows.Forms.NumericUpDown grenadeLauncherAmmoNumBox;
-        private System.Windows.Forms.CheckBox grenadeLauncherCheckBox;
-        private System.Windows.Forms.CheckBox pistolsCheckBox;
-        private System.Windows.Forms.NumericUpDown harpoonGunAmmoNumBox;
-        private System.Windows.Forms.CheckBox harpoonGunCheckBox;
-        private System.Windows.Forms.NumericUpDown uziAmmoNumBox;
-        private System.Windows.Forms.CheckBox uziCheckBox;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown flaresNumBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown saveNumBox;
-        private System.Windows.Forms.NumericUpDown rocketLauncherAmmoNumBox;
-        private System.Windows.Forms.CheckBox rocketLauncherCheckBox;
-        private System.Windows.Forms.NumericUpDown mp5AmmoNumBox;
-        private System.Windows.Forms.CheckBox mp5CheckBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TrackBar healthBar;
-        private System.Windows.Forms.Label healthPercentageLabel;
-        private System.Windows.Forms.Label healthErrorLabel;
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.TextBox txtFilePath;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblFile;
+        private System.Windows.Forms.GroupBox grpLevel;
+        private System.Windows.Forms.Label lblLvlName;
+        private System.Windows.Forms.TextBox txtLvlName;
+        private System.Windows.Forms.GroupBox grpItems;
+        private System.Windows.Forms.Label lblLargeMedipacks;
+        private System.Windows.Forms.Label lblSmallMedipacks;
+        private System.Windows.Forms.NumericUpDown nudLargeMedipacks;
+        private System.Windows.Forms.NumericUpDown nudSmallMedipacks;
+        private System.Windows.Forms.GroupBox grpWeapons;
+        private System.Windows.Forms.NumericUpDown nudShotgunAmmo;
+        private System.Windows.Forms.CheckBox chkShotgun;
+        private System.Windows.Forms.CheckBox chkDesertEagle;
+        private System.Windows.Forms.NumericUpDown nudDesertEagleAmmo;
+        private System.Windows.Forms.NumericUpDown nudGrenadeLauncher;
+        private System.Windows.Forms.CheckBox chkGrenadeLauncher;
+        private System.Windows.Forms.CheckBox chkPistols;
+        private System.Windows.Forms.NumericUpDown nudHarpoonGunAmmo;
+        private System.Windows.Forms.CheckBox chkHarpoonGun;
+        private System.Windows.Forms.NumericUpDown nudUziAmmo;
+        private System.Windows.Forms.CheckBox chkUzis;
+        private System.Windows.Forms.GroupBox grpHealth;
+        private System.Windows.Forms.Label lblFlares;
+        private System.Windows.Forms.NumericUpDown nudFlares;
+        private System.Windows.Forms.Label lblSaveNumber;
+        private System.Windows.Forms.NumericUpDown nudSaveNum;
+        private System.Windows.Forms.NumericUpDown nudRocketLauncher;
+        private System.Windows.Forms.CheckBox chkRocketLauncher;
+        private System.Windows.Forms.NumericUpDown nudMp5Ammo;
+        private System.Windows.Forms.CheckBox chkMp5;
+        private System.Windows.Forms.Label lblPistolAmmo;
+        private System.Windows.Forms.TrackBar trbHealth;
+        private System.Windows.Forms.Label lblHealth;
+        private System.Windows.Forms.Label lblHealthError;
+        private System.Windows.Forms.StatusStrip ssStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel slblStatus;
     }
 }
 

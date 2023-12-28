@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>tomb3.ico</ApplicationIcon>
+    <ApplicationIcon>Tomb3.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
@@ -125,7 +125,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="tomb3.ico" />
+    <Content Include="Tomb3.ico" />
     <Content Include="bin\x64\Release\TRIII-SaveEdit.exe" />
   </ItemGroup>
   <ItemGroup>

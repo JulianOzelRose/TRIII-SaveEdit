@@ -330,114 +330,114 @@ namespace TRIII_SaveEdit
         public void DisplayLvlName()
         {
             string lvlName = GetLvlName();
-            lvlNameTxtBox.Clear();
-            lvlNameTxtBox.AppendText(lvlName);
+            txtLvlName.Clear();
+            txtLvlName.AppendText(lvlName);
         }
 
         public void DisplayNumSmallMedipacks()
         {
-            int numSmallMedipacks = ReadByte(smallMedipackOffset);
-            smallMedipacksNumBox.Value = numSmallMedipacks;
+            byte numSmallMedipacks = ReadByte(smallMedipackOffset);
+            nudSmallMedipacks.Value = numSmallMedipacks;
         }
 
         public void DisplayNumLargeMedipacks()
         {
-            int numLargeMedipacks = ReadByte(largeMedipackOffset);
-            lrgMedipacksNumBox.Value = numLargeMedipacks;
+            byte numLargeMedipacks = ReadByte(largeMedipackOffset);
+            nudLargeMedipacks.Value = numLargeMedipacks;
         }
 
         public void DisplayShotgunAmmo()
         {
             int shotgunAmmo = ReadUInt16(shotgunAmmoOffset);
-            shotgunAmmoNumBox.Value = shotgunAmmo / 6;
+            nudShotgunAmmo.Value = shotgunAmmo / 6;
         }
 
         public void DisplayDeagleAmmo()
         {
             int deagleAmmo = ReadUInt16(deagleAmmoOffset);
-            deagleAmmoNumBox.Value = deagleAmmo;
+            nudDesertEagleAmmo.Value = deagleAmmo;
         }
 
         public void DisplayMP5Ammo()
         {
             int mp5Ammo = ReadUInt16(mp5AmmoOffset);
-            mp5AmmoNumBox.Value = mp5Ammo;
+            nudMp5Ammo.Value = mp5Ammo;
         }
 
         public void DisplayNumFlares()
         {
-            int numFlares = ReadByte(numFlaresOffset);
-            flaresNumBox.Value = numFlares;
+            byte numFlares = ReadByte(numFlaresOffset);
+            nudFlares.Value = numFlares;
         }
 
         public void DisplayUziAmmo()
         {
             int uziAmmo = ReadUInt16(uziAmmoOffset);
-            uziAmmoNumBox.Value = uziAmmo;
+            nudUziAmmo.Value = uziAmmo;
         }
 
         public void DisplayGrenadeLauncherAmmo()
         {
             int grenadeLauncherAmmo = ReadUInt16(grenadeLauncherAmmoOffset);
-            grenadeLauncherAmmoNumBox.Value = grenadeLauncherAmmo;
+            nudGrenadeLauncher.Value = grenadeLauncherAmmo;
         }
 
         public void DisplayHarpoonAmmo()
         {
             int harpoonAmmo = ReadUInt16(harpoonAmmoOffset);
-            harpoonGunAmmoNumBox.Value = harpoonAmmo;
+            nudHarpoonGunAmmo.Value = harpoonAmmo;
         }
 
         public void DisplayRocketLauncherAmmo()
         {
             int rocketLauncherAmmo = ReadUInt16(rocketLauncherAmmoOffset);
-            rocketLauncherAmmoNumBox.Value = rocketLauncherAmmo;
+            nudRocketLauncher.Value = rocketLauncherAmmo;
         }
 
         public void DisplaySaveNum()
         {
             int saveNum = ReadUInt16(saveNumOffset);
-            saveNumBox.Value = saveNum;
+            nudSaveNum.Value = saveNum;
         }
 
         public void DisplayWeaponsInfo()
         {
             // Update weapons vars
-            int weaponsConfigNum = ReadByte(weaponsConfigNumOffset);
-            int harpoonGunVal = ReadByte(harpoonGunOffset);
+            byte weaponsConfigNum = ReadByte(weaponsConfigNumOffset);
+            byte harpoonGunVal = ReadByte(harpoonGunOffset);
 
             // Define weapons config constants
-            const int Pistols = 2;
-            const int Deagle = 4;
-            const int Uzis = 8;
-            const int Shotgun = 16;
-            const int MP5 = 32;
-            const int RocketLauncher = 64;
-            const int GrenadeLauncher = 128;
+            const byte Pistols = 2;
+            const byte Deagle = 4;
+            const byte Uzis = 8;
+            const byte Shotgun = 16;
+            const byte MP5 = 32;
+            const byte RocketLauncher = 64;
+            const byte GrenadeLauncher = 128;
 
             // Update weapons checkboxes
             if (weaponsConfigNum == 1)
             {
-                pistolsCheckBox.Checked = false;
-                shotgunCheckBox.Checked = false;
-                deagleCheckBox.Checked = false;
-                uziCheckBox.Checked = false;
-                mp5CheckBox.Checked = false;
-                rocketLauncherCheckBox.Checked = false;
-                grenadeLauncherCheckBox.Checked = false;
+                chkPistols.Checked = false;
+                chkShotgun.Checked = false;
+                chkDesertEagle.Checked = false;
+                chkUzis.Checked = false;
+                chkMp5.Checked = false;
+                chkRocketLauncher.Checked = false;
+                chkGrenadeLauncher.Checked = false;
             }
             else
             {
-                pistolsCheckBox.Checked = (weaponsConfigNum & Pistols) != 0;
-                shotgunCheckBox.Checked = (weaponsConfigNum & Shotgun) != 0;
-                deagleCheckBox.Checked = (weaponsConfigNum & Deagle) != 0;
-                uziCheckBox.Checked = (weaponsConfigNum & Uzis) != 0;
-                mp5CheckBox.Checked = (weaponsConfigNum & MP5) != 0;
-                rocketLauncherCheckBox.Checked = (weaponsConfigNum & RocketLauncher) != 0;
-                grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
+                chkPistols.Checked = (weaponsConfigNum & Pistols) != 0;
+                chkShotgun.Checked = (weaponsConfigNum & Shotgun) != 0;
+                chkDesertEagle.Checked = (weaponsConfigNum & Deagle) != 0;
+                chkUzis.Checked = (weaponsConfigNum & Uzis) != 0;
+                chkMp5.Checked = (weaponsConfigNum & MP5) != 0;
+                chkRocketLauncher.Checked = (weaponsConfigNum & RocketLauncher) != 0;
+                chkGrenadeLauncher.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
             }
 
-            harpoonGunCheckBox.Checked = (harpoonGunVal == 1) ? true : false;
+            chkHarpoonGun.Checked = (harpoonGunVal == 1) ? true : false;
         }
 
         public void DisplayHealthValue()
@@ -446,20 +446,20 @@ namespace TRIII_SaveEdit
 
             if (healthOffset == -1)
             {
-                healthBar.Enabled = false;
-                healthErrorLabel.Visible = true;
-                healthPercentageLabel.Visible = false;
-                healthBar.Value = 0;
+                trbHealth.Enabled = false;
+                lblHealthError.Visible = true;
+                lblHealth.Visible = false;
+                trbHealth.Value = 0;
             }
             else
             {
                 int health = ReadUInt16(healthOffset);
-                healthBar.Enabled = true;
-                healthErrorLabel.Visible = false;
+                trbHealth.Enabled = true;
+                lblHealthError.Visible = false;
                 double healthPercentage = (double)health / MAX_HEALTH_VALUE * 100.0;
-                healthBar.Value = (int)Math.Round(healthPercentage, 1);
-                healthPercentageLabel.Visible = true;
-                healthPercentageLabel.Text = healthPercentage.ToString("0.0") + "%";
+                trbHealth.Value = (int)Math.Round(healthPercentage, 1);
+                lblHealth.Visible = true;
+                lblHealth.Text = healthPercentage.ToString("0.0") + "%";
             }
         }
 
@@ -1161,7 +1161,7 @@ namespace TRIII_SaveEdit
         // Strings
         private string strSaveFilePath;
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             int[] validShotgunAmmoOffsets = GetValidAmmoOffsets(shotgunAmmoOffset, shotgunAmmoOffset2);
             int[] validDeagleAmmoOffsets = GetValidAmmoOffsets(deagleAmmoOffset, deagleAmmoOffset2);
@@ -1171,132 +1171,132 @@ namespace TRIII_SaveEdit
             int[] validMp5AmmoOffsets = GetValidAmmoOffsets(mp5AmmoOffset, mp5AmmoOffset2);
             int[] validUziAmmoOffsets = GetValidAmmoOffsets(uziAmmoOffset, uziAmmoOffset2);
 
-            WriteByte(smallMedipackOffset, Decimal.ToInt32(smallMedipacksNumBox.Value));
-            WriteByte(largeMedipackOffset, Decimal.ToInt32(lrgMedipacksNumBox.Value));
-            WriteByte(numFlaresOffset, Decimal.ToInt32(flaresNumBox.Value));
-            WriteUInt16(saveNumOffset, Decimal.ToInt32(saveNumBox.Value));
+            WriteByte(smallMedipackOffset, Decimal.ToInt32(nudSmallMedipacks.Value));
+            WriteByte(largeMedipackOffset, Decimal.ToInt32(nudLargeMedipacks.Value));
+            WriteByte(numFlaresOffset, Decimal.ToInt32(nudFlares.Value));
+            WriteUInt16(saveNumOffset, Decimal.ToInt32(nudSaveNum.Value));
 
-            if (!shotgunCheckBox.Checked)
+            if (!chkShotgun.Checked)
             {
                 WriteUInt16(validShotgunAmmoOffsets[1], 0);
-                WriteUInt16(shotgunAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                WriteUInt16(shotgunAmmoOffset, Decimal.ToInt32(nudShotgunAmmo.Value) * 6);
             }
             else
             {
                 for (int i = 0; i < validShotgunAmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validShotgunAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value) * 6);
+                    WriteUInt16(validShotgunAmmoOffsets[i], Decimal.ToInt32(nudShotgunAmmo.Value) * 6);
                 }
             }
 
-            if (!deagleCheckBox.Checked)
+            if (!chkDesertEagle.Checked)
             {
                 WriteUInt16(validDeagleAmmoOffsets[1], 0);
-                WriteUInt16(deagleAmmoOffset, Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                WriteUInt16(deagleAmmoOffset, Decimal.ToInt32(nudShotgunAmmo.Value));
             }
             else
             {
                 for (int i = 0; i < validDeagleAmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validDeagleAmmoOffsets[i], Decimal.ToInt32(shotgunAmmoNumBox.Value));
+                    WriteUInt16(validDeagleAmmoOffsets[i], Decimal.ToInt32(nudShotgunAmmo.Value));
                 }
             }
 
-            if (!grenadeLauncherCheckBox.Checked)
+            if (!chkGrenadeLauncher.Checked)
             {
                 WriteUInt16(validGrenadeLauncherAmmoOffsets[1], 0);
-                WriteUInt16(grenadeLauncherAmmoOffset, Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                WriteUInt16(grenadeLauncherAmmoOffset, Decimal.ToInt32(nudGrenadeLauncher.Value));
             }
             else
             {
                 for (int i = 0; i < validGrenadeLauncherAmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(grenadeLauncherAmmoNumBox.Value));
+                    WriteUInt16(validGrenadeLauncherAmmoOffsets[i], Decimal.ToInt32(nudGrenadeLauncher.Value));
                 }
             }
 
-            if (!rocketLauncherCheckBox.Checked)
+            if (!chkRocketLauncher.Checked)
             {
                 WriteUInt16(validRocketLauncherAmmoOffsets[1], 0);
-                WriteUInt16(rocketLauncherAmmoOffset, Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                WriteUInt16(rocketLauncherAmmoOffset, Decimal.ToInt32(nudRocketLauncher.Value));
             }
             else
             {
                 for (int i = 0; i < validRocketLauncherAmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(rocketLauncherAmmoNumBox.Value));
+                    WriteUInt16(validRocketLauncherAmmoOffsets[i], Decimal.ToInt32(nudRocketLauncher.Value));
                 }
             }
 
-            if (!harpoonGunCheckBox.Checked)
+            if (!chkHarpoonGun.Checked)
             {
                 WriteUInt16(validHarpoonAmmoOffsets[1], 0);
-                WriteUInt16(harpoonAmmoOffset, Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                WriteUInt16(harpoonAmmoOffset, Decimal.ToInt32(nudHarpoonGunAmmo.Value));
             }
             else
             {
                 for (int i = 0; i < validHarpoonAmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validHarpoonAmmoOffsets[i], Decimal.ToInt32(harpoonGunAmmoNumBox.Value));
+                    WriteUInt16(validHarpoonAmmoOffsets[i], Decimal.ToInt32(nudHarpoonGunAmmo.Value));
                 }
             }
 
-            if (!mp5CheckBox.Checked)
+            if (!chkMp5.Checked)
             {
                 WriteUInt16(validMp5AmmoOffsets[1], 0);
-                WriteUInt16(mp5AmmoOffset, Decimal.ToInt32(mp5AmmoNumBox.Value));
+                WriteUInt16(mp5AmmoOffset, Decimal.ToInt32(nudMp5Ammo.Value));
             }
             else
             {
                 for (int i = 0; i < validMp5AmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validMp5AmmoOffsets[i], Decimal.ToInt32(mp5AmmoNumBox.Value));
+                    WriteUInt16(validMp5AmmoOffsets[i], Decimal.ToInt32(nudMp5Ammo.Value));
                 }
             }
 
-            if (!uziCheckBox.Checked)
+            if (!chkUzis.Checked)
             {
                 WriteUInt16(validUziAmmoOffsets[1], 0);
-                WriteUInt16(uziAmmoOffset, Decimal.ToInt32(uziAmmoNumBox.Value));
+                WriteUInt16(uziAmmoOffset, Decimal.ToInt32(nudUziAmmo.Value));
             }
             else
             {
                 for (int i = 0; i < validUziAmmoOffsets.Length; i++)
                 {
-                    WriteUInt16(validUziAmmoOffsets[i], Decimal.ToInt32(uziAmmoNumBox.Value));
+                    WriteUInt16(validUziAmmoOffsets[i], Decimal.ToInt32(nudUziAmmo.Value));
                 }
             }
 
             // Calculate new weapons config number
-            int newWeaponsConfigNum = 1;
-            if (pistolsCheckBox.Checked) newWeaponsConfigNum += 2;
-            if (deagleCheckBox.Checked) newWeaponsConfigNum += 4;
-            if (uziCheckBox.Checked) newWeaponsConfigNum += 8;
-            if (shotgunCheckBox.Checked) newWeaponsConfigNum += 16;
-            if (mp5CheckBox.Checked) newWeaponsConfigNum += 32;
-            if (rocketLauncherCheckBox.Checked) newWeaponsConfigNum += 64;
-            if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
+            byte newWeaponsConfigNum = 1;
+            if (chkPistols.Checked) newWeaponsConfigNum += 2;
+            if (chkDesertEagle.Checked) newWeaponsConfigNum += 4;
+            if (chkUzis.Checked) newWeaponsConfigNum += 8;
+            if (chkShotgun.Checked) newWeaponsConfigNum += 16;
+            if (chkMp5.Checked) newWeaponsConfigNum += 32;
+            if (chkRocketLauncher.Checked) newWeaponsConfigNum += 64;
+            if (chkGrenadeLauncher.Checked) newWeaponsConfigNum += 128;
 
             // Write new weapons config num to save file
             WriteByte(weaponsConfigNumOffset, newWeaponsConfigNum);
 
             // Write harpoon gun value to save file
-            if (harpoonGunCheckBox.Checked) WriteByte(harpoonGunOffset, 1);
+            if (chkHarpoonGun.Checked) WriteByte(harpoonGunOffset, 1);
             else WriteByte(harpoonGunOffset, 0);
 
             // Write new health value to save file
-            double newHealthPercentage = (double)healthBar.Value;
+            double newHealthPercentage = (double)trbHealth.Value;
             int newHealth = (int)(newHealthPercentage / 100.0 * MAX_HEALTH_VALUE);
             healthOffset = GetHealthOffset();
 
             if (healthOffset != -1) WriteUInt16(healthOffset, newHealth);
 
-            toolStripStatusLabel.Text = "File patched!";
+            slblStatus.Text = "File patched!";
 
             MessageBox.Show("Save file patched!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void BrowseButton_Click(object sender, EventArgs e)
+        private void btnBrowse_Click(object sender, EventArgs e)
         {
             var fileContent = string.Empty;
             var filePath = string.Empty;
@@ -1313,12 +1313,12 @@ namespace TRIII_SaveEdit
                     filePath = openFileDialog.FileName;
                     SetSaveFilePath(filePath);
 
-                    fileTxtBox.Clear();
-                    fileTxtBox.AppendText(filePath);
+                    txtFilePath.Clear();
+                    txtFilePath.AppendText(filePath);
 
-                    SaveButton.Enabled = true;
+                    btnSave.Enabled = true;
 
-                    toolStripStatusLabel.Text = "Loaded save file: " + Path.GetFileName(openFileDialog.FileName);
+                    slblStatus.Text = "Loaded save file: " + Path.GetFileName(openFileDialog.FileName);
 
                     SetLvlParams();
                     DisplayWeaponsInfo();
@@ -1339,10 +1339,10 @@ namespace TRIII_SaveEdit
             }
         }
 
-        private void HealthBar_Scroll(object sender, EventArgs e)
+        private void trbHealth_Scroll(object sender, EventArgs e)
         {
-            double healthPercentage = (double)healthBar.Value;
-            healthPercentageLabel.Text = healthPercentage.ToString("0.0") + "%";
+            double healthPercentage = (double)trbHealth.Value;
+            lblHealth.Text = healthPercentage.ToString("0.0") + "%";
         }
     }
 }
