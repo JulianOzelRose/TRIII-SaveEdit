@@ -37,33 +37,33 @@ operations would be extremely inefficient. Bitwise operations are perfect for th
 and then we use our else block to check if the unique bit of a weapon is present in the config variable, and then set our values to display accordingly.
 
 ```
-const int Pistols = 2;
-const int Deagle = 4;
-const int Uzis = 8;
-const int Shotgun = 16;
-const int MP5 = 32;
-const int RocketLauncher = 64;
-const int GrenadeLauncher = 128;
+const byte Pistols = 2;
+const byte Deagle = 4;
+const byte Uzis = 8;
+const byte Shotgun = 16;
+const byte MP5 = 32;
+const byte RocketLauncher = 64;
+const byte GrenadeLauncher = 128;
 
 if (weaponsConfigNum == 1)
 {
-    pistolsCheckBox.Checked = false;
-    shotgunCheckBox.Checked = false;
-    deagleCheckBox.Checked = false;
-    uziCheckBox.Checked = false;
-    mp5CheckBox.Checked = false;
-    rocketLauncherCheckBox.Checked = false;
-    grenadeLauncherCheckBox.Checked = false;
+    chkPistols.Checked = false;
+    chkShotgun.Checked = false;
+    chkDesertEagle.Checked = false;
+    chkUzis.Checked = false;
+    chkMp5.Checked = false;
+    chkRocketLauncher.Checked = false;
+    chkGrenadeLauncher.Checked = false;
 }
 else
 {
-    pistolsCheckBox.Checked = (weaponsConfigNum & Pistols) != 0;
-    shotgunCheckBox.Checked = (weaponsConfigNum & Shotgun) != 0;
-    deagleCheckBox.Checked = (weaponsConfigNum & Deagle) != 0;
-    uziCheckBox.Checked = (weaponsConfigNum & Uzis) != 0;
-    mp5CheckBox.Checked = (weaponsConfigNum & MP5) != 0;
-    rocketLauncherCheckBox.Checked = (weaponsConfigNum & RocketLauncher) != 0;
-    grenadeLauncherCheckBox.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
+    chkPistols.Checked = (weaponsConfigNum & Pistols) != 0;
+    chkShotgun.Checked = (weaponsConfigNum & Shotgun) != 0;
+    chkDesertEagle.Checked = (weaponsConfigNum & Deagle) != 0;
+    chkUzis.Checked = (weaponsConfigNum & Uzis) != 0;
+    chkMp5.Checked = (weaponsConfigNum & MP5) != 0;
+    chkRocketLauncher.Checked = (weaponsConfigNum & RocketLauncher) != 0;
+    chkGrenadeLauncher.Checked = (weaponsConfigNum & GrenadeLauncher) != 0;
 }
 ```
 
@@ -73,15 +73,15 @@ We start with the base number of 1, and then increment based on the checked weap
 Lastly, we write the calculated number to the save file.
 
 ```
-int newWeaponsConfigNum = 1;
+byte newWeaponsConfigNum = 1;
 
-if (pistolsCheckBox.Checked) newWeaponsConfigNum += 2;
-if (deagleCheckBox.Checked) newWeaponsConfigNum += 4;
-if (uziCheckBox.Checked) newWeaponsConfigNum += 8;
-if (shotgunCheckBox.Checked) newWeaponsConfigNum += 16;
-if (mp5CheckBox.Checked) newWeaponsConfigNum += 32;
-if (rocketLauncherCheckBox.Checked) newWeaponsConfigNum += 64;
-if (grenadeLauncherCheckBox.Checked) newWeaponsConfigNum += 128;
+if (chkPistols.Checked) newWeaponsConfigNum += 2;
+if (chkDesertEagle.Checked) newWeaponsConfigNum += 4;
+if (chkUzis.Checked) newWeaponsConfigNum += 8;
+if (chkShotgun.Checked) newWeaponsConfigNum += 16;
+if (chkMp5.Checked) newWeaponsConfigNum += 32;
+if (chkRocketLauncher.Checked) newWeaponsConfigNum += 64;
+if (chkGrenadeLauncher.Checked) newWeaponsConfigNum += 128;
 
 WriteByte(weaponsConfigNumOffset, newWeaponsConfigNum);
 ```
