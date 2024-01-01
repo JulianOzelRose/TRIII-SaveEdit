@@ -3,7 +3,8 @@ This is a standalone savegame editor for Tomb Raider III. It has been rigorously
 the original and multi-patched versions as well. Be sure to back up your save game files as a precaution.
 This editor can enable any weapon on any level, including the bonus level. No setup is necessary, simply download and run.
 
-![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/d609241f-9d27-417a-8b26-f04033c0b34d)
+![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/2fe40fe1-4e4a-485d-995f-fb0f0613fd09)
+
 
 
 ## Installation and usage
@@ -24,7 +25,7 @@ base number of 1, which indicates no weapons present in inventory. Each weapon a
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
 | Pistols                 | 2                 |
-| Deagle                  | 4                 |
+| Desert Eagle            | 4                 |
 | Uzis                    | 8                 |
 | Shotgun                 | 16                |
 | MP5                     | 32                |
