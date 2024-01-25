@@ -316,7 +316,7 @@ table is the primary ammo offset, and the next one is the secondary base offset.
 | 0x0348            | UInt16   | Grenade Launcher Ammo 1 |
 | 0x034A            | BYTE     | Small Medipack          |
 | 0x034B            | BYTE     | Large Medipack          |
-| 0x034A            | BYTE     | Flares                  |
+| 0x034D            | BYTE     | Flares                  |
 | 0x0351            | BYTE     | Weapons Config Number   |
 | 0x0352            | BYTE     | Harpoon Gun             |
 | 0x179C            | UInt16   | Deagle Ammo 2           |
