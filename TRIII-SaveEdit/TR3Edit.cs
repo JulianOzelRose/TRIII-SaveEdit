@@ -640,7 +640,7 @@ namespace TRIII_SaveEdit
                 SetHealthOffsets(0x6B5);
 
                 // Misc offsets
-                numFlaresOffset = 0x34A;
+                numFlaresOffset = 0x34D;
                 saveNumOffset = 0x4B;
 
                 // Weapon offsets
