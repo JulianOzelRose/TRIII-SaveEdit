@@ -2,18 +2,21 @@
 This is a standalone savegame editor for Tomb Raider III. It has been rigorously tested to work with the Steam version of the game, but it should work on
 the original and multi-patched versions as well. Be sure to back up your save game files as a precaution.
 This editor can enable any weapon on any level, including the bonus level. No setup is necessary, simply download and run.
+For a more robust and well-maintained savegame editor that supports the entire Tomb Raider classic series, check out [TR-SaveMaster](https://github.com/JulianOzelRose/TR-SaveMaster).
 
 ![TRIII-SaveEdit-UI](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/2fe40fe1-4e4a-485d-995f-fb0f0613fd09)
 
 
+## Installation and use
+To download this editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TRIII-SaveEdit/tree/master/TRIII-SaveEdit/bin/x64/Release) folder, then download ```TRIII-SaveEdit.exe```.
+You can store the .exe anywhere on your computer. Once downloaded, launch the editor and click ```Browse``` to locate your game directory. Your game directory location depends on whether you did a Steam install
+or a CD install.
 
-## Installation and usage
-1. Navigate to the [Release](https://github.com/JulianOzelRose/TRIII-SaveEdit/tree/master/TRIII-SaveEdit/bin/x64/Release) folder, then download ```TRIII-SaveEdit.exe```.
-2. Launch the editor and click ```Browse``` to locate your game directory.
-3. If you're using the Steam version of the game, your directory should be:<br>
-```\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\```<br>
-4. Once your save game is selected, make the desired modifications.
-5. Click ```Save``` to apply your changes, and enjoy.
+Steam install directory: `C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\`<br>
+CD install directory: `C:\Program Files (x86)\Core Design\Tomb Raider III\`
+
+Once your savegame is selected, you can then change weapons, ammo, and health. Click ```Save``` to apply your changes, and enjoy. Do note that ammunition for weapons not currently equipped may appear differently than in-game.
+Harpoons are grouped in bundles of 2, Desert Eagle clips equate to 5 bullets, MP5 clips equate to 30 bullets, Uzi clips equate to 20 bullets, and a single box of grenades is equivalent to 2 rounds of Grenade Launcher ammunition.
 
 ## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
