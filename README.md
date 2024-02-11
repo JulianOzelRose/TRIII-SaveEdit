@@ -21,7 +21,7 @@ Harpoons are grouped in bundles of 2, Desert Eagle clips equate to 5 bullets, MP
 ## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
 instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
-The only exception is the harpoon gun, which is stored on its own offset, and is of boolean type. The weapons configuration variable has a
+The only exception is the Harpoon Gun, which is stored on its own offset, and is of boolean type. The weapons configuration variable has a
 base number of 1, which indicates no weapons present in inventory. Each weapon adds a unique number to the variable.
 
 ###       ```weaponsConfigNum```             ###
@@ -123,21 +123,22 @@ public int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
 
 ## Determining the current ammo index
 The ammo index is based on the number of active entities in the game. If there are no active entities,
-the correct ammo index is 0. If there is 1 entity, the index is 1, and so on. Ammo indices are also uniform,
+the ammo index is 0. If there is 1 entity, the index is 1, and so on. Ammo indices are also uniform,
 meaning if the current ammo index for MP5 is 2, then the ammo index for the shotgun and other weapons is also 2.
 One possible way to determine the current ammo index would be to reverse the entity data structures, and find
 common byte flags which may identify them as active entities. Since there are a total of 32 entities in the game,
 this would be an extremely daunting task.
 
-Fortunately, I was able to identify certain bytes in the save files that changed consistently along with the ammo index.
-I am not entirely sure what this data represents, but it seems to correlate with entity data. It's a 4-byte line
-consisting of 0xFF, 4 times. Here's what that data looks like on the same level with an ammo index of 0 (left) versus an ammo index of 1 (right).
+Fortunately, I was able to identify certain bytes in the savegame files that shift consistently along with the ammo index.
+I am not entirely sure what this data represents, but it seems to correlate with entity data. It's a 4-byte array
+consisting of `{0xFF, 0xFF, 0xFF, 0xFF}` just preceeding the null padding. Here's what that data looks like on the same
+level with an ammo index of 0 (left) versus an ammo index of 1 (right).
 
 ![TR3-Index-Diffs](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/e858081d-604e-4c6b-a1b4-4fd866094d86)
 
-So we take note of the byte patterns for the different ammo indices for each level, then store that data as a dictionary. There are 20
-levels and these bytes are stored differently on each one. We then call the dictionary in ```GetAmmoIndex()``` to check which lines
-the 0xFF bytes are located on. We will then know what the current ammo index is.
+So we take note of the 0xFF array locations for the different ammo indices for each level, then store that data in a dictionary. There are 20
+levels and the arrays are stored differently on each one. We then call the dictionary in ```GetAmmoIndex()``` to check where the 0xFF array
+is currently located. We will then know what the current ammo index is.
 
 ```
 public int GetAmmoIndex()
