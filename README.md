@@ -8,23 +8,23 @@ For a more robust and well-maintained savegame editor that supports the entire T
 
 
 ## Installation and use
-To download this editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TRIII-SaveEdit/tree/master/TRIII-SaveEdit/bin/x64/Release) folder, then download ```TRIII-SaveEdit.exe```.
-You can store the .exe anywhere on your computer. Once downloaded, launch the editor and click ```Browse``` to locate your game directory. Your game directory location depends on whether you did a Steam install
+To download this editor, simply navigate to the [Release](https://github.com/JulianOzelRose/TRIII-SaveEdit/tree/master/TRIII-SaveEdit/bin/x64/Release) folder, then download `TRIII-SaveEdit.exe`.
+You can store the .exe anywhere on your computer. Once downloaded, launch the editor and click "Browse" to locate your game directory. Your game directory location depends on whether you did a Steam install
 or a CD install.
 
-Steam install directory: `C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)\`<br>
-CD install directory: `C:\Program Files (x86)\Core Design\Tomb Raider III\`
+Steam install directory: `C:\Program Files (x86)\Steam\steamapps\common\TombRaider (III)`<br>
+CD install directory: `C:\Program Files (x86)\Core Design\Tomb Raider III`
 
-Once your savegame is selected, you can then change weapons, ammo, and health. Click ```Save``` to apply your changes, and enjoy. Do note that ammunition for weapons not currently equipped may appear differently than in-game.
+Once your savegame is selected, you can then change weapons, ammo, and health. Click "Save" to apply your changes, and enjoy. Do note that ammunition for weapons not currently equipped may appear differently than in-game.
 Harpoons are grouped in bundles of 2, Desert Eagle clips equate to 5 bullets, MP5 clips equate to 30 bullets, Uzi clips equate to 20 bullets, and a single box of grenades is equivalent to 2 rounds of Grenade Launcher ammunition.
 
 ## Reading weapons information
 Unlike Tomb Raider: Chronicles, the save file offsets in Tomb Raider III are stored differently on each level. Another interesting difference is that
-instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call ```weaponsConfigNum```.
+instead of storing weapons on individual offsets, all weapons information is stored on a single offset, which I call `weaponsConfigNum`.
 The only exception is the Harpoon Gun, which is stored on its own offset, and is of boolean type. The weapons configuration variable has a
 base number of 1, which indicates no weapons present in inventory. Each weapon adds a unique number to the variable.
 
-###       ```weaponsConfigNum```             ###
+###          `weaponsConfigNum`             ###
 | **Weapon**              | **Unique number** |
 | :---                    | :---              |
 | Pistols                 | 2                 |
@@ -99,7 +99,7 @@ per level.
 The "correct" secondary ammo offset changes throughout the level, and seems to depend on the number of active entities in the game.
 Writing to incorrect or multiple secondary offsets typically results in the game crashing upon loading. To determine which secondary offset is the correct
 one to write to, we take the base secondary offset and loop through the potential secondary offsets, using 0x12 as an iterator.
-We then check the current ammo index with ```GetAmmoIndex()``` and add both the primary and secondary offsets to our list, and return as an array.
+We then check the current ammo index with `GetAmmoIndex()` and add both the primary and secondary offsets to our list, and return as an array.
 
 ```
 public int[] GetValidAmmoOffsets(int primaryOffset, int baseSecondaryOffset)
@@ -137,7 +137,7 @@ level with an ammo index of 0 (left) versus an ammo index of 1 (right).
 ![TR3-Index-Diffs](https://github.com/JulianOzelRose/TRIII-SaveEdit/assets/95890436/e858081d-604e-4c6b-a1b4-4fd866094d86)
 
 So we take note of the 0xFF array locations for the different ammo indices for each level, then store that data in a dictionary. There are 20
-levels and the arrays are stored differently on each one. We then call the dictionary in ```GetAmmoIndex()``` to check where the 0xFF array
+levels and the arrays are stored differently on each one. We then call the dictionary in `GetAmmoIndex()` to check where the 0xFF array
 is currently located. We will then know what the current ammo index is.
 
 ```
@@ -155,7 +155,7 @@ public int GetAmmoIndex()
             int key = indexData.ElementAt(i).Key;
             int[] offsets = indexData.ElementAt(i).Value;
 
-            if (offsets.All(offset = > ReadByte(offset) == 0xFF))
+            if (offsets.All(offset => ReadByte(offset) == 0xFF))
             {
                 ammoIndex = key;
                 break;
