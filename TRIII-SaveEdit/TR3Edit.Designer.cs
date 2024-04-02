@@ -282,6 +282,7 @@ namespace TRIII_SaveEdit
             this.trbHealth.Name = "trbHealth";
             this.trbHealth.Size = new System.Drawing.Size(241, 45);
             this.trbHealth.TabIndex = 4;
+            this.trbHealth.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbHealth.Scroll += new System.EventHandler(this.trbHealth_Scroll);
             // 
             // grpWeapons
@@ -505,9 +506,9 @@ namespace TRIII_SaveEdit
             this.ssStatusStrip.TabIndex = 19;
             this.ssStatusStrip.Text = "statusStrip";
             // 
-            // toolStripStatusLabel
+            // slblStatus
             // 
-            this.slblStatus.Name = "toolStripStatusLabel";
+            this.slblStatus.Name = "slblStatus";
             this.slblStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // TR3Edit
