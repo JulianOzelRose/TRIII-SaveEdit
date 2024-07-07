@@ -1160,6 +1160,7 @@ namespace TRIII_SaveEdit
 
         // Strings
         private string strSaveFilePath;
+        private string strSavegameDirectory = "c:\\";
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -1303,7 +1304,7 @@ namespace TRIII_SaveEdit
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.InitialDirectory = strSavegameDirectory;
                 openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
@@ -1312,6 +1313,7 @@ namespace TRIII_SaveEdit
                 {
                     filePath = openFileDialog.FileName;
                     SetSaveFilePath(filePath);
+                    strSavegameDirectory = Path.GetDirectoryName(filePath);
 
                     txtFilePath.Clear();
                     txtFilePath.AppendText(filePath);
